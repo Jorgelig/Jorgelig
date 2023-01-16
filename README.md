@@ -3,7 +3,7 @@
 
 <p align="left"> <a href="https://twitter.com/jorgelig" target="blank"><img src="https://img.shields.io/twitter/follow/jorgelig?logo=twitter&style=for-the-badge" alt="jorgelig" /></a> </p>
 
-- 🔭 Actualmente trabajo en [Nocnok](https://www.nocnok.com/)
+- 🔭 Actualmente trabajo en [Guros](https://www.guros.com/)
 
 - 🌱 Actualmente estoy aprendiendo **Inteligencia Artificial**
 
