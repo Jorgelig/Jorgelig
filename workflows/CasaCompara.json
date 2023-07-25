@@ -1,0 +1,262 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-07-15T17:02:53.306Z",
+  "id": "22",
+  "name": "CasaCompara",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "id": "e799c07c-52ab-47e1-b5e5-47ee853d98ca"
+    },
+    {
+      "parameters": {
+        "url": "https://www.casacompara.com.mx/api/realties/real-estate-agents/search?stateId=&countyId=&pageNumber=1&pageSize=21&sortColumn=realties&sortAscending=false&format=json",
+        "allowUnauthorizedCerts": true,
+        "options": {}
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ],
+      "id": "77a591f3-4886-4715-83fd-aa278ff408ce"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"pageNumber\"]}}",
+              "value2": "={{$json[\"pageSize\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        140
+      ],
+      "id": "f0a2263b-8a50-4fde-a3fc-99479f40871f"
+    },
+    {
+      "parameters": {},
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        120
+      ],
+      "id": "d2da3684-a075-4f2a-8896-1585f4a86ba3"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.casacompara.com.mx/api/realties/real-estate-agents/search?stateId=&countyId=&pageNumber={{parseInt($json[\"pageNumber\"]) + 1}}&pageSize=21&sortColumn=realties&sortAscending=false&format=json",
+        "allowUnauthorizedCerts": true,
+        "options": {}
+      },
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        1840,
+        300
+      ],
+      "id": "a2db67ea-9224-4979-bdbb-7bb4b90ea6f3"
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        880,
+        140
+      ],
+      "webhookId": "a92d96e7-2b8a-4343-a2fa-e2f4ef30c9e6",
+      "id": "9e74054d-0e4a-48a2-8114-e25caada2b70"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "agents",
+        "fields": "id,fullName,isPro,phones,pictureUrl,webSiteUrl,realties",
+        "options": {
+          "useDotNotation": false
+        }
+      },
+      "name": "MongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        300
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "15",
+          "name": "MongoDB_casacompara"
+        }
+      },
+      "id": "8e98496f-891f-4486-8fe4-5a40d4c8084f"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "items",
+        "options": {}
+      },
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        300
+      ],
+      "id": "d7ee81b0-1998-4aba-881b-52cf358d941a"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "number": [
+            {
+              "name": "pageNumber",
+              "value": "={{$json[\"pageNumber\"]}}"
+            },
+            {
+              "name": "pageSize",
+              "value": "={{$json[\"pageSize\"]}}"
+            }
+          ],
+          "string": [
+            {
+              "name": "items",
+              "value": "={{$json[\"items\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        700,
+        140
+      ],
+      "id": "41fa128b-3b4b-42f5-9aac-7b401428b0d8"
+    }
+  ],
+  "pinData": null,
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-07-16T03:38:47.051Z",
+  "versionId": "f50c1727-b23f-49e4-b98d-d7a1ff01fdcc"
+}
