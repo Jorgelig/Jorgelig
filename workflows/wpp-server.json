@@ -1,0 +1,172 @@
+{
+  "active": true,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Http_StartSession",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Http_StartSession1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-08-08T08:58:53.999Z",
+  "id": "30",
+  "name": "wpp-server",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e1545b8a-9a70-4803-97a3-d510e6e28bd4",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://wpp.jorgeliglabs.com/api/JorgeligLabs/start-session",
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "webhook",
+              "value": "https://n8n.jorgeliglabs.com/webhook-test/0408cd32-bac9-42e2-b608-8e035a6f134d"
+            }
+          ]
+        },
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "httpBearer $2b$10$VmEYQsk._yFl_eezNhde1O3RGVueF9UWVw1VTZX_xbjz3Y74z.0dm"
+            }
+          ]
+        }
+      },
+      "id": "1a1d8356-effe-4338-8bf6-304105ecb6ae",
+      "name": "Http_StartSession",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        480,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://wpp.jorgeliglabs.com/api/JorgeligLabs/My53cr3tKY/generate-token",
+        "options": {}
+      },
+      "id": "284e5cf7-a01e-4bd5-9858-071254e68a94",
+      "name": "HTTP_GetToken",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        480,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://wpp.jorgeliglabs.com/api/JorgeligLabs/start-session",
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "webhook",
+              "value": "https://n8n.jorgeliglabs.com/webhook-test/342ff2af-348f-4dad-b8b7-abe80e86e56f"
+            }
+          ]
+        },
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "httpBearer $2b$10$PEZa5gLpbVMm6Daja5sZrOs1DpwFeIgCD3dymLiZdg5hsr4yHcsUW"
+            }
+          ]
+        }
+      },
+      "id": "6cbed37f-0b3c-43cc-8c11-254f1404c7aa",
+      "name": "Http_StartSession1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        480,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "0408cd32-bac9-42e2-b608-8e035a6f134d",
+        "options": {}
+      },
+      "id": "bb5c1894-806d-437c-8505-a166c3f113ef",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        260,
+        80
+      ],
+      "webhookId": "0408cd32-bac9-42e2-b608-8e035a6f134d"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://wpp.jorgeliglabs.com/api/JorgeligLabs/start-session",
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "webhook",
+              "value": "null"
+            },
+            {
+              "name": "chatwoot",
+              "value": "{\"enable\":true,\"baseurl\":\"https://chat.jorgeliglabs.com\",\"token\":\"kzUopdTohDT79UsuKF38tDry\",\"inbox_id\":\"3\",\"account_id\":\"2\"}"
+            }
+          ]
+        },
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "httpBearer $2b$10$PEZa5gLpbVMm6Daja5sZrOs1DpwFeIgCD3dymLiZdg5hsr4yHcsUW"
+            }
+          ]
+        }
+      },
+      "id": "93287c3c-2015-4077-ae8e-add7357a0ec8",
+      "name": "Http_StartSession_Chatwoot",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        480,
+        560
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-02-06T04:26:14.000Z",
+  "versionId": "47eff09d-50a0-4e5e-ba71-c059d5a9cd68"
+}
