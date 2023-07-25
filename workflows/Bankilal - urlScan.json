@@ -1,0 +1,3692 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "urlscan - Perform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "urlscan - Perform": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "urlscan.io",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cron": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "analyticsp1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-06-26T21:17:11.757Z",
+  "id": "19",
+  "name": "Bankilal - urlScan",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "id": "b106c2f3-5921-4e88-8b92-40dcd219eaa9"
+    },
+    {
+      "parameters": {
+        "url": "https://www.bankilal.com/",
+        "additionalFields": {}
+      },
+      "name": "urlscan - Perform",
+      "type": "n8n-nodes-base.urlScanIo",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ],
+      "id": "b1f7017d-759d-4b29-924e-71d6f2f4cf24",
+      "credentials": {
+        "urlScanIoApi": {
+          "id": "14",
+          "name": "urlscan.io account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "scanId": "={{$json[\"scanId\"]}}"
+      },
+      "name": "urlscan.io",
+      "type": "n8n-nodes-base.urlScanIo",
+      "typeVersion": 1,
+      "position": [
+        900,
+        300
+      ],
+      "id": "01e147a1-1f13-4111-8a5c-661f7f0dc034",
+      "credentials": {
+        "urlScanIoApi": {
+          "id": "14",
+          "name": "urlscan.io account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        680,
+        300
+      ],
+      "webhookId": "563d8f8e-287d-4db0-9b86-ebd2910c56b3",
+      "id": "f17ba1e9-8e81-4ccb-a689-9f838952abfc"
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 30,
+              "unit": "minutes"
+            }
+          ]
+        }
+      },
+      "name": "Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        260,
+        0
+      ],
+      "id": "776435f8-6203-4c0f-9a7c-834880285435"
+    },
+    {
+      "parameters": {
+        "url": "https://www.bankilal.com/",
+        "responseFormat": "string",
+        "options": {}
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        480,
+        -260
+      ],
+      "id": "9073e493-00f2-4b67-84ab-364dfd4c3c1b"
+    },
+    {
+      "parameters": {
+        "url": "https://www.bankilal.com/tienda/",
+        "responseFormat": "string",
+        "options": {}
+      },
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        480,
+        -60
+      ],
+      "id": "00278147-0788-4421-b61e-1115703dd4ab"
+    },
+    {
+      "parameters": {
+        "url": "https://www.bankilal.com/producto/cafe-organico-tostado/",
+        "responseFormat": "string",
+        "options": {}
+      },
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        480,
+        120
+      ],
+      "id": "96351ead-1372-4436-9c61-cfca237bfe8e"
+    },
+    {
+      "parameters": {
+        "url": "https://www.bankilal.com/cafe-de-especialidad-chiapas-gourmet-de-especialidad/",
+        "options": {}
+      },
+      "id": "5ac064c0-bbbf-4307-a918-6a79d920009b",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        700,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://analyticsp1.jorgeliglabs.com/api/v1/stats/aggregate",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "metrics",
+              "value": "visits"
+            },
+            {
+              "name": "site_id",
+              "value": "bankilal.com"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer kwt0npAlD8sWG2N-h9-lPRicttg4B8UwhQyHMKqIbEoCNS2EdX4PFcio6-dKWaMU"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c958c353-2391-4408-a72e-dbd48363f9f8",
+      "name": "analyticsp1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        680,
+        -260
+      ]
+    }
+  ],
+  "pinData": {
+    "urlscan.io": [
+      {
+        "json": {
+          "data": {
+            "requests": [
+              {
+                "request": {
+                  "requestId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/",
+                    "method": "GET",
+                    "headers": {
+                      "Upgrade-Insecure-Requests": "1",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36",
+                      "accept-language": "de-DE,de;q=0.9"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryHigh",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.008471,
+                  "wallTime": 1676712975.490908,
+                  "initiator": {
+                    "type": "other"
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Document",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false,
+                  "primaryRequest": true
+                },
+                "response": {
+                  "encodedDataLength": 51233,
+                  "dataLength": 354676,
+                  "requestId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "type": "Document",
+                  "response": {
+                    "url": "https://www.bankilal.com/",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "content-encoding": "gzip",
+                      "content-type": "text/html; charset=UTF-8",
+                      "date": "Sat, 18 Feb 2023 09:36:15 GMT",
+                      "last-modified": "Sat, 18 Feb 2023 01:53:02 GMT",
+                      "link": "<https://www.bankilal.com/wp-json/>; rel=\"https://api.w.org/\"\n<https://www.bankilal.com/wp-json/wp/v2/pages/60>; rel=\"alternate\"; type=\"application/json\"\n<https://www.bankilal.com/>; rel=shortlink",
+                      "server": "nginx",
+                      "strict-transport-security": "max-age=15768000;",
+                      "vary": "Accept-Encoding"
+                    },
+                    "mimeType": "text/html",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 327,
+                    "timing": {
+                      "requestTime": 13049317.009086,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": 0.188,
+                      "dnsEnd": 24.206,
+                      "connectStart": 24.206,
+                      "connectEnd": 326.486,
+                      "sslStart": 137.146,
+                      "sslEnd": 326.48,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 326.593,
+                      "sendEnd": 326.667,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 426.684
+                    },
+                    "responseTime": 1676712975918.02,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "d602ade3872c59bb584d5f55c451fcaa69bf3622c1beb6905807f75d99d6c71e",
+                  "size": 354629,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.2",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/cache/min/1/d8de1b8560b2c76b350394a2ac3e7b4d.css",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryHigh",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.44381,
+                  "wallTime": 1676712975.926313,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 15,
+                    "columnNumber": 175
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Stylesheet",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 74584,
+                  "dataLength": 619410,
+                  "requestId": "26218.2",
+                  "type": "Stylesheet",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/cache/min/1/d8de1b8560b2c76b350394a2ac3e7b4d.css",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:15 GMT",
+                      "content-encoding": "gzip",
+                      "strict-transport-security": "max-age=15768000;",
+                      "last-modified": "Thu, 12 Jan 2023 05:46:21 GMT",
+                      "server": "nginx",
+                      "etag": "\"63bf9ead-12228\"",
+                      "vary": "Accept-Encoding",
+                      "content-type": "text/css",
+                      "cache-control": "max-age=2592000",
+                      "content-length": "74280",
+                      "expires": "Mon, 20 Mar 2023 09:36:15 GMT"
+                    },
+                    "mimeType": "text/css",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 214,
+                    "timing": {
+                      "requestTime": 13049317.444308,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.266,
+                      "sendEnd": 0.438,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 163.396
+                    },
+                    "responseTime": 1676712976090.088,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "5cf4c61f2cfd42070bf183e71c61ed36dee3ab13f05549114500d5dd968591b8",
+                  "size": 619385,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.4",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=7.4.0",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryLow",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.477995,
+                  "wallTime": 1676712975.960457,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 55,
+                    "columnNumber": 229
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Stylesheet",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 1394,
+                  "dataLength": 7043,
+                  "requestId": "26218.4",
+                  "type": "Stylesheet",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=7.4.0",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:15 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "content-encoding": "gzip",
+                      "last-modified": "Wed, 15 Feb 2023 00:15:29 GMT",
+                      "server": "nginx",
+                      "etag": "W/\"63ec2421-1b83\"",
+                      "vary": "Accept-Encoding",
+                      "content-type": "text/css",
+                      "cache-control": "max-age=2592000",
+                      "expires": "Mon, 20 Mar 2023 09:36:15 GMT"
+                    },
+                    "mimeType": "text/css",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 208,
+                    "timing": {
+                      "requestTime": 13049317.478367,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.164,
+                      "sendEnd": 0.275,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 152.771
+                    },
+                    "responseTime": 1676712976113.496,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "a7a83e60e7e3b8cadeed69327ba498b4cd68605db6e408729fa1b946758e7501",
+                  "size": 7043,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.5",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/plugins/ewww-image-optimizer/includes/lazysizes.min.js?ver=693",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "High",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.607892,
+                  "wallTime": 1676712976.090342,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 756,
+                    "columnNumber": 158
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Script",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 5590,
+                  "dataLength": 14432,
+                  "requestId": "26218.5",
+                  "type": "Script",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/plugins/ewww-image-optimizer/includes/lazysizes.min.js?ver=693",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "content-encoding": "gzip",
+                      "last-modified": "Wed, 11 Jan 2023 16:36:31 GMT",
+                      "server": "nginx",
+                      "etag": "W/\"63bee58f-3860\"",
+                      "vary": "Accept-Encoding",
+                      "content-type": "application/javascript; charset=utf-8",
+                      "cache-control": "max-age=2592000",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "application/javascript",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 228,
+                    "timing": {
+                      "requestTime": 13049317.608166,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.82,
+                      "sendEnd": 1.05,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 93.543
+                    },
+                    "responseTime": 1676712976184.058,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "c05a1108c176130e9dff2f6a5ebdb60be1c3e17b5a8f83de35b29f44fb109434",
+                  "size": 14432,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.6",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/plugins/wp-rocket/assets/js/lazyload/16.1/lazyload.min.js",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "Low",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.608031,
+                  "wallTime": 1676712976.090475,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 834,
+                    "columnNumber": 375
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Script",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 2940,
+                  "dataLength": 7890,
+                  "requestId": "26218.6",
+                  "type": "Script",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/plugins/wp-rocket/assets/js/lazyload/16.1/lazyload.min.js",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "content-encoding": "gzip",
+                      "last-modified": "Sat, 25 Jun 2022 10:18:06 GMT",
+                      "server": "nginx",
+                      "etag": "W/\"62b6e0de-1ed2\"",
+                      "vary": "Accept-Encoding",
+                      "content-type": "application/javascript; charset=utf-8",
+                      "cache-control": "max-age=2592000",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "application/javascript",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 227,
+                    "timing": {
+                      "requestTime": 13049317.608788,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.234,
+                      "sendEnd": 0.43,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 101.67
+                    },
+                    "responseTime": 1676712976192.823,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "6e86a52a9858206302e32036d89907e3ac87762055e7f9c6364aec33221b3e41",
+                  "size": 7890,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.118",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "data:truncated",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "Low",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": false
+                  },
+                  "timestamp": 13049317.740388,
+                  "wallTime": 1676712976.222851,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 259,
+                    "columnNumber": 42
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Image",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 0,
+                  "dataLength": 100,
+                  "requestId": "26218.118",
+                  "type": "Image",
+                  "response": {
+                    "url": "data:truncated",
+                    "status": 200,
+                    "statusText": "OK",
+                    "headers": {
+                      "Content-Type": "image/png"
+                    },
+                    "mimeType": "image/png",
+                    "encodedDataLength": 0,
+                    "protocol": "data",
+                    "securityState": "unknown"
+                  },
+                  "hasExtraInfo": false,
+                  "hash": "c4de117c3bfc9acf4d70dcfa45911e174183cd50f1adaa5abeddfd01f00bff27",
+                  "size": 136
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.34",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1y4i.woff2",
+                    "method": "GET",
+                    "headers": {
+                      "Referer": "https://www.bankilal.com/",
+                      "Origin": "https://www.bankilal.com",
+                      "accept-language": "de-DE,de;q=0.9",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryHigh",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": false
+                  },
+                  "timestamp": 13049317.74286,
+                  "wallTime": 1676712976.225322,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 259,
+                    "columnNumber": 42
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Font",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 56897,
+                  "dataLength": 56336,
+                  "requestId": "26218.34",
+                  "type": "Font",
+                  "response": {
+                    "url": "https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1y4i.woff2",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Thu, 16 Feb 2023 08:57:57 GMT",
+                      "x-content-type-options": "nosniff",
+                      "age": "175099",
+                      "content-security-policy-report-only": "require-trusted-types-for 'script'; report-uri https://csp.withgoogle.com/csp/apps-themes",
+                      "cross-origin-resource-policy": "cross-origin",
+                      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+                      "content-length": "56336",
+                      "x-xss-protection": "0",
+                      "last-modified": "Mon, 15 Aug 2022 18:12:01 GMT",
+                      "server": "sffe",
+                      "cross-origin-opener-policy": "same-origin; report-to=\"apps-themes\"",
+                      "report-to": "{\"group\":\"apps-themes\",\"max_age\":2592000,\"endpoints\":[{\"url\":\"https://csp.withgoogle.com/csp/report-to/apps-themes\"}]}",
+                      "content-type": "font/woff2",
+                      "access-control-allow-origin": "*",
+                      "cache-control": "public, max-age=31536000",
+                      "accept-ranges": "bytes",
+                      "timing-allow-origin": "*",
+                      "expires": "Fri, 16 Feb 2024 08:57:57 GMT"
+                    },
+                    "mimeType": "font/woff2",
+                    "remoteIPAddress": "2a00:1450:400d:80a::2003",
+                    "remotePort": 443,
+                    "encodedDataLength": 525,
+                    "timing": {
+                      "requestTime": 13049317.743205,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": 0.575,
+                      "dnsEnd": 1.662,
+                      "connectStart": 1.662,
+                      "connectEnd": 62.227,
+                      "sslStart": 21.081,
+                      "sslEnd": 62.222,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 62.588,
+                      "sendEnd": 62.828,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 83.457
+                    },
+                    "responseTime": 1676712976308.945,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "X25519",
+                      "cipher": "AES_128_GCM",
+                      "certificateId": 0,
+                      "subjectName": "*.gstatic.com",
+                      "sanList": [
+                        "*.gstatic.com",
+                        "gstatic.com",
+                        "*.metric.gstatic.com",
+                        "kn.dev",
+                        "*.kn.dev"
+                      ],
+                      "issuer": "GTS CA 1C3",
+                      "validFrom": 1675280613,
+                      "validTo": 1682538212,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 1027,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "X-Content-Type-Options",
+                        "value": "nosniff"
+                      },
+                      {
+                        "name": "X-Xss-Protection",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "0240d31750dece0d5a709e6eb5cbfded2f15b37b5a4d752c3c636cdd03bd12f8",
+                  "size": 75116,
+                  "asn": {
+                    "ip": "2a00:1450:400d:80a::2003",
+                    "asn": "15169",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2000-03-30",
+                    "description": "GOOGLE, US",
+                    "route": "2a00:1450:400d::/48",
+                    "name": "GOOGLE"
+                  },
+                  "geoip": {
+                    "country": "IE",
+                    "region": "",
+                    "timezone": "Europe/Dublin",
+                    "city": "",
+                    "ll": [
+                      53.3472,
+                      -6.2439
+                    ],
+                    "country_name": "Ireland",
+                    "metro": 0
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.107",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/themes/Divi/core/admin/fonts/modules/all/modules.ttf",
+                    "method": "GET",
+                    "headers": {
+                      "Referer": "https://www.bankilal.com/",
+                      "Origin": "https://www.bankilal.com",
+                      "accept-language": "de-DE,de;q=0.9",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryHigh",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.743064,
+                  "wallTime": 1676712976.225516,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 259,
+                    "columnNumber": 42
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Font",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 92718,
+                  "dataLength": 92400,
+                  "requestId": "26218.107",
+                  "type": "Font",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/themes/Divi/core/admin/fonts/modules/all/modules.ttf",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "last-modified": "Mon, 16 Jan 2023 08:59:23 GMT",
+                      "server": "nginx",
+                      "etag": "\"63c511eb-168f0\"",
+                      "content-type": "application/octet-stream",
+                      "cache-control": "max-age=2592000",
+                      "accept-ranges": "bytes",
+                      "content-length": "92400",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "application/octet-stream",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 210,
+                    "timing": {
+                      "requestTime": 13049317.743463,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.362,
+                      "sendEnd": 0.465,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 91.218
+                    },
+                    "responseTime": 1676712976317.026,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "d201a2c3118a00c82cc48e89815f5139f23956bbe248107dcf522acc77b97c09",
+                  "size": 123200,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.33",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4i.woff2",
+                    "method": "GET",
+                    "headers": {
+                      "Referer": "https://www.bankilal.com/",
+                      "Origin": "https://www.bankilal.com",
+                      "accept-language": "de-DE,de;q=0.9",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryHigh",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": false
+                  },
+                  "timestamp": 13049317.74321,
+                  "wallTime": 1676712976.225658,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 259,
+                    "columnNumber": 42
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Font",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 56493,
+                  "dataLength": 56348,
+                  "requestId": "26218.33",
+                  "type": "Font",
+                  "response": {
+                    "url": "https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4i.woff2",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Thu, 16 Feb 2023 13:22:10 GMT",
+                      "x-content-type-options": "nosniff",
+                      "age": "159246",
+                      "content-security-policy-report-only": "require-trusted-types-for 'script'; report-uri https://csp.withgoogle.com/csp/apps-themes",
+                      "cross-origin-resource-policy": "cross-origin",
+                      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+                      "content-length": "56348",
+                      "x-xss-protection": "0",
+                      "last-modified": "Mon, 15 Aug 2022 18:12:25 GMT",
+                      "server": "sffe",
+                      "cross-origin-opener-policy": "same-origin; report-to=\"apps-themes\"",
+                      "report-to": "{\"group\":\"apps-themes\",\"max_age\":2592000,\"endpoints\":[{\"url\":\"https://csp.withgoogle.com/csp/report-to/apps-themes\"}]}",
+                      "content-type": "font/woff2",
+                      "access-control-allow-origin": "*",
+                      "cache-control": "public, max-age=31536000",
+                      "accept-ranges": "bytes",
+                      "timing-allow-origin": "*",
+                      "expires": "Fri, 16 Feb 2024 13:22:10 GMT"
+                    },
+                    "mimeType": "font/woff2",
+                    "remoteIPAddress": "2a00:1450:400d:80a::2003",
+                    "remotePort": 443,
+                    "encodedDataLength": 109,
+                    "timing": {
+                      "requestTime": 13049317.743619,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 62.215,
+                      "sendEnd": 62.416,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 137.759
+                    },
+                    "responseTime": 1676712976363.643,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "X25519",
+                      "cipher": "AES_128_GCM",
+                      "certificateId": 0,
+                      "subjectName": "*.gstatic.com",
+                      "sanList": [
+                        "*.gstatic.com",
+                        "gstatic.com",
+                        "*.metric.gstatic.com",
+                        "kn.dev",
+                        "*.kn.dev"
+                      ],
+                      "issuer": "GTS CA 1C3",
+                      "validFrom": 1675280613,
+                      "validTo": 1682538212,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 1027,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "X-Content-Type-Options",
+                        "value": "nosniff"
+                      },
+                      {
+                        "name": "X-Xss-Protection",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "52a27a6a1c1821efdf20d91ece59d5f29ba3ba28cc8480e2f73f3007216e7729",
+                  "size": 75132,
+                  "asn": {
+                    "ip": "2a00:1450:400d:80a::2003",
+                    "asn": "15169",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2000-03-30",
+                    "description": "GOOGLE, US",
+                    "route": "2a00:1450:400d::/48",
+                    "name": "GOOGLE"
+                  },
+                  "geoip": {
+                    "country": "IE",
+                    "region": "",
+                    "timezone": "Europe/Dublin",
+                    "city": "",
+                    "ll": [
+                      53.3472,
+                      -6.2439
+                    ],
+                    "country_name": "Ireland",
+                    "metro": 0
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.119",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "data:truncated",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "Low",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": false
+                  },
+                  "timestamp": 13049317.753257,
+                  "wallTime": 1676712976.235724,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 479,
+                    "columnNumber": 3
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Image",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 0,
+                  "dataLength": 66,
+                  "requestId": "26218.119",
+                  "type": "Image",
+                  "response": {
+                    "url": "data:truncated",
+                    "status": 200,
+                    "statusText": "OK",
+                    "headers": {
+                      "Content-Type": "image/svg+xml"
+                    },
+                    "mimeType": "image/svg+xml",
+                    "encodedDataLength": 0,
+                    "protocol": "data",
+                    "securityState": "unknown"
+                  },
+                  "hasExtraInfo": false,
+                  "hash": "275969c4cb1ff1140a7b287f0322e926c749a78eab75f8930c13ed2557d5c86b",
+                  "size": 88
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.124",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/06/nathan-dumlao-6VhPY27jdps-unsplash.jpg",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "Low",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.76332,
+                  "wallTime": 1676712976.245772,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Image",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 349933,
+                  "dataLength": 349343,
+                  "requestId": "26218.124",
+                  "type": "Image",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/06/nathan-dumlao-6VhPY27jdps-unsplash.jpg",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "last-modified": "Thu, 23 Jun 2022 20:31:39 GMT",
+                      "server": "nginx",
+                      "etag": "\"62b4cdab-5549f\"",
+                      "content-type": "image/jpeg",
+                      "cache-control": "max-age=2592000",
+                      "accept-ranges": "bytes",
+                      "content-length": "349343",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "image/jpeg",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 203,
+                    "timing": {
+                      "requestTime": 13049317.763672,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.356,
+                      "sendEnd": 1.226,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 92.25
+                    },
+                    "responseTime": 1676712976338.289,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "93f7ba241116e91be0da56f18673c6e18a4b6ac8f62b3ba6156e7078fa64068a",
+                  "size": 465792,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.100",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs18NvgUQ.woff2",
+                    "method": "GET",
+                    "headers": {
+                      "Referer": "https://www.bankilal.com/",
+                      "Origin": "https://www.bankilal.com",
+                      "accept-language": "de-DE,de;q=0.9",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryHigh",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": false
+                  },
+                  "timestamp": 13049317.763605,
+                  "wallTime": 1676712976.246065,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Font",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 25955,
+                  "dataLength": 25828,
+                  "requestId": "26218.100",
+                  "type": "Font",
+                  "response": {
+                    "url": "https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs18NvgUQ.woff2",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Wed, 15 Feb 2023 01:24:24 GMT",
+                      "x-content-type-options": "nosniff",
+                      "age": "288712",
+                      "content-security-policy-report-only": "require-trusted-types-for 'script'; report-uri https://csp.withgoogle.com/csp/apps-themes",
+                      "cross-origin-resource-policy": "cross-origin",
+                      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+                      "content-length": "25828",
+                      "x-xss-protection": "0",
+                      "last-modified": "Mon, 18 Jul 2022 19:25:10 GMT",
+                      "server": "sffe",
+                      "cross-origin-opener-policy": "same-origin; report-to=\"apps-themes\"",
+                      "report-to": "{\"group\":\"apps-themes\",\"max_age\":2592000,\"endpoints\":[{\"url\":\"https://csp.withgoogle.com/csp/report-to/apps-themes\"}]}",
+                      "content-type": "font/woff2",
+                      "access-control-allow-origin": "*",
+                      "cache-control": "public, max-age=31536000",
+                      "accept-ranges": "bytes",
+                      "timing-allow-origin": "*",
+                      "expires": "Thu, 15 Feb 2024 01:24:24 GMT"
+                    },
+                    "mimeType": "font/woff2",
+                    "remoteIPAddress": "2a00:1450:400d:80a::2003",
+                    "remotePort": 443,
+                    "encodedDataLength": 109,
+                    "timing": {
+                      "requestTime": 13049317.76394,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 41.955,
+                      "sendEnd": 42.097,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 93.433
+                    },
+                    "responseTime": 1676712976339.682,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "X25519",
+                      "cipher": "AES_128_GCM",
+                      "certificateId": 0,
+                      "subjectName": "*.gstatic.com",
+                      "sanList": [
+                        "*.gstatic.com",
+                        "gstatic.com",
+                        "*.metric.gstatic.com",
+                        "kn.dev",
+                        "*.kn.dev"
+                      ],
+                      "issuer": "GTS CA 1C3",
+                      "validFrom": 1675280613,
+                      "validTo": 1682538212,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 1027,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "X-Content-Type-Options",
+                        "value": "nosniff"
+                      },
+                      {
+                        "name": "X-Xss-Protection",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "637453c4d3f0ce30e85f267812a45a3d4fba44b1f98b1ebcf0aa2400984f75ab",
+                  "size": 34440,
+                  "asn": {
+                    "ip": "2a00:1450:400d:80a::2003",
+                    "asn": "15169",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2000-03-30",
+                    "description": "GOOGLE, US",
+                    "route": "2a00:1450:400d::/48",
+                    "name": "GOOGLE"
+                  },
+                  "geoip": {
+                    "country": "IE",
+                    "region": "",
+                    "timezone": "Europe/Dublin",
+                    "city": "",
+                    "ll": [
+                      53.3472,
+                      -6.2439
+                    ],
+                    "country_name": "Ireland",
+                    "metro": 0
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.93",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDGUmRTY.woff2",
+                    "method": "GET",
+                    "headers": {
+                      "Referer": "https://www.bankilal.com/",
+                      "Origin": "https://www.bankilal.com",
+                      "accept-language": "de-DE,de;q=0.9",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryHigh",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": false
+                  },
+                  "timestamp": 13049317.763771,
+                  "wallTime": 1676712976.24622,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Font",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 42895,
+                  "dataLength": 42760,
+                  "requestId": "26218.93",
+                  "type": "Font",
+                  "response": {
+                    "url": "https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDGUmRTY.woff2",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Fri, 17 Feb 2023 14:16:59 GMT",
+                      "x-content-type-options": "nosniff",
+                      "age": "69557",
+                      "content-security-policy-report-only": "require-trusted-types-for 'script'; report-uri https://csp.withgoogle.com/csp/apps-themes",
+                      "cross-origin-resource-policy": "cross-origin",
+                      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+                      "content-length": "42760",
+                      "x-xss-protection": "0",
+                      "last-modified": "Mon, 18 Jul 2022 19:27:42 GMT",
+                      "server": "sffe",
+                      "cross-origin-opener-policy": "same-origin; report-to=\"apps-themes\"",
+                      "report-to": "{\"group\":\"apps-themes\",\"max_age\":2592000,\"endpoints\":[{\"url\":\"https://csp.withgoogle.com/csp/report-to/apps-themes\"}]}",
+                      "content-type": "font/woff2",
+                      "access-control-allow-origin": "*",
+                      "cache-control": "public, max-age=31536000",
+                      "accept-ranges": "bytes",
+                      "timing-allow-origin": "*",
+                      "expires": "Sat, 17 Feb 2024 14:16:59 GMT"
+                    },
+                    "mimeType": "font/woff2",
+                    "remoteIPAddress": "2a00:1450:400d:80a::2003",
+                    "remotePort": 443,
+                    "encodedDataLength": 108,
+                    "timing": {
+                      "requestTime": 13049317.764198,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 41.662,
+                      "sendEnd": 41.838,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 110.168
+                    },
+                    "responseTime": 1676712976356.618,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "X25519",
+                      "cipher": "AES_128_GCM",
+                      "certificateId": 0,
+                      "subjectName": "*.gstatic.com",
+                      "sanList": [
+                        "*.gstatic.com",
+                        "gstatic.com",
+                        "*.metric.gstatic.com",
+                        "kn.dev",
+                        "*.kn.dev"
+                      ],
+                      "issuer": "GTS CA 1C3",
+                      "validFrom": 1675280613,
+                      "validTo": 1682538212,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 1027,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "X-Content-Type-Options",
+                        "value": "nosniff"
+                      },
+                      {
+                        "name": "X-Xss-Protection",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "284c8dab26213baee73522cd72aed807bcd001adf86f1e84e07b9750ffbd2c1c",
+                  "size": 57016,
+                  "asn": {
+                    "ip": "2a00:1450:400d:80a::2003",
+                    "asn": "15169",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2000-03-30",
+                    "description": "GOOGLE, US",
+                    "route": "2a00:1450:400d::/48",
+                    "name": "GOOGLE"
+                  },
+                  "geoip": {
+                    "country": "IE",
+                    "region": "",
+                    "timezone": "Europe/Dublin",
+                    "city": "",
+                    "ll": [
+                      53.3472,
+                      -6.2439
+                    ],
+                    "country_name": "Ireland",
+                    "metro": 0
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.92",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhRTY.woff2",
+                    "method": "GET",
+                    "headers": {
+                      "Referer": "https://www.bankilal.com/",
+                      "Origin": "https://www.bankilal.com",
+                      "accept-language": "de-DE,de;q=0.9",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryHigh",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": false
+                  },
+                  "timestamp": 13049317.764653,
+                  "wallTime": 1676712976.247118,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Font",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 42672,
+                  "dataLength": 42536,
+                  "requestId": "26218.92",
+                  "type": "Font",
+                  "response": {
+                    "url": "https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhRTY.woff2",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Tue, 14 Feb 2023 20:48:46 GMT",
+                      "x-content-type-options": "nosniff",
+                      "age": "305250",
+                      "content-security-policy-report-only": "require-trusted-types-for 'script'; report-uri https://csp.withgoogle.com/csp/apps-themes",
+                      "cross-origin-resource-policy": "cross-origin",
+                      "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+                      "content-length": "42536",
+                      "x-xss-protection": "0",
+                      "last-modified": "Mon, 18 Jul 2022 19:27:41 GMT",
+                      "server": "sffe",
+                      "cross-origin-opener-policy": "same-origin; report-to=\"apps-themes\"",
+                      "report-to": "{\"group\":\"apps-themes\",\"max_age\":2592000,\"endpoints\":[{\"url\":\"https://csp.withgoogle.com/csp/report-to/apps-themes\"}]}",
+                      "content-type": "font/woff2",
+                      "access-control-allow-origin": "*",
+                      "cache-control": "public, max-age=31536000",
+                      "accept-ranges": "bytes",
+                      "timing-allow-origin": "*",
+                      "expires": "Wed, 14 Feb 2024 20:48:46 GMT"
+                    },
+                    "mimeType": "font/woff2",
+                    "remoteIPAddress": "2a00:1450:400d:80a::2003",
+                    "remotePort": 443,
+                    "encodedDataLength": 109,
+                    "timing": {
+                      "requestTime": 13049317.765083,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 40.846,
+                      "sendEnd": 40.956,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 104.674
+                    },
+                    "responseTime": 1676712976352.061,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "X25519",
+                      "cipher": "AES_128_GCM",
+                      "certificateId": 0,
+                      "subjectName": "*.gstatic.com",
+                      "sanList": [
+                        "*.gstatic.com",
+                        "gstatic.com",
+                        "*.metric.gstatic.com",
+                        "kn.dev",
+                        "*.kn.dev"
+                      ],
+                      "issuer": "GTS CA 1C3",
+                      "validFrom": 1675280613,
+                      "validTo": 1682538212,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 1027,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "X-Content-Type-Options",
+                        "value": "nosniff"
+                      },
+                      {
+                        "name": "X-Xss-Protection",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "44238fd776dbb04c08aa5e95488b4a55d25367571a3ab32dc549e253a2a40da5",
+                  "size": 56716,
+                  "asn": {
+                    "ip": "2a00:1450:400d:80a::2003",
+                    "asn": "15169",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2000-03-30",
+                    "description": "GOOGLE, US",
+                    "route": "2a00:1450:400d::/48",
+                    "name": "GOOGLE"
+                  },
+                  "geoip": {
+                    "country": "IE",
+                    "region": "",
+                    "timezone": "Europe/Dublin",
+                    "city": "",
+                    "ll": [
+                      53.3472,
+                      -6.2439
+                    ],
+                    "country_name": "Ireland",
+                    "metro": 0
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.125",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/gallery-coffee-image-11.jpg",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "Low",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.7658,
+                  "wallTime": 1676712976.248252,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Image",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 62809,
+                  "dataLength": 62536,
+                  "requestId": "26218.125",
+                  "type": "Image",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/gallery-coffee-image-11.jpg",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "last-modified": "Mon, 30 May 2022 00:26:26 GMT",
+                      "server": "nginx",
+                      "etag": "\"62940f32-f448\"",
+                      "content-type": "image/jpeg",
+                      "cache-control": "max-age=2592000",
+                      "accept-ranges": "bytes",
+                      "content-length": "62536",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "image/jpeg",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 201,
+                    "timing": {
+                      "requestTime": 13049317.766067,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.153,
+                      "sendEnd": 0.262,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 156.892
+                    },
+                    "responseTime": 1676712976405.324,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "511a9c110741b1a5087d66df75edda4f675876d066a6f5af22343818d26bda82",
+                  "size": 83384,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.112",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/themes/Divi/core/admin/fonts/fontawesome/fa-solid-900.woff2",
+                    "method": "GET",
+                    "headers": {
+                      "Referer": "https://www.bankilal.com/",
+                      "Origin": "https://www.bankilal.com",
+                      "accept-language": "de-DE,de;q=0.9",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "VeryHigh",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.766954,
+                  "wallTime": 1676712976.249414,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Font",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 80592,
+                  "dataLength": 80300,
+                  "requestId": "26218.112",
+                  "type": "Font",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/themes/Divi/core/admin/fonts/fontawesome/fa-solid-900.woff2",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "last-modified": "Mon, 16 Jan 2023 08:59:23 GMT",
+                      "server": "nginx",
+                      "etag": "\"63c511eb-139ac\"",
+                      "content-type": "font/woff2",
+                      "cache-control": "max-age=2592000",
+                      "accept-ranges": "bytes",
+                      "content-length": "80300",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "font/woff2",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 202,
+                    "timing": {
+                      "requestTime": 13049317.767204,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.128,
+                      "sendEnd": 0.215,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 156.42
+                    },
+                    "responseTime": 1676712976406.001,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "6b555920e358f8a25a422988b448615c33bcccb4f932e8331cebfc8e2a737fc7",
+                  "size": 107068,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.126",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/bankilal-logo.png.webp",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "Low",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.783671,
+                  "wallTime": 1676712976.266145,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Image",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 5325,
+                  "dataLength": 5116,
+                  "requestId": "26218.126",
+                  "type": "Image",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/bankilal-logo.png.webp",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "last-modified": "Wed, 08 Jun 2022 03:08:22 GMT",
+                      "server": "nginx",
+                      "etag": "\"62a012a6-13fc\"",
+                      "content-type": "image/webp",
+                      "cache-control": "max-age=2592000",
+                      "accept-ranges": "bytes",
+                      "content-length": "5116",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "image/webp",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 200,
+                    "timing": {
+                      "requestTime": 13049317.784365,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.264,
+                      "sendEnd": 0.477,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 139.645
+                    },
+                    "responseTime": 1676712976406.397,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "2133d0ff2dfaa7ecffa9a19123b8027fc1222a9eb44c962b185d011b174212ac",
+                  "size": 6824,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.127",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/icon-1.png",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "Low",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.78695,
+                  "wallTime": 1676712976.269426,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Image",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 2271,
+                  "dataLength": 2064,
+                  "requestId": "26218.127",
+                  "type": "Image",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/icon-1.png",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "last-modified": "Sun, 29 May 2022 07:53:28 GMT",
+                      "server": "nginx",
+                      "etag": "\"62932678-810\"",
+                      "content-type": "image/png",
+                      "cache-control": "max-age=2592000",
+                      "accept-ranges": "bytes",
+                      "content-length": "2064",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "image/png",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 198,
+                    "timing": {
+                      "requestTime": 13049317.787241,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.39,
+                      "sendEnd": 0.634,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 137.525
+                    },
+                    "responseTime": 1676712976407.142,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "2d80645d890a30403e4e275605292c92ff08a54b341544c1236091448117e34b",
+                  "size": 2752,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.128",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/icon-2.png",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "Low",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.787128,
+                  "wallTime": 1676712976.269573,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Image",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 1194,
+                  "dataLength": 987,
+                  "requestId": "26218.128",
+                  "type": "Image",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/icon-2.png",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "last-modified": "Sun, 29 May 2022 07:53:30 GMT",
+                      "server": "nginx",
+                      "etag": "\"6293267a-3db\"",
+                      "content-type": "image/png",
+                      "cache-control": "max-age=2592000",
+                      "accept-ranges": "bytes",
+                      "content-length": "987",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "image/png",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 198,
+                    "timing": {
+                      "requestTime": 13049317.787456,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.345,
+                      "sendEnd": 0.466,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 139.811
+                    },
+                    "responseTime": 1676712976409.636,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "7fa8066272321f09a08e5fd637598f2bec5ffcaf408de9f3c3a8c20748800655",
+                  "size": 1316,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              },
+              {
+                "request": {
+                  "requestId": "26218.129",
+                  "loaderId": "4EC0467D864B09F270DAD2436083D5BE",
+                  "documentURL": "https://www.bankilal.com/",
+                  "request": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/icon-3.png",
+                    "method": "GET",
+                    "headers": {
+                      "accept-language": "de-DE,de;q=0.9",
+                      "Referer": "https://www.bankilal.com/",
+                      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.5481.100 Safari/537.36"
+                    },
+                    "mixedContentType": "none",
+                    "initialPriority": "Low",
+                    "referrerPolicy": "strict-origin-when-cross-origin",
+                    "isSameSite": true
+                  },
+                  "timestamp": 13049317.787235,
+                  "wallTime": 1676712976.269677,
+                  "initiator": {
+                    "type": "parser",
+                    "url": "https://www.bankilal.com/",
+                    "lineNumber": 842,
+                    "columnNumber": 119
+                  },
+                  "redirectHasExtraInfo": false,
+                  "type": "Image",
+                  "frameId": "A681A205B5C4F6534FC4BA1705D5D1AF",
+                  "hasUserGesture": false
+                },
+                "response": {
+                  "encodedDataLength": 907,
+                  "dataLength": 701,
+                  "requestId": "26218.129",
+                  "type": "Image",
+                  "response": {
+                    "url": "https://www.bankilal.com/wp-content/uploads/2022/05/icon-3.png",
+                    "status": 200,
+                    "statusText": "",
+                    "headers": {
+                      "date": "Sat, 18 Feb 2023 09:36:16 GMT",
+                      "strict-transport-security": "max-age=15768000;",
+                      "last-modified": "Sun, 29 May 2022 07:53:30 GMT",
+                      "server": "nginx",
+                      "etag": "\"6293267a-2bd\"",
+                      "content-type": "image/png",
+                      "cache-control": "max-age=2592000",
+                      "accept-ranges": "bytes",
+                      "content-length": "701",
+                      "expires": "Mon, 20 Mar 2023 09:36:16 GMT"
+                    },
+                    "mimeType": "image/png",
+                    "remoteIPAddress": "154.53.32.149",
+                    "remotePort": 443,
+                    "encodedDataLength": 197,
+                    "timing": {
+                      "requestTime": 13049317.787561,
+                      "proxyStart": -1,
+                      "proxyEnd": -1,
+                      "dnsStart": -1,
+                      "dnsEnd": -1,
+                      "connectStart": -1,
+                      "connectEnd": -1,
+                      "sslStart": -1,
+                      "sslEnd": -1,
+                      "workerStart": -1,
+                      "workerReady": -1,
+                      "workerFetchStart": -1,
+                      "workerRespondWithSettled": -1,
+                      "sendStart": 0.289,
+                      "sendEnd": 0.363,
+                      "pushStart": 0,
+                      "pushEnd": 0,
+                      "receiveHeadersEnd": 140.06
+                    },
+                    "responseTime": 1676712976410.002,
+                    "protocol": "h2",
+                    "alternateProtocolUsage": "unspecifiedReason",
+                    "securityState": "secure",
+                    "securityDetails": {
+                      "protocol": "TLS 1.3",
+                      "keyExchange": "",
+                      "keyExchangeGroup": "P-384",
+                      "cipher": "AES_256_GCM",
+                      "certificateId": 0,
+                      "subjectName": "bankilal.com",
+                      "sanList": [
+                        "bankilal.com",
+                        "www.bankilal.com"
+                      ],
+                      "issuer": "R3",
+                      "validFrom": 1674202386,
+                      "validTo": 1681978385,
+                      "signedCertificateTimestampList": [],
+                      "certificateTransparencyCompliance": "unknown",
+                      "serverSignatureAlgorithm": 2052,
+                      "encryptedClientHello": false
+                    },
+                    "securityHeaders": [
+                      {
+                        "name": "Strict-Transport-Security",
+                        "value": "max-age=15768000;"
+                      }
+                    ]
+                  },
+                  "hasExtraInfo": true,
+                  "hash": "c8757f0213131dce3e3d9d7da592a765d7f31dba89b961a1b6d12d919e930763",
+                  "size": 936,
+                  "asn": {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  "geoip": {
+                    "country": "US",
+                    "region": "NY",
+                    "timezone": "America/New_York",
+                    "city": "New York",
+                    "ll": [
+                      40.7123,
+                      -74.0068
+                    ],
+                    "country_name": "United States",
+                    "metro": 501
+                  },
+                  "rdns": {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                },
+                "initiatorInfo": {
+                  "url": "https://www.bankilal.com/",
+                  "host": "www.bankilal.com",
+                  "type": "parser"
+                }
+              }
+            ],
+            "cookies": [],
+            "console": [],
+            "links": [
+              {
+                "href": "https://www.facebook.com/Bankilalmx/",
+                "text": "Facebook"
+              },
+              {
+                "href": "https://www.instagram.com/maribel._meza/",
+                "text": "Instagram"
+              }
+            ],
+            "timing": {
+              "beginNavigation": "2023-02-18T09:36:15.489Z",
+              "frameStartedLoading": "2023-02-18T09:36:15.923Z",
+              "frameNavigated": "2023-02-18T09:36:15.957Z",
+              "domContentEventFired": "2023-02-18T09:36:16.267Z",
+              "frameStoppedLoading": "2023-02-18T09:36:16.524Z"
+            },
+            "globals": [
+              {
+                "prop": "credentialless",
+                "type": "boolean"
+              },
+              {
+                "prop": "oncontentvisibilityautostatechange",
+                "type": "object"
+              },
+              {
+                "prop": "href",
+                "type": "undefined"
+              },
+              {
+                "prop": "ewww_webp_supported",
+                "type": "boolean"
+              },
+              {
+                "prop": "eio_lazy_vars",
+                "type": "object"
+              },
+              {
+                "prop": "shouldAutoScale",
+                "type": "function"
+              },
+              {
+                "prop": "constrainSrc",
+                "type": "function"
+              },
+              {
+                "prop": "lazySizesConfig",
+                "type": "object"
+              },
+              {
+                "prop": "lazySizes",
+                "type": "object"
+              },
+              {
+                "prop": "wc_add_to_cart_params",
+                "type": "object"
+              },
+              {
+                "prop": "woocommerce_params",
+                "type": "object"
+              },
+              {
+                "prop": "wc_cart_fragments_params",
+                "type": "object"
+              },
+              {
+                "prop": "RocketPreloadLinksConfig",
+                "type": "object"
+              },
+              {
+                "prop": "DIVI",
+                "type": "object"
+              },
+              {
+                "prop": "et_builder_utils_params",
+                "type": "object"
+              },
+              {
+                "prop": "et_frontend_scripts",
+                "type": "object"
+              },
+              {
+                "prop": "et_pb_custom",
+                "type": "object"
+              },
+              {
+                "prop": "et_pb_box_shadow_elements",
+                "type": "object"
+              },
+              {
+                "prop": "loadmore_ajax_object",
+                "type": "object"
+              },
+              {
+                "prop": "lazyLoadOptions",
+                "type": "object"
+              },
+              {
+                "prop": "LazyLoad",
+                "type": "function"
+              }
+            ]
+          },
+          "stats": {
+            "resourceStats": [
+              {
+                "count": 7,
+                "size": 396508,
+                "encodedSize": 398222,
+                "latency": 0,
+                "countries": [
+                  "IE",
+                  "US"
+                ],
+                "ips": [
+                  "2a00:1450:400d:80a::2003",
+                  "154.53.32.149"
+                ],
+                "type": "Font",
+                "compression": "1.0",
+                "percentage": 35
+              },
+              {
+                "count": 6,
+                "size": 420747,
+                "encodedSize": 422439,
+                "latency": 0,
+                "countries": [
+                  "US"
+                ],
+                "ips": [
+                  "154.53.32.149"
+                ],
+                "type": "Image",
+                "compression": "1.0",
+                "percentage": 30
+              },
+              {
+                "count": 2,
+                "size": 22322,
+                "encodedSize": 8530,
+                "latency": 0,
+                "countries": [
+                  "US"
+                ],
+                "ips": [
+                  "154.53.32.149"
+                ],
+                "type": "Script",
+                "compression": "2.6",
+                "percentage": 10
+              },
+              {
+                "count": 2,
+                "size": 626453,
+                "encodedSize": 75978,
+                "latency": 0,
+                "countries": [
+                  "US"
+                ],
+                "ips": [
+                  "154.53.32.149"
+                ],
+                "type": "Stylesheet",
+                "compression": "8.2",
+                "percentage": 10
+              },
+              {
+                "count": 1,
+                "size": 354676,
+                "encodedSize": 51233,
+                "latency": 0,
+                "countries": [
+                  "US"
+                ],
+                "ips": [
+                  "154.53.32.149"
+                ],
+                "type": "Document",
+                "compression": "6.9",
+                "percentage": 5
+              }
+            ],
+            "protocolStats": [
+              {
+                "count": 18,
+                "size": 1820706,
+                "encodedSize": 956402,
+                "ips": [
+                  "154.53.32.149",
+                  "2a00:1450:400d:80a::2003"
+                ],
+                "countries": [
+                  "US",
+                  "IE"
+                ],
+                "securityState": {},
+                "protocol": "h2"
+              }
+            ],
+            "tlsStats": [
+              {
+                "count": 18,
+                "size": 1820706,
+                "encodedSize": 956402,
+                "ips": [
+                  "154.53.32.149",
+                  "2a00:1450:400d:80a::2003"
+                ],
+                "countries": [
+                  "US",
+                  "IE"
+                ],
+                "protocols": {
+                  "TLS 1.3 /  / AES_256_GCM": 13,
+                  "TLS 1.3 /  / AES_128_GCM": 5
+                },
+                "securityState": "secure"
+              }
+            ],
+            "serverStats": [
+              {
+                "count": 13,
+                "size": 1596898,
+                "encodedSize": 731490,
+                "ips": [
+                  "154.53.32.149"
+                ],
+                "countries": [
+                  "US"
+                ],
+                "server": "nginx"
+              },
+              {
+                "count": 5,
+                "size": 223808,
+                "encodedSize": 224912,
+                "ips": [
+                  "2a00:1450:400d:80a::2003"
+                ],
+                "countries": [
+                  "IE"
+                ],
+                "server": "sffe"
+              }
+            ],
+            "domainStats": [
+              {
+                "count": 13,
+                "ips": [
+                  "154.53.32.149"
+                ],
+                "domain": "www.bankilal.com",
+                "size": 1596898,
+                "encodedSize": 731490,
+                "countries": [
+                  "US"
+                ],
+                "index": 0,
+                "initiators": [
+                  "www.bankilal.com"
+                ],
+                "redirects": 0
+              },
+              {
+                "count": 5,
+                "ips": [
+                  "2a00:1450:400d:80a::2003"
+                ],
+                "domain": "fonts.gstatic.com",
+                "size": 223808,
+                "encodedSize": 224912,
+                "countries": [
+                  "IE"
+                ],
+                "index": 6,
+                "initiators": [
+                  "www.bankilal.com"
+                ],
+                "redirects": 0
+              }
+            ],
+            "regDomainStats": [
+              {
+                "count": 13,
+                "ips": [
+                  "154.53.32.149"
+                ],
+                "regDomain": "bankilal.com",
+                "size": 1596898,
+                "encodedSize": 731490,
+                "countries": [],
+                "index": 0,
+                "subDomains": [
+                  {
+                    "domain": "www",
+                    "country": "US"
+                  }
+                ],
+                "redirects": 0
+              },
+              {
+                "count": 5,
+                "ips": [
+                  "2a00:1450:400d:80a::2003"
+                ],
+                "regDomain": "gstatic.com",
+                "size": 223808,
+                "encodedSize": 224912,
+                "countries": [],
+                "index": 6,
+                "subDomains": [
+                  {
+                    "domain": "fonts",
+                    "country": "IE"
+                  }
+                ],
+                "redirects": 0
+              }
+            ],
+            "secureRequests": 18,
+            "securePercentage": 100,
+            "IPv6Percentage": 50,
+            "uniqCountries": 2,
+            "totalLinks": 2,
+            "malicious": 0,
+            "adBlocked": 0,
+            "ipStats": [
+              {
+                "requests": 13,
+                "domains": [
+                  "www.bankilal.com"
+                ],
+                "ip": "154.53.32.149",
+                "asn": {
+                  "ip": "154.53.32.149",
+                  "asn": "40021",
+                  "country": "US",
+                  "registrar": "arin",
+                  "date": "2020-01-30",
+                  "description": "CONTABO, US",
+                  "route": "154.53.32.0/21",
+                  "name": "CONTABO"
+                },
+                "dns": {},
+                "geoip": {
+                  "country": "US",
+                  "region": "NY",
+                  "timezone": "America/New_York",
+                  "city": "New York",
+                  "ll": [
+                    40.7123,
+                    -74.0068
+                  ],
+                  "country_name": "United States",
+                  "metro": 501
+                },
+                "size": 1596898,
+                "encodedSize": 731490,
+                "countries": [
+                  "US"
+                ],
+                "index": 0,
+                "ipv6": false,
+                "redirects": 0,
+                "count": null,
+                "rdns": {
+                  "ip": "154.53.32.149",
+                  "ptr": "vmi826800.contaboserver.net"
+                }
+              },
+              {
+                "requests": 5,
+                "domains": [
+                  "fonts.gstatic.com"
+                ],
+                "ip": "2a00:1450:400d:80a::2003",
+                "asn": {
+                  "ip": "2a00:1450:400d:80a::2003",
+                  "asn": "15169",
+                  "country": "US",
+                  "registrar": "arin",
+                  "date": "2000-03-30",
+                  "description": "GOOGLE, US",
+                  "route": "2a00:1450:400d::/48",
+                  "name": "GOOGLE"
+                },
+                "dns": {},
+                "geoip": {
+                  "country": "IE",
+                  "region": "",
+                  "timezone": "Europe/Dublin",
+                  "city": "",
+                  "ll": [
+                    53.3472,
+                    -6.2439
+                  ],
+                  "country_name": "Ireland",
+                  "metro": 0
+                },
+                "size": 223808,
+                "encodedSize": 224912,
+                "countries": [
+                  "IE"
+                ],
+                "index": 6,
+                "ipv6": true,
+                "redirects": 0,
+                "count": null
+              }
+            ]
+          },
+          "meta": {
+            "processors": {
+              "umbrella": {
+                "data": []
+              },
+              "geoip": {
+                "data": [
+                  {
+                    "ip": "154.53.32.149",
+                    "geoip": {
+                      "country": "US",
+                      "region": "NY",
+                      "timezone": "America/New_York",
+                      "city": "New York",
+                      "ll": [
+                        40.7123,
+                        -74.0068
+                      ],
+                      "country_name": "United States",
+                      "metro": 501
+                    }
+                  },
+                  {
+                    "ip": "2a00:1450:400d:80a::2003",
+                    "geoip": {
+                      "country": "IE",
+                      "region": "",
+                      "timezone": "Europe/Dublin",
+                      "city": "",
+                      "ll": [
+                        53.3472,
+                        -6.2439
+                      ],
+                      "country_name": "Ireland",
+                      "metro": 0
+                    }
+                  }
+                ]
+              },
+              "rdns": {
+                "data": [
+                  {
+                    "ip": "154.53.32.149",
+                    "ptr": "vmi826800.contaboserver.net"
+                  }
+                ]
+              },
+              "asn": {
+                "data": [
+                  {
+                    "ip": "154.53.32.149",
+                    "asn": "40021",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2020-01-30",
+                    "description": "CONTABO, US",
+                    "route": "154.53.32.0/21",
+                    "name": "CONTABO"
+                  },
+                  {
+                    "ip": "2a00:1450:400d:80a::2003",
+                    "asn": "15169",
+                    "country": "US",
+                    "registrar": "arin",
+                    "date": "2000-03-30",
+                    "description": "GOOGLE, US",
+                    "route": "2a00:1450:400d::/48",
+                    "name": "GOOGLE"
+                  }
+                ]
+              },
+              "wappa": {
+                "data": [
+                  {
+                    "confidence": [
+                      {
+                        "confidence": 100,
+                        "pattern": "/wp-(?:content|includes)/"
+                      }
+                    ],
+                    "confidenceTotal": 100,
+                    "app": "WordPress",
+                    "icon": "WordPress.svg",
+                    "website": "https://wordpress.org",
+                    "categories": [
+                      {
+                        "name": "CMS",
+                        "priority": 1
+                      },
+                      {
+                        "name": "Blogs",
+                        "priority": 1
+                      }
+                    ]
+                  },
+                  {
+                    "confidence": [
+                      {
+                        "confidence": 100,
+                        "pattern": "(?:F|f)o(?:n|r)t-?(?:A|a)wesome(?:.*?([0-9a-fA-F]{7,40}|[\\d]+(?:.[\\d]+(?:.[\\d]+)?)?)|)"
+                      }
+                    ],
+                    "confidenceTotal": 100,
+                    "app": "Font Awesome",
+                    "icon": "Font Awesome.png",
+                    "website": "http://fontawesome.io",
+                    "categories": [
+                      {
+                        "name": "Font Scripts",
+                        "priority": 9
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "task": {
+            "uuid": "36364253-8503-484c-9d23-d3ef587f92a9",
+            "time": "2023-02-18T09:36:15.449Z",
+            "url": "https://www.bankilal.com/",
+            "visibility": "private",
+            "method": "api",
+            "source": "3a4a752b",
+            "tags": [],
+            "reportURL": "https://urlscan.io/result/36364253-8503-484c-9d23-d3ef587f92a9/",
+            "screenshotURL": "https://urlscan.io/screenshots/36364253-8503-484c-9d23-d3ef587f92a9.png",
+            "domURL": "https://urlscan.io/dom/36364253-8503-484c-9d23-d3ef587f92a9/"
+          },
+          "page": {
+            "url": "https://www.bankilal.com/",
+            "domain": "www.bankilal.com",
+            "country": "US",
+            "city": "New York",
+            "server": "nginx",
+            "ip": "154.53.32.149",
+            "asn": "AS40021",
+            "asnname": "CONTABO, US"
+          },
+          "lists": {
+            "ips": [
+              "2a00:1450:400d:80a::2003",
+              "154.53.32.149"
+            ],
+            "countries": [
+              "IE",
+              "US"
+            ],
+            "asns": [
+              "15169",
+              "40021"
+            ],
+            "domains": [
+              "www.bankilal.com",
+              "fonts.gstatic.com"
+            ],
+            "servers": [
+              "nginx",
+              "sffe"
+            ],
+            "urls": [
+              "https://www.bankilal.com/",
+              "https://www.bankilal.com/wp-content/cache/min/1/d8de1b8560b2c76b350394a2ac3e7b4d.css",
+              "https://www.bankilal.com/wp-content/plugins/woocommerce/assets/css/woocommerce-smallscreen.css?ver=7.4.0",
+              "https://www.bankilal.com/wp-content/plugins/ewww-image-optimizer/includes/lazysizes.min.js?ver=693",
+              "https://www.bankilal.com/wp-content/plugins/wp-rocket/assets/js/lazyload/16.1/lazyload.min.js",
+              "https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1y4i.woff2",
+              "https://www.bankilal.com/wp-content/themes/Divi/core/admin/fonts/modules/all/modules.ttf",
+              "https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4i.woff2",
+              "https://www.bankilal.com/wp-content/uploads/2022/06/nathan-dumlao-6VhPY27jdps-unsplash.jpg",
+              "https://fonts.gstatic.com/s/oswald/v49/TK3_WkUHHAIjg75cFRf3bXL8LICs18NvgUQ.woff2",
+              "https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDGUmRTY.woff2",
+              "https://fonts.gstatic.com/s/nunito/v25/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhRTY.woff2",
+              "https://www.bankilal.com/wp-content/uploads/2022/05/gallery-coffee-image-11.jpg",
+              "https://www.bankilal.com/wp-content/themes/Divi/core/admin/fonts/fontawesome/fa-solid-900.woff2",
+              "https://www.bankilal.com/wp-content/uploads/2022/05/bankilal-logo.png.webp",
+              "https://www.bankilal.com/wp-content/uploads/2022/05/icon-1.png",
+              "https://www.bankilal.com/wp-content/uploads/2022/05/icon-2.png",
+              "https://www.bankilal.com/wp-content/uploads/2022/05/icon-3.png"
+            ],
+            "linkDomains": [
+              "www.facebook.com",
+              "www.instagram.com"
+            ],
+            "certificates": [
+              {
+                "subjectName": "bankilal.com",
+                "issuer": "R3",
+                "validFrom": 1674202386,
+                "validTo": 1681978385
+              },
+              {
+                "subjectName": "*.gstatic.com",
+                "issuer": "GTS CA 1C3",
+                "validFrom": 1675280613,
+                "validTo": 1682538212
+              }
+            ],
+            "hashes": [
+              "d602ade3872c59bb584d5f55c451fcaa69bf3622c1beb6905807f75d99d6c71e",
+              "5cf4c61f2cfd42070bf183e71c61ed36dee3ab13f05549114500d5dd968591b8",
+              "a7a83e60e7e3b8cadeed69327ba498b4cd68605db6e408729fa1b946758e7501",
+              "c05a1108c176130e9dff2f6a5ebdb60be1c3e17b5a8f83de35b29f44fb109434",
+              "6e86a52a9858206302e32036d89907e3ac87762055e7f9c6364aec33221b3e41",
+              "c4de117c3bfc9acf4d70dcfa45911e174183cd50f1adaa5abeddfd01f00bff27",
+              "0240d31750dece0d5a709e6eb5cbfded2f15b37b5a4d752c3c636cdd03bd12f8",
+              "d201a2c3118a00c82cc48e89815f5139f23956bbe248107dcf522acc77b97c09",
+              "52a27a6a1c1821efdf20d91ece59d5f29ba3ba28cc8480e2f73f3007216e7729",
+              "275969c4cb1ff1140a7b287f0322e926c749a78eab75f8930c13ed2557d5c86b",
+              "93f7ba241116e91be0da56f18673c6e18a4b6ac8f62b3ba6156e7078fa64068a",
+              "637453c4d3f0ce30e85f267812a45a3d4fba44b1f98b1ebcf0aa2400984f75ab",
+              "284c8dab26213baee73522cd72aed807bcd001adf86f1e84e07b9750ffbd2c1c",
+              "44238fd776dbb04c08aa5e95488b4a55d25367571a3ab32dc549e253a2a40da5",
+              "511a9c110741b1a5087d66df75edda4f675876d066a6f5af22343818d26bda82",
+              "6b555920e358f8a25a422988b448615c33bcccb4f932e8331cebfc8e2a737fc7",
+              "2133d0ff2dfaa7ecffa9a19123b8027fc1222a9eb44c962b185d011b174212ac",
+              "2d80645d890a30403e4e275605292c92ff08a54b341544c1236091448117e34b",
+              "7fa8066272321f09a08e5fd637598f2bec5ffcaf408de9f3c3a8c20748800655",
+              "c8757f0213131dce3e3d9d7da592a765d7f31dba89b961a1b6d12d919e930763"
+            ]
+          },
+          "verdicts": {
+            "overall": {
+              "score": 0,
+              "categories": [],
+              "brands": [],
+              "tags": [],
+              "malicious": false,
+              "hasVerdicts": false
+            },
+            "urlscan": {
+              "score": 0,
+              "categories": [],
+              "brands": [],
+              "tags": [],
+              "malicious": false,
+              "hasVerdicts": false
+            },
+            "engines": {
+              "score": 0,
+              "categories": [],
+              "enginesTotal": 0,
+              "maliciousTotal": 0,
+              "benignTotal": 0,
+              "maliciousVerdicts": [],
+              "benignVerdicts": [],
+              "malicious": false,
+              "hasVerdicts": false
+            },
+            "community": {
+              "score": 0,
+              "categories": [],
+              "brands": [],
+              "votesTotal": 0,
+              "votesMalicious": 0,
+              "votesBenign": 0,
+              "malicious": false,
+              "hasVerdicts": false
+            }
+          },
+          "submitter": {
+            "country": "US"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "id": "3",
+      "createdAt": "2023-01-18T08:27:23.985Z",
+      "updatedAt": "2023-01-18T08:27:23.985Z",
+      "name": "bankilal"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-07-11T00:31:11.000Z",
+  "versionId": "45dab232-b103-4eb0-abd3-df0e7d4dbdf1"
+}
