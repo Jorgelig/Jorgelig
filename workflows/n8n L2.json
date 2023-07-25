@@ -1,0 +1,60 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-04-21T17:25:21.584Z",
+  "id": "5",
+  "name": "n8n L2",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "id": "352062c4-a9b8-4e5d-9207-3fb031d09750"
+    },
+    {
+      "parameters": {
+        "authentication": "basicAuth",
+        "url": "https://internal.users.n8n.cloud/webhook/level2-erp",
+        "options": {}
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "8",
+          "name": "n8n course"
+        }
+      },
+      "id": "91591075-a46b-4bf6-a987-128dd6888488"
+    }
+  ],
+  "pinData": null,
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-04-21T17:25:21.584Z",
+  "versionId": "e1a2ab2e-5dea-49b1-a5b0-5cf6624a7a7d"
+}
