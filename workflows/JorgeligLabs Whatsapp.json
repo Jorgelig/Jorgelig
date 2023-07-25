@@ -1,0 +1,209 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "jorgeliglabs_primercontacto_v1_webhook": {
+      "main": [
+        [
+          {
+            "node": "jorgeliglabs_primercontacto_v1_SEND_MESSAGE_EMAIL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-06-06T00:36:24.050Z",
+  "id": "15",
+  "name": "JorgeligLabs Whatsapp",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        360
+      ],
+      "id": "89f59ab2-1a62-4118-bd1f-84c81a839bd9"
+    },
+    {
+      "parameters": {
+        "path": "d4bc5cd3-ab55-4a8a-b228-c56fb5de7d98",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        240,
+        160
+      ],
+      "webhookId": "d4bc5cd3-ab55-4a8a-b228-c56fb5de7d98",
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "id": "bec595d7-0dc6-4153-87c9-9f7f7e6d8a90"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{$json[\"query\"][\"hub.challenge\"]}}",
+        "options": {}
+      },
+      "id": "0b0f9ae2-273a-4937-b749-976d2f0221b7",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        460,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://graph.facebook.com/v13.0/101353552699300/messages",
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "messaging_product",
+              "value": "whatsapp"
+            },
+            {
+              "name": "to",
+              "value": "558114117118"
+            },
+            {
+              "name": "type",
+              "value": "template"
+            },
+            {
+              "name": "template",
+              "value": "{\"name\":\"jorgeliglabs_primercontacto_v1\",\"language\":{\"code\":\"es_MX\"},\"components\":[{\"type\":\"body\",\"parameters\":[{\"type\":\"text\",\"text\":\"Jorge\"},{\"type\":\"text\",\"text\":\"08 de Septiembre a las 4:50PM\"}]}]}"
+            }
+          ]
+        }
+      },
+      "id": "cd9b2d2d-6cc7-46b9-9b5a-999683063cf0",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        460,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d4bc5cd3-ab55-4a8a-b228-c56fb5de7d98",
+        "options": {}
+      },
+      "name": "jorgeliglabs_primercontacto_v1_webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -20
+      ],
+      "webhookId": "6d0724f1-aa1e-4b2d-945d-abd451019679",
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "id": "810e9a5b-edc6-4b83-8af0-5c237c8a4327"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://graph.facebook.com/v13.0/101353552699300/messages",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "{\n    \"messaging_product\": \"whatsapp\",\n    \"to\": \"{{Recipient-Phone-Number}}\",\n    \"type\": \"template\",\n    \"template\": {\n        \"name\": \"jorgeliglabs_primercontacto_v1\",\n        \"language\": {\n            \"code\": \"es_MX\"\n        },\n        \"components\": [\n            {\n                \"type\": \"body\",\n                \"parameters\": [{\n                    \"type\": \"text\",\n                    \"text\": \"Jorge\"\n                },\n                {\n                    \"type\": \"text\",\n                    \"text\": \"08 de Septiembre a las 4:50PM\"\n                }\n                ]\n            }\n        ]\n    }\n}",
+        "headerParametersJson": "{\"Authorization\": \"Bearer EAASUgnHuSGgBALmqllJUbuCi4kElaZAyQTvAo8A7GKdYXoZBPilM50Fe22PZCoIZAksZB9gOGuyLdW9RXaaEY8hefF8uFtlc3AnXSfC0KdgK2MgNTtr1qSkl7H66JyDZBn291NqsE4SWzmoCUwVxD1E2eEjS3BGYZBWzhUEwHsKHoX1ZAZAUe9naToxZCWjB39KdXSdTUSFqbEUwZDZD\"}"
+      },
+      "id": "199a6730-67ad-4ae7-9be7-8b096f01c5c7",
+      "name": "jorgeliglabs_primercontacto_v1_SEND_MESSAGE_EMAIL",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        480,
+        -20
+      ]
+    }
+  ],
+  "pinData": {
+    "jorgeliglabs_primercontacto_v1_webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.jorgeliglabs.com",
+            "user-agent": "got (https://github.com/sindresorhus/got)",
+            "content-length": "192",
+            "accept-encoding": "gzip, deflate, br",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "n8n.jorgeliglabs.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "bf68fd40a587",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {
+            "name": "Luis",
+            "phone": "528114117118",
+            "date": "2022-08-17T05:20"
+          },
+          "body": {
+            "submittedAt": "2022-08-15T08:17:44.821Z",
+            "Saludo": "Quiero saber mas...",
+            "name": "Luis",
+            "phone": "+528114117118",
+            "email": "jorgeligg@gmail.com",
+            "detail": "No creo",
+            "fecha_hora": "2022-08-17T05:20"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "id": "2",
+      "createdAt": "2023-01-09T16:02:04.001Z",
+      "updatedAt": "2023-01-09T16:02:04.001Z",
+      "name": "jorgeliglabs"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2023-02-06T04:26:14.000Z",
+  "versionId": "6cd9113c-8c75-457d-8ea3-8af02ae56e2a"
+}
