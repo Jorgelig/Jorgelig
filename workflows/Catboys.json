@@ -1,0 +1,106 @@
+{
+  "active": false,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-08-13T04:32:10.666Z",
+  "id": "33",
+  "name": "Catboys",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "4ebf9554-993d-4603-99aa-d43238d76c4e",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.catboys.com/catboy",
+        "options": {}
+      },
+      "id": "2d9a8c7f-9a5c-4fce-bd5d-38cc5444ab9f",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        500,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=<h1>el gato dice</h1><br /> <strong>{{$json[\"response\"]}}</strong>",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "f00bc421-af08-4828-8899-be3c9b84c4ab",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        700,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "path": "e15be35f-4e2d-47af-9bbf-cba1934c1c87",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "fe0a7096-1707-4e15-896b-628a8bf5034c",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        240,
+        160
+      ],
+      "webhookId": "e15be35f-4e2d-47af-9bbf-cba1934c1c87"
+    }
+  ],
+  "pinData": {
+    "HTTP Request": [
+      {
+        "json": {
+          "response": "hewwo",
+          "error": "none"
+        }
+      }
+    ]
+  },
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-07-09T03:16:23.000Z",
+  "versionId": "eb606265-a1df-4cbc-b93a-e40a6cd1f7d5"
+}
