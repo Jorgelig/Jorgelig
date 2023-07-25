@@ -1,0 +1,1594 @@
+{
+  "active": false,
+  "connections": {
+    "Read Binary Files": {
+      "main": [
+        [
+          {
+            "node": "Move Binary Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Move Binary Data": {
+      "main": [
+        [
+          {
+            "node": "SET_access_token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SET_access_token": {
+      "main": [
+        [
+          {
+            "node": "GetKommo_Leads",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetKommo_Sources",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetKommo_Pipeline[6728388]Status",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetKommo_LeadsByID",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetKommo_Catalogs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "PostKommo_Contact-TEST",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "PostKommo_Lead-TEST1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetKommo_custom_fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe-HookSubscriptionCreated-TEST": {
+      "main": [
+        [
+          {
+            "node": "Stripe-GetCustomer-TEST",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Postgres_GetSuscriptionStripe-TEST",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe-GetCustomer-Prod": {
+      "main": [
+        [
+          {
+            "node": "SetSuscriptionCustomer-Prod",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe-GetCustomer-TEST": {
+      "main": [
+        [
+          {
+            "node": "SetSuscriptionCustomer-TEST",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe-HookSubscriptionCreated-Prod": {
+      "main": [
+        [
+          {
+            "node": "Stripe-GetCustomer-Prod",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SET_access_token-Prod": {
+      "main": [
+        [
+          {
+            "node": "PostKommo_Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SetSuscriptionCustomer-TEST": {
+      "main": [
+        [
+          {
+            "node": "Read Binary Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SetSuscriptionCustomer-Prod": {
+      "main": [
+        [
+          {
+            "node": "Read Binary Files-Prod",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Binary Files-Prod": {
+      "main": [
+        [
+          {
+            "node": "Move Binary Data-Prod",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Move Binary Data-Prod": {
+      "main": [
+        [
+          {
+            "node": "SET_access_token-Prod",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Stripe-GetCustomer-Prod",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PostKommo_Contact-TEST": {
+      "main": [
+        [
+          {
+            "node": "SetContact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SetContact": {
+      "main": [
+        [
+          {
+            "node": "PostKommo_Lead-TEST",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetKommo_Pipeline[6728388]Status": {
+      "main": [
+        [
+          {
+            "node": "SetPipeline",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetKommo_LeadsByID": {
+      "main": [
+        [
+          {
+            "node": "SetLeadByID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SetLeadByID": {
+      "main": [
+        [
+          {
+            "node": "GetKommo_ContactID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetKommo_Catalogs": {
+      "main": [
+        [
+          {
+            "node": "SetKommoCatalogs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetKommo_Leads": {
+      "main": [
+        [
+          {
+            "node": "SetLeads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetKommo_custom_fields": {
+      "main": [
+        [
+          {
+            "node": "SetKommo_custom_fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-07-10T22:02:33.641Z",
+  "id": "64",
+  "name": "Plick - Stripe => Kommo",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "984b6008-151e-49ec-998b-5431b612097a",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        760,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "path": "fec6b4f2-b957-4556-af93-754a7d9a4e7b",
+        "options": {}
+      },
+      "id": "d6ccfd08-9b75-4fbe-aefe-eebc8dc320f8",
+      "name": "Webhook_Kommo_Ping",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        620
+      ],
+      "webhookId": "fec6b4f2-b957-4556-af93-754a7d9a4e7b",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Obtener token y refresh\n- Generar nuevo code: https://www.kommo.com/oauth/?client_id=bbef67ab-1f4d-4e2a-bf29-bc1effea3504\n- Copiar el code del parametro de la url al la que redirije: https://semalt.tools/en/url-parser",
+        "height": 363.34243057578465,
+        "width": 752.3460986970674
+      },
+      "id": "c57d3395-ec1e-406f-bb55-8e1a52c5f782",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://plick.kommo.com/oauth2/access_token",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{ \"client_id\": \"bbef67ab-1f4d-4e2a-bf29-bc1effea3504\", \n\"client_secret\": \"rQt8CXQ8MxO1hdHlT2zZgpkWYNEIhxmHJmquKeWKM8VjxNJEJ2km1dijPE7D15of\",\n\"grant_type\": \"authorization_code\",\n\"code\": \"def50200c3a5f29f4c2536b26807d72ef3dbc379ef47d7ff1d5ec0777ef6f2e4ce573ae1ad6f026ad0533d37bb93fa65666f7ef974b32a3ea988840d54675c3ec9e5d3eb34866e9bf7e3d1091035dc54972d4d235d4a832241f26881362b47f5c8307f77d9400f4d2527817e78c5f26bfb52929fab1b8095e0f674ad5598b02daf51d6daff86dc526cbde122ae0810574f41efbc0abefbd7a8144f26112437a8519aebc2640243f930d66bfd3a9cff184723ca749252b78154f9d88a573499c4ceaf6928485aedd35b898638380c8e9027dff525191614b73f6a7643c7fcb46cd769612b7875cb83617a8b2b82209ccc920533a1e5501776f88db7db06b32d66636bf6a670ef33ecbcc7bac7e28c82867cee73de51621316c8445ae8df3d90a9c75a0eec2df86c04f77d1e2a2ce5f6284afaba975b8a5e23424a2532ab448f5bdeb929b52fdd9601e406e1d3ef9b2c854a9dc2bb5b97e932115d84108298435240b07f70ab80a11c89ac0afd59f9337422b69407639ecc190129bb92f826db071be55a8e52406229dd04d74ffaa2ffd4e1804449657cde8eee2527bc096e3e019920ae6879e74c3e9f51ba771fce&state=false&referer=plick.kommo.com&platform=2&client_id=bbef67ab-1f4d-4e2a-bf29-bc1effea3504\",\n\"redirect_uri\": \"https://www.plick.com.mx/\" }",
+        "options": {}
+      },
+      "id": "b3000d02-558c-4206-8346-191ec98abc9a",
+      "name": "GetKommo_FirstCode",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -120,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://plick.kommo.com/oauth2/access_token",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{ \"client_id\": \"bbef67ab-1f4d-4e2a-bf29-bc1effea3504\", \n\"client_secret\": \"rQt8CXQ8MxO1hdHlT2zZgpkWYNEIhxmHJmquKeWKM8VjxNJEJ2km1dijPE7D15of\",\n\"grant_type\": \"refresh_token\",\n\"refresh_token\": \"def50200b3217da7c7772ec97c507216ef2ee14ec9bca7ea89a08635d74c1fb084b08b8d6792e9d70a6894fedda85689150ebd0939b8dbe277141f48fcedb9c469e55c9a650259348a667b479020cca052c8909522e75310558426034124309619d2f08aaa53785a529e64c7750594f8d5ad9205facbe73a4acb06a860468aae22610f8d15fcdd6fa9a902bbd77f33b403b89edd18a27d9b222fdcecd80449e406e946f39f778e23f670581b88555dae8f0dc8e37da2d36e78fed0ad092fa187f65ec296f1f7cf471ec7e5dcd635e7f92044f9eabb695c209f51160179f4894d62f06ea3bd63ef5a2bdd177e396fa9542003ae1efe759912a061f3fcfb25091ab67aab8270609185d0a381f06c6af3af15263cab2c9353bbcb6011fa5f6264a01707f42b7225db67b69e32289d4d98b0728f92010f5af5d3a3d91c7634a860655831eac00b7c54a5279d293a83d364bdd0144f61200ca3d927426efd7666f628b2af0b2320ed8e7b39e8d7ddf4eee1dc0cbd3f04e44265953764cfb3bbf8cd989841287f30a5eb0f16a4299a2373f519580de46164f0c5eac38cbaba5ef90a62fc41f466614ae5ad0a21cf0de38e2ffe8bb7219c\",\n\"redirect_uri\": \"https://www.plick.com.mx/\" }",
+        "options": {}
+      },
+      "id": "f6c0a62f-e652-483d-977f-5aeec0e91265",
+      "name": "GetKommo_Refreshtoken",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        100,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "suscripcion_stripe",
+          "mode": "list",
+          "cachedResultName": "suscripcion_stripe"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id_cliente",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "65f824f1-a352-462f-8d43-17a00993c62a",
+      "name": "Postgres_GetSuscriptionStripe-TEST",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1040,
+        640
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "33",
+          "name": "Postgres Plick - PROD"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/tmp/kommo_refresh_token.txt"
+      },
+      "id": "7b3ddca0-9499-4a6c-ab72-b5d4c9625f84",
+      "name": "Read Binary Files",
+      "type": "n8n-nodes-base.readBinaryFiles",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "9a83ce2f-3685-4f1b-9f2d-5a934499f9df",
+      "name": "Move Binary Data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "access_token",
+              "value": "={{ $json.access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "70d08c5b-5bf8-4a83-a60f-35147fdc36f4",
+      "name": "SET_access_token",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://plick.kommo.com/api/v4/leads",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('SET_access_token-Prod').item.json[\"access_token\"] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=[\n  {\n    \"name\": \"Stripe plan {{ $('Stripe-GetCustomer-Prod').item.json[\"data\"][\"object\"][\"plan\"][\"interval\"] }} - Jorge Pruebas\",\n    \"price\": \"{{ $('Stripe-GetCustomer-Prod').item.json[\"data\"][\"object\"][\"plan\"][\"amount\"] }} {{ $('Stripe-GetCustomer-Prod').item.json[\"data\"][\"object\"][\"plan\"][\"currency\"] }}\",\n    \"pipeline_id\": 6728388,\n    \"status_id\": 56753768,\n    \"_embedded\": {\n      \"tags\": [\n        {\n          \"id\": 78842,\n          \"name\": \"{{ $('Stripe-HookSubscriptionCreated-TEST').item.json[\"\"][\"\"] }}\",\n          \"color\": null\n        }\n      ],\n      \"contacts\": [\n        {\n          \"name\": \"Jorge Estrada\"\n        }\n      ],\n      \"companies\": [\n        {\n          \"name\": \"\"\n        }\n      ]\n    }\n  }\n]",
+        "options": {}
+      },
+      "id": "8a513d63-82de-48aa-af7d-266e754ef5c3",
+      "name": "PostKommo_Lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2240,
+        1240
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://plick.kommo.com/api/v4/leads/pipelines/6728388?order[updated_at]=desc& source_id=6728388",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('SET_access_token').item.json[\"access_token\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1a82dd26-05c3-44a2-b83d-3ce20c8a3250",
+      "name": "GetKommo_Leads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://plick.kommo.com/api/v4/leads",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('SET_access_token').item.json[\"access_token\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0b10cc5b-577b-48d2-a58a-5ab31d527513",
+      "name": "GetKommo_Sources",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2220,
+        480
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "url": "https://plick.kommo.com/api/v4/leads/pipelines/6728388/statuses",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "388f749a-fb88-4bd5-aad8-459e744c6d61",
+      "name": "GetKommo_Pipeline[6728388]Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2220,
+        640
+      ],
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "content": "## Lead properties\nInsert [doc](https://www.kommo.com/developers/content/api_v4/leads-api/#leads-add)\n**pipeline_id**: 6728388,\n**status_id**: 56753768\n",
+        "height": 149.84265470852034,
+        "width": 765.2798565022422
+      },
+      "id": "828ce76c-88bb-48ed-bb5f-a19d4d554f29",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "customer",
+        "customerId": "={{ $json.data.object.customer }}"
+      },
+      "id": "76d38626-987a-4862-b49a-c038b4eaba20",
+      "name": "Stripe-GetCustomer-TEST",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        820
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "stripeApi": {
+          "id": "27",
+          "name": "Plick - Stripe account - Test"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "events": [
+          "customer.subscription.created"
+        ]
+      },
+      "id": "ff635cb5-bb44-4e26-8081-f009e1549fd5",
+      "name": "Stripe-HookSubscriptionCreated-TEST",
+      "type": "n8n-nodes-base.stripeTrigger",
+      "typeVersion": 1,
+      "position": [
+        760,
+        820
+      ],
+      "webhookId": "b926bdca-479f-44b8-8b2d-00477e63e9e1",
+      "credentials": {
+        "stripeApi": {
+          "id": "27",
+          "name": "Plick - Stripe account - Test"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "customer",
+        "customerId": "={{ $json.data.object.customer }}"
+      },
+      "id": "88247ad6-a907-4a51-810d-c0c9d2369d89",
+      "name": "Stripe-GetCustomer-Prod",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        1240
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "stripeApi": {
+          "id": "37",
+          "name": "Plick - Stripe account - PROD"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://plick.kommo.com/api/v4/leads/15671183",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $json.access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "96445265-c7ee-4a97-a432-e0df7d9082a1",
+      "name": "GetKommo_LeadsByID",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2220,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "events": [
+          "customer.subscription.created"
+        ]
+      },
+      "id": "6034a7ce-e3b3-467a-b807-03b6daadaf09",
+      "name": "Stripe-HookSubscriptionCreated-Prod",
+      "type": "n8n-nodes-base.stripeTrigger",
+      "typeVersion": 1,
+      "position": [
+        760,
+        1240
+      ],
+      "webhookId": "07cbc009-d612-4169-91f7-cc3337f065d0",
+      "credentials": {
+        "stripeApi": {
+          "id": "37",
+          "name": "Plick - Stripe account - PROD"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "stripe_customer_email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "stripe_customer_name",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "stripe_customer_phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "stripe_subcription_amount",
+              "value": "={{ $('Stripe-HookSubscriptionCreated-TEST').item.json.data.object.items.data[0].plan.amount }}"
+            },
+            {
+              "name": "stripe_subcription_interval",
+              "value": "={{ $('Stripe-HookSubscriptionCreated-TEST').item.json.data.object.items.data[0].plan.interval }}"
+            },
+            {
+              "name": "stripe_subcription_url",
+              "value": "={{ $('Stripe-HookSubscriptionCreated-TEST').item.json.data.object.items.url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f2d01162-ca8a-46a5-a8b8-56be34bdbef2",
+      "name": "SetSuscriptionCustomer-TEST",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "access_token",
+              "value": "={{ $json.access_token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c8aa3b15-3641-429c-b352-ae1cb72cdd5c",
+      "name": "SET_access_token-Prod",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        1240
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "stripe_customer_email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "stripe_customer_name",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "stripe_customer_phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "stripe_subcription_amount",
+              "value": "={{ $('Stripe-HookSubscriptionCreated-Prod').item.json.data.object.items.data[0].plan.amount }}"
+            },
+            {
+              "name": "stripe_subcription_interval",
+              "value": "={{ $('Stripe-HookSubscriptionCreated-Prod').item.json.data.object.items.data[0].plan.interval }}"
+            },
+            {
+              "name": "stripe_subcription_url",
+              "value": "={{ $('Stripe-HookSubscriptionCreated-Prod').item.json.data.object.items.url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "965623a2-1048-4bfc-8355-20885f97e7f0",
+      "name": "SetSuscriptionCustomer-Prod",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        1240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://plick.kommo.com/api/v4/leads",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('SET_access_token').item.json[\"access_token\"] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=[\n  {\n    \"name\": \"Stripe plan {{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_subcription_interval\"] }} - {{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_customer_name\"] }}\",\n    \"price\": {{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_subcription_amount\"] }},\n    \"pipeline_id\": 6728388,\n\"custom_fields_values\": [\n{\n\"value\": \"{{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_customer_phone\"] }}\"\n}\n],\n    \"metadata\": {\n      \"phone\": \"{{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_customer_phone\"] }}\"\n    }\n  }\n]",
+        "options": {}
+      },
+      "id": "bbacb2c4-2f44-4d3a-9c0c-374421390078",
+      "name": "PostKommo_Lead-TEST",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2660,
+        820
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "fileSelector": "/tmp/kommo_refresh_token.txt"
+      },
+      "id": "0730594d-990f-4f97-b963-ebd0dcb821da",
+      "name": "Read Binary Files-Prod",
+      "type": "n8n-nodes-base.readBinaryFiles",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        1240
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "1dd38bbe-ba62-4bdd-97ae-d11ae6648928",
+      "name": "Move Binary Data-Prod",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        1240
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Plick test suscribe\n**Plick stripe checkout** testing. [Page](https://checkout.plick.com.mx/b/test_28o9Cg93F9lNgN29AA)\n\nplick.dev@yopmail.com\n8114117118\n4242 4242 4242 4242\n12/34 - 123",
+        "height": 218.04197309417043,
+        "width": 747.8672645739912
+      },
+      "id": "ac4c6497-ad73-4f17-8415-d6967ee997bc",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://plick.kommo.com/api/v4/catalogs",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('SET_access_token').item.json[\"access_token\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "49478177-197e-4404-b354-18bf2a81e13c",
+      "name": "GetKommo_Catalogs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2220,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://plick.kommo.com/api/v4/contacts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('SET_access_token').item.json[\"access_token\"] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=[\n    {\n        \"first_name\": \"{{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_customer_name\"] }}\",\n\"phone\": \"{{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_customer_phone\"] }}\",\n        \"status_id\":56753768,\n        \"pipeline_id\":6728388\n    }\n]",
+        "options": {}
+      },
+      "id": "f2c30fed-a165-49c0-814f-b153b18a7529",
+      "name": "PostKommo_Contact-TEST",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2220,
+        820
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "contact",
+              "value": "={{ JSON.parse($json.data) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e3985c7a-ac33-4a67-8f4d-a725838e63dd",
+      "name": "SetContact",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        820
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "contact",
+              "value": "={{ JSON.parse($json.data) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f0b533bb-be07-4b8b-a5a4-3235992d9a00",
+      "name": "SetPipeline",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "contact",
+              "value": "={{ JSON.parse($json.data) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "568d6c6d-e4ee-46f6-978d-16a72fe07d30",
+      "name": "SetLeadByID",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://plick.kommo.com/api/v4/contact/{{ $json[\"contact\"][\"id\"] }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('SET_access_token').item.json[\"access_token\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ee8c03d3-3ecb-4251-875d-58bccaa8923a",
+      "name": "GetKommo_ContactID",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2660,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://plick.kommo.com/api/v4/leads",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('SET_access_token').item.json[\"access_token\"] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=[\n  {\n    \"name\": \"Stripe plan {{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_subcription_interval\"] }} - {{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_customer_name\"] }}\",\n    \"price\": {{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_subcription_amount\"] }},\n    \"pipeline_id\": 6728388,\n\"status_id\": 56753768,\n\"custom_fields_values\": [\n{\n\"value\": \"{{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_customer_phone\"] }}\"\n}\n],\n    \"metadata\": {\n      \"phone\": \"{{ $('SetSuscriptionCustomer-TEST').item.json[\"stripe_customer_phone\"] }}\"\n    }\n  }\n]",
+        "options": {}
+      },
+      "id": "2cf4485b-e787-4c2d-aa8c-791e51a1fff0",
+      "name": "PostKommo_Lead-TEST1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2220,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "contact",
+              "value": "={{ JSON.parse($json.data) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5bba7176-17a6-4671-8e7e-5442d741af38",
+      "name": "SetKommoCatalogs",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "contact",
+              "value": "={{ JSON.parse($json.data) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0f505b10-cbfc-496d-b47b-299621b3ee20",
+      "name": "SetLeads",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://plick.kommo.com/api/v4/leads/fields",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('SET_access_token').item.json[\"access_token\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c7cad9ca-9df7-4f90-8af7-9963fe6c56f7",
+      "name": "GetKommo_custom_fields",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2220,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "contact",
+              "value": "={{ JSON.parse($json.data) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ccd039e7-0ddc-4f12-8524-bcb0e3ad8ae0",
+      "name": "SetKommo_custom_fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        -160
+      ]
+    }
+  ],
+  "pinData": {
+    "Stripe-GetCustomer-Prod": [
+      {
+        "json": {
+          "id": "evt_1NTAdtCv6pY2BST7OQFC7opM",
+          "object": "event",
+          "api_version": "2020-08-27",
+          "created": 1689197530,
+          "data": {
+            "object": {
+              "id": "sub_1NTAdpCv6pY2BST79PobJVDD",
+              "object": "subscription",
+              "application": null,
+              "application_fee_percent": null,
+              "automatic_tax": {
+                "enabled": false
+              },
+              "billing_cycle_anchor": 1690407129,
+              "billing_thresholds": null,
+              "cancel_at": null,
+              "cancel_at_period_end": false,
+              "canceled_at": null,
+              "cancellation_details": {
+                "comment": null,
+                "feedback": null,
+                "reason": null
+              },
+              "collection_method": "charge_automatically",
+              "created": 1689197529,
+              "currency": "mxn",
+              "current_period_end": 1690407129,
+              "current_period_start": 1689197529,
+              "customer": "cus_OFfzHfPxpYqZRF",
+              "days_until_due": null,
+              "default_payment_method": "pm_1NTAdnCv6pY2BST7hOtMEWuT",
+              "default_source": null,
+              "default_tax_rates": [],
+              "description": null,
+              "discount": null,
+              "ended_at": null,
+              "items": {
+                "object": "list",
+                "data": [
+                  {
+                    "id": "si_OFfz6TnEDsrBJf",
+                    "object": "subscription_item",
+                    "billing_thresholds": null,
+                    "created": 1689197530,
+                    "metadata": {},
+                    "plan": {
+                      "id": "price_1MDffiCv6pY2BST7USRe1uDY",
+                      "object": "plan",
+                      "active": true,
+                      "aggregate_usage": null,
+                      "amount": 1099900,
+                      "amount_decimal": "1099900",
+                      "billing_scheme": "per_unit",
+                      "created": 1670727226,
+                      "currency": "mxn",
+                      "interval": "year",
+                      "interval_count": 1,
+                      "livemode": false,
+                      "metadata": {},
+                      "nickname": null,
+                      "product": "prod_MxareCuS0I9gIo",
+                      "tiers_mode": null,
+                      "transform_usage": null,
+                      "trial_period_days": null,
+                      "usage_type": "licensed"
+                    },
+                    "price": {
+                      "id": "price_1MDffiCv6pY2BST7USRe1uDY",
+                      "object": "price",
+                      "active": true,
+                      "billing_scheme": "per_unit",
+                      "created": 1670727226,
+                      "currency": "mxn",
+                      "custom_unit_amount": null,
+                      "livemode": false,
+                      "lookup_key": null,
+                      "metadata": {},
+                      "nickname": null,
+                      "product": "prod_MxareCuS0I9gIo",
+                      "recurring": {
+                        "aggregate_usage": null,
+                        "interval": "year",
+                        "interval_count": 1,
+                        "trial_period_days": null,
+                        "usage_type": "licensed"
+                      },
+                      "tax_behavior": "unspecified",
+                      "tiers_mode": null,
+                      "transform_quantity": null,
+                      "type": "recurring",
+                      "unit_amount": 1099900,
+                      "unit_amount_decimal": "1099900"
+                    },
+                    "quantity": 1,
+                    "subscription": "sub_1NTAdpCv6pY2BST79PobJVDD",
+                    "tax_rates": []
+                  }
+                ],
+                "has_more": false,
+                "total_count": 1,
+                "url": "/v1/subscription_items?subscription=sub_1NTAdpCv6pY2BST79PobJVDD"
+              },
+              "latest_invoice": "in_1NTAdpCv6pY2BST75BEA19jv",
+              "livemode": false,
+              "metadata": {},
+              "next_pending_invoice_item_invoice": null,
+              "on_behalf_of": null,
+              "pause_collection": null,
+              "payment_settings": {
+                "payment_method_options": null,
+                "payment_method_types": null,
+                "save_default_payment_method": "off"
+              },
+              "pending_invoice_item_interval": null,
+              "pending_setup_intent": null,
+              "pending_update": null,
+              "plan": {
+                "id": "price_1MDffiCv6pY2BST7USRe1uDY",
+                "object": "plan",
+                "active": true,
+                "aggregate_usage": null,
+                "amount": 1099900,
+                "amount_decimal": "1099900",
+                "billing_scheme": "per_unit",
+                "created": 1670727226,
+                "currency": "mxn",
+                "interval": "year",
+                "interval_count": 1,
+                "livemode": false,
+                "metadata": {},
+                "nickname": null,
+                "product": "prod_MxareCuS0I9gIo",
+                "tiers_mode": null,
+                "transform_usage": null,
+                "trial_period_days": null,
+                "usage_type": "licensed"
+              },
+              "quantity": 1,
+              "schedule": null,
+              "start_date": 1689197529,
+              "status": "trialing",
+              "test_clock": null,
+              "transfer_data": null,
+              "trial_end": 1690407129,
+              "trial_settings": {
+                "end_behavior": {
+                  "missing_payment_method": "create_invoice"
+                }
+              },
+              "trial_start": 1689197529
+            }
+          },
+          "livemode": false,
+          "pending_webhooks": 3,
+          "request": {
+            "id": null,
+            "idempotency_key": null
+          },
+          "type": "customer.subscription.created"
+        }
+      }
+    ],
+    "Stripe-GetCustomer-TEST": [
+      {
+        "json": {
+          "id": "cus_OFfzHfPxpYqZRF",
+          "object": "customer",
+          "address": {
+            "city": null,
+            "country": "MX",
+            "line1": null,
+            "line2": null,
+            "postal_code": null,
+            "state": null
+          },
+          "balance": 0,
+          "created": 1689197529,
+          "currency": "mxn",
+          "default_currency": "mxn",
+          "default_source": null,
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "plick.dev@yopmail.com",
+          "invoice_prefix": "D2F063AF",
+          "invoice_settings": {
+            "custom_fields": null,
+            "default_payment_method": null,
+            "footer": null,
+            "rendering_options": null
+          },
+          "livemode": false,
+          "metadata": {
+            "gigstackId": "client_GxEY9LOCKK"
+          },
+          "name": "Jorge Prueba",
+          "next_invoice_sequence": 2,
+          "phone": "+528114117118",
+          "preferred_locales": [
+            "en-US"
+          ],
+          "shipping": null,
+          "tax_exempt": "none",
+          "test_clock": null
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "Stripe-HookSubscriptionCreated-TEST": [
+      {
+        "json": {
+          "id": "evt_1NTZBXCv6pY2BST7xztsP57T",
+          "object": "event",
+          "api_version": "2020-08-27",
+          "created": 1689291872,
+          "data": {
+            "object": {
+              "id": "sub_1NTZBTCv6pY2BST7GDn5ZO40",
+              "object": "subscription",
+              "application": null,
+              "application_fee_percent": null,
+              "automatic_tax": {
+                "enabled": false
+              },
+              "billing_cycle_anchor": 1690501471,
+              "billing_thresholds": null,
+              "cancel_at": null,
+              "cancel_at_period_end": false,
+              "canceled_at": null,
+              "cancellation_details": {
+                "comment": null,
+                "feedback": null,
+                "reason": null
+              },
+              "collection_method": "charge_automatically",
+              "created": 1689291871,
+              "currency": "mxn",
+              "current_period_end": 1690501471,
+              "current_period_start": 1689291871,
+              "customer": "cus_OG5MWG3pqdl7n0",
+              "days_until_due": null,
+              "default_payment_method": "pm_1NTZBRCv6pY2BST7ucfwndCO",
+              "default_source": null,
+              "default_tax_rates": [],
+              "description": null,
+              "discount": null,
+              "ended_at": null,
+              "items": {
+                "object": "list",
+                "data": [
+                  {
+                    "id": "si_OG5M7LdaK2TgPF",
+                    "object": "subscription_item",
+                    "billing_thresholds": null,
+                    "created": 1689291871,
+                    "metadata": {},
+                    "plan": {
+                      "id": "price_1MDffiCv6pY2BST7USRe1uDY",
+                      "object": "plan",
+                      "active": true,
+                      "aggregate_usage": null,
+                      "amount": 1099900,
+                      "amount_decimal": "1099900",
+                      "billing_scheme": "per_unit",
+                      "created": 1670727226,
+                      "currency": "mxn",
+                      "interval": "year",
+                      "interval_count": 1,
+                      "livemode": false,
+                      "metadata": {},
+                      "nickname": null,
+                      "product": "prod_MxareCuS0I9gIo",
+                      "tiers_mode": null,
+                      "transform_usage": null,
+                      "trial_period_days": null,
+                      "usage_type": "licensed"
+                    },
+                    "price": {
+                      "id": "price_1MDffiCv6pY2BST7USRe1uDY",
+                      "object": "price",
+                      "active": true,
+                      "billing_scheme": "per_unit",
+                      "created": 1670727226,
+                      "currency": "mxn",
+                      "custom_unit_amount": null,
+                      "livemode": false,
+                      "lookup_key": null,
+                      "metadata": {},
+                      "nickname": null,
+                      "product": "prod_MxareCuS0I9gIo",
+                      "recurring": {
+                        "aggregate_usage": null,
+                        "interval": "year",
+                        "interval_count": 1,
+                        "trial_period_days": null,
+                        "usage_type": "licensed"
+                      },
+                      "tax_behavior": "unspecified",
+                      "tiers_mode": null,
+                      "transform_quantity": null,
+                      "type": "recurring",
+                      "unit_amount": 1099900,
+                      "unit_amount_decimal": "1099900"
+                    },
+                    "quantity": 1,
+                    "subscription": "sub_1NTZBTCv6pY2BST7GDn5ZO40",
+                    "tax_rates": []
+                  }
+                ],
+                "has_more": false,
+                "total_count": 1,
+                "url": "/v1/subscription_items?subscription=sub_1NTZBTCv6pY2BST7GDn5ZO40"
+              },
+              "latest_invoice": "in_1NTZBTCv6pY2BST7xlDGDlZb",
+              "livemode": false,
+              "metadata": {},
+              "next_pending_invoice_item_invoice": null,
+              "on_behalf_of": null,
+              "pause_collection": null,
+              "payment_settings": {
+                "payment_method_options": null,
+                "payment_method_types": null,
+                "save_default_payment_method": "off"
+              },
+              "pending_invoice_item_interval": null,
+              "pending_setup_intent": null,
+              "pending_update": null,
+              "plan": {
+                "id": "price_1MDffiCv6pY2BST7USRe1uDY",
+                "object": "plan",
+                "active": true,
+                "aggregate_usage": null,
+                "amount": 1099900,
+                "amount_decimal": "1099900",
+                "billing_scheme": "per_unit",
+                "created": 1670727226,
+                "currency": "mxn",
+                "interval": "year",
+                "interval_count": 1,
+                "livemode": false,
+                "metadata": {},
+                "nickname": null,
+                "product": "prod_MxareCuS0I9gIo",
+                "tiers_mode": null,
+                "transform_usage": null,
+                "trial_period_days": null,
+                "usage_type": "licensed"
+              },
+              "quantity": 1,
+              "schedule": null,
+              "start_date": 1689291871,
+              "status": "trialing",
+              "test_clock": null,
+              "transfer_data": null,
+              "trial_end": 1690501471,
+              "trial_settings": {
+                "end_behavior": {
+                  "missing_payment_method": "create_invoice"
+                }
+              },
+              "trial_start": 1689291871
+            }
+          },
+          "livemode": false,
+          "pending_webhooks": 4,
+          "request": {
+            "id": null,
+            "idempotency_key": null
+          },
+          "type": "customer.subscription.created"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "GetKommo_LeadsByID": [
+      {
+        "json": {
+          "data": "{\"id\":15671183,\"name\":\"Lead #15671183\",\"price\":0,\"responsible_user_id\":9085075,\"group_id\":426723,\"status_id\":56753840,\"pipeline_id\":6728388,\"loss_reason_id\":null,\"created_by\":0,\"updated_by\":0,\"created_at\":1688763576,\"updated_at\":1688766986,\"closed_at\":null,\"closest_task_at\":1688850434,\"is_deleted\":false,\"custom_fields_values\":null,\"score\":null,\"account_id\":30021959,\"labor_cost\":null,\"_links\":{\"self\":{\"href\":\"https://plick.kommo.com/api/v4/leads/15671183?page=1&limit=250\"}},\"_embedded\":{\"tags\":[],\"companies\":[]}}"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "SetLeadByID": [
+      {
+        "json": {
+          "contact": {
+            "id": 15671183,
+            "name": "Lead #15671183",
+            "price": 0,
+            "responsible_user_id": 9085075,
+            "group_id": 426723,
+            "status_id": 56753840,
+            "pipeline_id": 6728388,
+            "loss_reason_id": null,
+            "created_by": 0,
+            "updated_by": 0,
+            "created_at": 1688763576,
+            "updated_at": 1688766986,
+            "closed_at": null,
+            "closest_task_at": 1688850434,
+            "is_deleted": false,
+            "custom_fields_values": null,
+            "score": null,
+            "account_id": 30021959,
+            "labor_cost": null,
+            "_links": {
+              "self": {
+                "href": "https://plick.kommo.com/api/v4/leads/15671183?page=1&limit=250"
+              }
+            },
+            "_embedded": {
+              "tags": [],
+              "companies": []
+            }
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "SetContact": [
+      {
+        "json": {
+          "contact": {
+            "_links": {
+              "self": {
+                "href": "https://plick.kommo.com/api/v4/contacts"
+              }
+            },
+            "_embedded": {
+              "contacts": [
+                {
+                  "id": 18506061,
+                  "is_deleted": false,
+                  "is_unsorted": false,
+                  "request_id": "0",
+                  "_links": {
+                    "self": {
+                      "href": "https://plick.kommo.com/api/v4/contacts/18506061"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ],
+    "SetSuscriptionCustomer-TEST": [
+      {
+        "json": {
+          "stripe_customer_email": "plick.dev@yopmail.com",
+          "stripe_customer_name": "Jorge Prueba",
+          "stripe_customer_phone": "+528114117118",
+          "stripe_subcription_amount": 1099900,
+          "stripe_subcription_interval": "year",
+          "stripe_subcription_url": "/v1/subscription_items?subscription=sub_1NTZBTCv6pY2BST7GDn5ZO40"
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {},
+  "staticData": {
+    "node:Stripe-HookSubscriptionCreated-TEST": {}
+  },
+  "tags": [
+    {
+      "id": "gE7NMe34C54qpshR",
+      "createdAt": "2023-07-18T12:43:44.018Z",
+      "updatedAt": "2023-07-18T12:43:44.018Z",
+      "name": "Plick"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-07-21T09:57:40.000Z",
+  "versionId": "050b6668-cb5a-4620-8d66-2acf2380181d"
+}
