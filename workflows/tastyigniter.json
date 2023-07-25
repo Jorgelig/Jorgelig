@@ -1,0 +1,105 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-07-06T06:26:31.895Z",
+  "id": "21",
+  "name": "tastyigniter",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "id": "b0110365-3591-4140-b035-9a0b711a2d77"
+    },
+    {
+      "parameters": {
+        "url": "https://restaurant.jorgeliglabs.com/api/tables",
+        "options": {}
+      },
+      "name": "get tables",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        620,
+        100
+      ],
+      "id": "e113c60e-28f3-4a00-80a8-8a45109b95e1"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://restaurant.jorgeliglabs.com/api/token",
+        "options": {
+          "followRedirect": true,
+          "bodyContentCustomMimeType": "application/json",
+          "useQueryString": false
+        },
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "username",
+              "value": "admin"
+            },
+            {
+              "name": "email",
+              "value": "hola@jorgeliglabs.com"
+            },
+            {
+              "name": "password",
+              "value": "dD6naCvbghZU8dM"
+            },
+            {
+              "name": "device_name",
+              "value": "N8N"
+            }
+          ]
+        }
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        460,
+        300
+      ],
+      "id": "5135957a-578d-4604-8ab2-36c6ae69912b"
+    },
+    {
+      "parameters": {
+        "content": "## Note\n**notes**  [data](https://tastyigniter.com/docs/extensions/api)"
+      },
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        500
+      ],
+      "id": "662a449a-78df-42ea-a160-8d52fec5e43f"
+    }
+  ],
+  "pinData": null,
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-07-07T08:20:11.942Z",
+  "versionId": "59526226-6f22-4f14-a9e7-d6d5ab0bf74e"
+}
