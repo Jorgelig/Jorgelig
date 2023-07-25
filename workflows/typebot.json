@@ -1,16 +1,26 @@
 {
   "active": false,
   "connections": {
-    "SetToken": {
+    "Start": {
       "main": [
         [
           {
-            "node": "Request_TypeBot_Blocks",
+            "node": "GetUserMe",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Request_TypeBots",
+            "node": "GetTypebots",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetWebhookBlocks",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetBlocksSampleResult",
             "type": "main",
             "index": 0
           }
@@ -18,142 +28,119 @@
       ]
     }
   },
-  "createdAt": "2022-09-14T05:55:03.056Z",
-  "id": "35",
+  "createdAt": "2022-07-29T18:00:50.284Z",
+  "id": "25",
   "name": "typebot",
   "nodes": [
     {
       "parameters": {},
-      "id": "c511bf1f-b214-4b80-9983-765c34258d60",
       "name": "Start",
       "type": "n8n-nodes-base.start",
       "typeVersion": 1,
       "position": [
         240,
         300
-      ]
-    },
-    {
-      "parameters": {
-        "keepOnlySet": true,
-        "values": {
-          "string": [
-            {
-              "name": "Token",
-              "value": "DafvNMnxCzwmdPWYdkf3SKbh"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "4b754df7-3cdf-462f-98c0-9f373acb37bf",
-      "name": "SetToken",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 1,
-      "position": [
-        460,
-        300
-      ]
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "10e16cee-a0d4-44bf-8952-9db90fe96789",
-        "options": {}
-      },
-      "id": "ee9ab234-fd8b-4701-8b80-01007549c6d6",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 1,
-      "position": [
-        240,
-        160
       ],
-      "webhookId": "10e16cee-a0d4-44bf-8952-9db90fe96789"
+      "id": "f031fbcd-6e98-43ff-8b1d-c8bfbe88a3d9"
     },
     {
       "parameters": {
-        "requestMethod": "POST",
-        "url": "https://typebot.io/api/typebots/cl6r4zdsf2231ahmba63f3204/blocks/$BLOCK_ID/subscribeWebhook",
-        "options": {},
-        "bodyParametersUi": {
-          "parameter": [
-            {
-              "name": "url",
-              "value": "https://n8n.jorgeliglabs.com/webhook-test/10e16cee-a0d4-44bf-8952-9db90fe96789"
-            }
-          ]
-        }
-      },
-      "id": "0d0d1187-b2bc-4ca3-8860-85ffd7dfdef3",
-      "name": "Request_Subscribe",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        760,
-        800
-      ]
-    },
-    {
-      "parameters": {
-        "url": "https://typebot.jorgeliglabs.com/api/typebots/cl6r4zdsf2231ahmba63f3204/webhookBlocks",
-        "responseFormat": "string",
+        "url": "https://typebot.jorgeliglabs.com/api/users/me",
+        "allowUnauthorizedCerts": true,
         "options": {},
         "headerParametersUi": {
           "parameter": [
             {
               "name": "Authorization",
-              "value": "=Bearer {{$node[\"SetToken\"].json[\"Token\"]}}"
+              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
             }
           ]
         }
       },
-      "id": "3c6d7017-ce13-4712-bcf7-eb27c16f1bcf",
-      "name": "Request_TypeBot_Blocks",
+      "name": "GetUserMe",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        760,
-        440
-      ]
+        460,
+        60
+      ],
+      "id": "da789e3d-ee00-49c1-9898-9cd2bc18ffc8"
     },
     {
       "parameters": {
         "url": "https://typebot.jorgeliglabs.com/api/typebots",
-        "responseFormat": "string",
+        "allowUnauthorizedCerts": true,
         "options": {},
         "headerParametersUi": {
           "parameter": [
             {
               "name": "Authorization",
-              "value": "=Bearer {{$node[\"SetToken\"].json[\"Token\"]}}"
+              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
             }
           ]
         }
       },
-      "id": "04e46ccf-1814-4f0e-996b-15a2666aa0fc",
-      "name": "Request_TypeBots",
+      "name": "GetTypebots",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        760,
-        280
-      ]
+        460,
+        220
+      ],
+      "id": "3f1f6707-6bba-455b-b528-0b3c01abde65"
+    },
+    {
+      "parameters": {
+        "url": "https://typebot.jorgeliglabs.com/api/typebots/cl660p6bt39899xnutqyvw7a9/webhookBlocks",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
+            }
+          ]
+        }
+      },
+      "name": "GetWebhookBlocks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        460,
+        380
+      ],
+      "id": "4a34e7a3-2fe9-4819-a9fe-17e4113a983f"
+    },
+    {
+      "parameters": {
+        "url": "https://typebot.jorgeliglabs.com/api/typebots/cl660p6bt39899xnutqyvw7a9/blocks/cl6613d7k003e3b6ip3h7mlq6/sampleResult",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
+            }
+          ]
+        }
+      },
+      "name": "GetBlocksSampleResult",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        460,
+        520
+      ],
+      "id": "082a0625-68c0-4e4d-a242-a624cdfa2c94"
     }
   ],
-  "pinData": {
-    "SetToken": [
-      {
-        "json": {
-          "Token": "DafvNMnxCzwmdPWYdkf3SKbh"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {},
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2022-09-14T06:06:37.690Z",
-  "versionId": "a1684647-1ab6-498b-b2dc-bb727f182101"
+  "updatedAt": "2022-07-29T18:06:27.593Z",
+  "versionId": "3f4757c6-5709-44db-b36f-aea605398658"
 }
