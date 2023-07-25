@@ -1,0 +1,794 @@
+{
+  "active": true,
+  "connections": {
+    "Commerce_DynamoDB": {
+      "main": [
+        [
+          {
+            "node": "Split_Batches_Commerce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Commerce_DynamoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres_PDWH_Commerce": {
+      "main": [
+        [
+          {
+            "node": "Split_Batches_Commerce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code_Parse_Commerce": {
+      "main": [
+        [
+          {
+            "node": "Postgres_PDWH_Commerce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Commerce_DynamoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split_Batches_Commerce": {
+      "main": [
+        [
+          {
+            "node": "Code_Parse_Commerce",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No_Operation_SplitBatch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-07-20T17:21:19.824Z",
+  "id": "3tyfytygUq4UQ3UU",
+  "name": "Plick - ETL - Commerces",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "6c183dd5-6a72-4156-afcc-b897cbf5a6d1",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableName": "Comercio",
+        "scan": true,
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "2b60c38a-1070-4dbe-9bb8-c8713b9c3590",
+      "name": "Commerce_DynamoDB",
+      "type": "n8n-nodes-base.awsDynamoDb",
+      "typeVersion": 1,
+      "position": [
+        360,
+        540
+      ],
+      "credentials": {
+        "aws": {
+          "id": "rzkj94E4pM845Mtn",
+          "name": "AWS account - US-EAST-1-PROD"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 12
+            }
+          ]
+        }
+      },
+      "id": "c47b8680-edb7-490e-a558-95062399fd98",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -20,
+        380
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "=commerce_raw",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "activar_pasar_recoger": "={{ $json.activar_pasar_recoger }}",
+            "servicio_activo": "={{ $json.servicio_activo }}",
+            "activar_comer_restaurant": "={{ $json.activar_comer_restaurant }}",
+            "activar_campo_agregar_propina": "={{ $json.activar_campo_agregar_propina }}",
+            "activar_envio_domicilio": "={{ $json.activar_envio_domicilio }}",
+            "activar_pago_enlace": "={{ $json.activar_pago_enlace }}",
+            "activar_pago_efectivo": "={{ $json.activar_pago_efectivo }}",
+            "activar_pago_transferencia": "={{ $json.activar_pago_transferencia }}",
+            "activar_pago_tarjeta": "={{ $json.activar_pago_tarjeta }}",
+            "id": "={{ $json.id }}",
+            "id_cliente": "={{ $json.id_cliente }}",
+            "fecha_inicio": "={{ $json.fecha_inicio }}",
+            "id_suscripcion": "={{ $json.id_suscripcion }}",
+            "importe_envio_gratis_compra_minima": "={{ $json.importe_envio_gratis_compra_minima }}",
+            "fecha_final_timestamp": "={{ $json.fecha_final_timestamp }}",
+            "url_facebook": "={{ $json.url_facebook }}",
+            "informacion_envio": "={{ $json.informacion_envio }}",
+            "costo_envio_domicilio": "={{ $json.costo_envio_domicilio }}",
+            "forma_pago": "={{ $json.forma_pago }}",
+            "trial_start_date": "={{ $json.trial_start_date }}",
+            "prefijo_folio": "={{ $json.prefijo_folio }}",
+            "tiempo_estimado_pasar_recoger_max": "={{ $json.tiempo_estimado_pasar_recoger_max }}",
+            "direccion": "={{ $json.direccion }}",
+            "plantilla_mensaje": "={{ $json.plantilla_mensaje }}",
+            "trial_end_date": "={{ $json.trial_end_date }}",
+            "fecha_modificacion": "={{ $json.fecha_modificacion }}",
+            "metodos_pago_envio_domicilio": "={{ $json.metodos_pago_envio_domicilio }}",
+            "metodos_pago_pasar_recoger": "={{ $json.metodos_pago_pasar_recoger }}",
+            "codigo_postal": "={{ $json.codigo_postal }}",
+            "tipo_envio_domicilio": "={{ $json.tipo_envio_domicilio }}",
+            "geolocalizacion": "={{ $json.geolocalizacion }}",
+            "correo_contacto": "={{ $json.correo_contacto }}",
+            "pixel_id": "={{ $json.pixel_id }}",
+            "tipo_plan": "={{ $json.tipo_plan }}",
+            "telefono_contacto": "={{ $json.telefono_contacto }}",
+            "id_path": "={{ $json.id_path }}",
+            "modulos_extra": "={{ $json.modulos_extra }}",
+            "config_form_entrega": "={{ $json.config_form_entrega }}",
+            "fecha_registro_timestamp": "={{ $json.fecha_registro_timestamp }}",
+            "id_plan": "={{ $json.id_plan }}",
+            "url_instagram": "={{ $json.url_instagram }}",
+            "nombre_contacto": "={{ $json.nombre_contacto }}",
+            "telefono": "={{ $json.telefono }}",
+            "nombre": "={{ $json.nombre }}",
+            "metodos_pago_comer_restaurant": "={{ $json.metodos_pago_comer_restaurant }}",
+            "fecha_registro": "={{ $json.fecha_registro }}",
+            "fecha_modificacion_timestamp": "={{ $json.fecha_modificacion_timestamp }}",
+            "fecha_final": "={{ $json.fecha_final }}",
+            "estatus": "={{ $json.estatus }}",
+            "zona_horaria": "={{ $json.zona_horaria }}",
+            "fecha_contratacion": "={{ $json.fecha_contratacion }}",
+            "acepta_terminos_condiciones": "={{ $json.acepta_terminos_condiciones }}",
+            "informacion_mit": "={{ $json.informacion_mit }}",
+            "se_edito": "={{ $json.se_edito }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": true,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "activar_pasar_recoger",
+              "displayName": "activar_pasar_recoger",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "id_cliente",
+              "displayName": "id_cliente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_inicio",
+              "displayName": "fecha_inicio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "id_suscripcion",
+              "displayName": "id_suscripcion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "importe_envio_gratis_compra_minima",
+              "displayName": "importe_envio_gratis_compra_minima",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_final_timestamp",
+              "displayName": "fecha_final_timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "url_facebook",
+              "displayName": "url_facebook",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "informacion_envio",
+              "displayName": "informacion_envio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "servicio_activo",
+              "displayName": "servicio_activo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "costo_envio_domicilio",
+              "displayName": "costo_envio_domicilio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "forma_pago",
+              "displayName": "forma_pago",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "trial_start_date",
+              "displayName": "trial_start_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "activar_comer_restaurant",
+              "displayName": "activar_comer_restaurant",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "prefijo_folio",
+              "displayName": "prefijo_folio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "tiempo_estimado_pasar_recoger_max",
+              "displayName": "tiempo_estimado_pasar_recoger_max",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "direccion",
+              "displayName": "direccion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "plantilla_mensaje",
+              "displayName": "plantilla_mensaje",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "trial_end_date",
+              "displayName": "trial_end_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_modificacion",
+              "displayName": "fecha_modificacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "metodos_pago_envio_domicilio",
+              "displayName": "metodos_pago_envio_domicilio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "metodos_pago_pasar_recoger",
+              "displayName": "metodos_pago_pasar_recoger",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "codigo_postal",
+              "displayName": "codigo_postal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "activar_campo_agregar_propina",
+              "displayName": "activar_campo_agregar_propina",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "activar_envio_domicilio",
+              "displayName": "activar_envio_domicilio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "tipo_envio_domicilio",
+              "displayName": "tipo_envio_domicilio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "geolocalizacion",
+              "displayName": "geolocalizacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "correo_contacto",
+              "displayName": "correo_contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "pixel_id",
+              "displayName": "pixel_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "tipo_plan",
+              "displayName": "tipo_plan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "telefono_contacto",
+              "displayName": "telefono_contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "id_path",
+              "displayName": "id_path",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "modulos_extra",
+              "displayName": "modulos_extra",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "logotipo",
+              "displayName": "logotipo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "config_form_entrega",
+              "displayName": "config_form_entrega",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_registro_timestamp",
+              "displayName": "fecha_registro_timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "id_plan",
+              "displayName": "id_plan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "url_instagram",
+              "displayName": "url_instagram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "nombre_contacto",
+              "displayName": "nombre_contacto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "telefono",
+              "displayName": "telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "metodos_pago_comer_restaurant",
+              "displayName": "metodos_pago_comer_restaurant",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "fecha_registro",
+              "displayName": "fecha_registro",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_modificacion_timestamp",
+              "displayName": "fecha_modificacion_timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_final",
+              "displayName": "fecha_final",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "estatus",
+              "displayName": "estatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "zona_horaria",
+              "displayName": "zona_horaria",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_contratacion",
+              "displayName": "fecha_contratacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "acepta_terminos_condiciones",
+              "displayName": "acepta_terminos_condiciones",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "informacion_mit",
+              "displayName": "informacion_mit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "activar_pago_enlace",
+              "displayName": "activar_pago_enlace",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "activar_pago_efectivo",
+              "displayName": "activar_pago_efectivo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "activar_pago_transferencia",
+              "displayName": "activar_pago_transferencia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "activar_pago_tarjeta",
+              "displayName": "activar_pago_tarjeta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "se_edito",
+              "displayName": "se_edito",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "783b5294-f44b-4e7a-b525-bf8ddb0c360b",
+      "name": "Postgres_PDWH_Commerce",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1060,
+        520
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "L7nzd88uj5JVSuIu",
+          "name": "Postgres Plick - DWH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json['fecha_modificacion'] = item.json['fecha_modificacion'] ? DateTime.fromFormat(item.json['fecha_modificacion'], 'd/M/yyyy HH:mm:ss').toSQL() : null;\n  item.json['fecha_registro'] = item.json['fecha_registro'] ? DateTime.fromFormat(item.json['fecha_registro'], 'd/M/yyyy HH:mm:ss').toSQL() : null;\nitem.json['fecha_inicio'] = item.json['fecha_inicio'] ? DateTime.fromFormat(item.json['fecha_inicio'], 'd/M/yyyy HH:mm:ss').toSQL() : null;\n  item.json['fecha_final'] = item.json['fecha_final'] ? DateTime.fromFormat(item.json['fecha_final'], 'd/M/yyyy HH:mm:ss').toSQL() : null;\n  item.json['fecha_contratacion'] = item.json['fecha_contratacion'] ? DateTime.fromFormat(item.json['fecha_contratacion'], 'd/M/yyyy HH:mm:ss').toSQL() : null;\n}\n\nreturn $input.all();"
+      },
+      "id": "b813add9-8042-4ff8-93fe-6e8006b84268",
+      "name": "Code_Parse_Commerce",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        840,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 500,
+        "options": {}
+      },
+      "id": "698675e3-36a3-4843-bc5a-0329a03a9d3d",
+      "name": "Split_Batches_Commerce",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        600,
+        540
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "77778de6-b987-47af-943f-b72da77dc04a",
+      "name": "No_Operation_SplitBatch",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        840,
+        720
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 3600,
+    "timezone": "America/Mexico_City",
+    "saveManualExecutions": true
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        15
+      ]
+    }
+  },
+  "tags": [
+    {
+      "id": "gE7NMe34C54qpshR",
+      "createdAt": "2023-07-18T12:43:44.018Z",
+      "updatedAt": "2023-07-18T12:43:44.018Z",
+      "name": "Plick"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-07-24T21:00:00.000Z",
+  "versionId": "2210ac75-eb29-4058-9bcd-e3425a1284e1"
+}
