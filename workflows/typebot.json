@@ -1,0 +1,146 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "GetUserMe",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetTypebots",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetWebhookBlocks",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GetBlocksSampleResult",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-07-29T18:00:50.284Z",
+  "id": "25",
+  "name": "typebot",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "id": "f031fbcd-6e98-43ff-8b1d-c8bfbe88a3d9"
+    },
+    {
+      "parameters": {
+        "url": "https://typebot.jorgeliglabs.com/api/users/me",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
+            }
+          ]
+        }
+      },
+      "name": "GetUserMe",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        460,
+        60
+      ],
+      "id": "da789e3d-ee00-49c1-9898-9cd2bc18ffc8"
+    },
+    {
+      "parameters": {
+        "url": "https://typebot.jorgeliglabs.com/api/typebots",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
+            }
+          ]
+        }
+      },
+      "name": "GetTypebots",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        460,
+        220
+      ],
+      "id": "3f1f6707-6bba-455b-b528-0b3c01abde65"
+    },
+    {
+      "parameters": {
+        "url": "https://typebot.jorgeliglabs.com/api/typebots/cl660p6bt39899xnutqyvw7a9/webhookBlocks",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
+            }
+          ]
+        }
+      },
+      "name": "GetWebhookBlocks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        460,
+        380
+      ],
+      "id": "4a34e7a3-2fe9-4819-a9fe-17e4113a983f"
+    },
+    {
+      "parameters": {
+        "url": "https://typebot.jorgeliglabs.com/api/typebots/cl660p6bt39899xnutqyvw7a9/blocks/cl6613d7k003e3b6ip3h7mlq6/sampleResult",
+        "allowUnauthorizedCerts": true,
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
+            }
+          ]
+        }
+      },
+      "name": "GetBlocksSampleResult",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        460,
+        520
+      ],
+      "id": "082a0625-68c0-4e4d-a242-a624cdfa2c94"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-07-29T18:06:27.593Z",
+  "versionId": "3f4757c6-5709-44db-b36f-aea605398658"
+}
