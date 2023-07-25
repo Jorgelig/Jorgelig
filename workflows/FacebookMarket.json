@@ -1,0 +1,87 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTML Extract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-05-04T06:31:43.854Z",
+  "id": "11",
+  "name": "FacebookMarket",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "id": "16e03dfd-76c1-44d0-bfcb-878fc0f02a19"
+    },
+    {
+      "parameters": {
+        "url": "https://www.facebook.com/marketplace/108189132548374/search/?query=a%20domicilio",
+        "responseFormat": "string",
+        "options": {}
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ],
+      "id": "9a0826c8-dc72-45a6-b163-c35e35f674b3"
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "main",
+              "cssSelector": "[role=main]",
+              "returnValue": "html"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "HTML Extract",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        680,
+        300
+      ],
+      "id": "a6cc4999-ffc8-4d53-b4db-3951c7ca4c81"
+    }
+  ],
+  "pinData": null,
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-05-04T06:45:57.620Z",
+  "versionId": "5494d4d0-27d8-48cc-aa23-1ab3598a422f"
+}
