@@ -1,0 +1,400 @@
+{
+  "active": false,
+  "connections": {
+    "SearchEmail": {
+      "main": [
+        [
+          {
+            "node": "IF_Registered",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF_Registered": {
+      "main": [
+        [
+          {
+            "node": "Set_customer_id_registered",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stripe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "SearchEmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stripe": {
+      "main": [
+        [
+          {
+            "node": "Set_customer_id_Unregistered",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set_customer_id_Unregistered": {
+      "main": [
+        [
+          {
+            "node": "Stripe_Get_Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set_customer_id_registered": {
+      "main": [
+        [
+          {
+            "node": "Stripe_Get_Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-02-18T08:49:35.422Z",
+  "id": "56",
+  "name": "JorgeligLabs - wapi",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "customer",
+        "operation": "__CUSTOM_API_CALL__"
+      },
+      "id": "41c32dcc-687a-43b9-bc65-3bb3e0066636",
+      "name": "SetCredentials",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -80
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "stripeApi": {
+          "id": "27",
+          "name": "Stripe TEST"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.stripe.com/v1/customers/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "stripeApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "email:' jorgeligg@gmail.com'"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b500f6bb-5c0e-4236-9338-1c61fef59075",
+      "name": "SearchEmail",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        340,
+        100
+      ],
+      "credentials": {
+        "stripeApi": {
+          "id": "27",
+          "name": "Stripe TEST"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "customer",
+        "operation": "create",
+        "name": "Jorge Estrada",
+        "additionalFields": {
+          "email": "jorgeligg@gmail.com",
+          "metadata": {
+            "metadataProperties": [
+              {
+                "key": "meta1",
+                "value": "value_meta_1"
+              }
+            ]
+          }
+        }
+      },
+      "id": "dfabb3ee-9665-4eba-ac89-79974b810248",
+      "name": "Stripe",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        740,
+        240
+      ],
+      "credentials": {
+        "stripeApi": {
+          "id": "27",
+          "name": "Stripe TEST"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.data }}",
+              "operation": "notEqual",
+              "value2": "[]"
+            }
+          ]
+        }
+      },
+      "id": "33ec571d-7cb3-469e-a9ac-e75eb0f842e7",
+      "name": "IF_Registered",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        540,
+        100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "a97d958d-bf1a-4df7-afda-17f90b7e1061",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        60,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "customer_id",
+              "value": "={{ $json.data[0].id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "60e21b59-0e56-4a75-b429-e234d29938f1",
+      "name": "Set_customer_id_registered",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        900,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "customer_id",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4b6511a1-da95-47c4-be6b-da6966baa7c8",
+      "name": "Set_customer_id_Unregistered",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        900,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "customer",
+        "customerId": "={{$json[\"customer_id\"]}}"
+      },
+      "id": "5b2d8d67-ffb4-465d-a817-e1b6e987c12d",
+      "name": "Stripe_Get_Client",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        160
+      ],
+      "credentials": {
+        "stripeApi": {
+          "id": "27",
+          "name": "Stripe TEST"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://wapi.jorgeliglabs.com/message/text?key=123",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "5218114117118"
+            },
+            {
+              "name": "message",
+              "value": "hola"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d5d4dbaa-3757-48c3-9dde-5ecf381b4330",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        340,
+        400
+      ]
+    }
+  ],
+  "pinData": {
+    "Stripe": [
+      {
+        "json": {
+          "id": "cus_NNYpsa3BKIei6t",
+          "object": "customer",
+          "address": null,
+          "balance": 0,
+          "created": 1676716332,
+          "currency": null,
+          "default_currency": null,
+          "default_source": null,
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "jorgeligg@gmail.com",
+          "invoice_prefix": "C68EB4B3",
+          "invoice_settings": {
+            "custom_fields": null,
+            "default_payment_method": null,
+            "footer": null,
+            "rendering_options": null
+          },
+          "livemode": false,
+          "metadata": {
+            "meta1": "value_meta_1"
+          },
+          "name": "Jorge Estrada",
+          "next_invoice_sequence": 1,
+          "phone": null,
+          "preferred_locales": [],
+          "shipping": null,
+          "tax_exempt": "none",
+          "test_clock": null
+        }
+      }
+    ],
+    "Set_customer_id_registered": [
+      {
+        "json": {
+          "customer_id": "cus_NNYpsa3BKIei6t"
+        }
+      }
+    ],
+    "Stripe_Get_Client": [
+      {
+        "json": {
+          "id": "cus_NNYpsa3BKIei6t",
+          "object": "customer",
+          "address": null,
+          "balance": 0,
+          "created": 1676716332,
+          "currency": null,
+          "default_currency": null,
+          "default_source": null,
+          "delinquent": false,
+          "description": null,
+          "discount": null,
+          "email": "jorgeligg@gmail.com",
+          "invoice_prefix": "C68EB4B3",
+          "invoice_settings": {
+            "custom_fields": null,
+            "default_payment_method": null,
+            "footer": null,
+            "rendering_options": null
+          },
+          "livemode": false,
+          "metadata": {
+            "meta1": "value_meta_1"
+          },
+          "name": "Jorge Estrada",
+          "next_invoice_sequence": 1,
+          "phone": null,
+          "preferred_locales": [],
+          "shipping": null,
+          "tax_exempt": "none",
+          "test_clock": null
+        }
+      }
+    ],
+    "HTTP Request": [
+      {
+        "json": {
+          "error": false,
+          "data": {
+            "key": {
+              "remoteJid": "5218114117118@s.whatsapp.net",
+              "fromMe": true,
+              "id": "BAE5CD72F474F8F8"
+            },
+            "message": {
+              "extendedTextMessage": {
+                "text": "hola"
+              }
+            },
+            "messageTimestamp": "1676723323",
+            "status": "PENDING"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-02-18T20:48:44.000Z",
+  "versionId": "b26816cb-5ffe-4ed2-82c9-0a496d1b6dc8"
+}
