@@ -1,26 +1,55 @@
 {
   "active": false,
   "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create contact": {
+      "main": [
+        [
+          {
+            "node": "Send welcome",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Start": {
       "main": [
         [
           {
-            "node": "GetUserMe",
+            "node": "Set",
             "type": "main",
             "index": 0
-          },
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
           {
-            "node": "GetTypebots",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
-          },
+          }
+        ]
+      ]
+    },
+    "Start chatflow": {
+      "main": [
+        [
           {
-            "node": "GetWebhookBlocks",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "GetBlocksSampleResult",
+            "node": "Start chatflow1",
             "type": "main",
             "index": 0
           }
@@ -28,8 +57,8 @@
       ]
     }
   },
-  "createdAt": "2022-07-29T18:00:50.284Z",
-  "id": "25",
+  "createdAt": "2022-04-17T06:13:08.793Z",
+  "id": "3",
   "name": "typebot",
   "nodes": [
     {
@@ -38,109 +67,205 @@
       "type": "n8n-nodes-base.start",
       "typeVersion": 1,
       "position": [
-        240,
-        300
-      ],
-      "id": "f031fbcd-6e98-43ff-8b1d-c8bfbe88a3d9"
-    },
-    {
-      "parameters": {
-        "url": "https://typebot.jorgeliglabs.com/api/users/me",
-        "allowUnauthorizedCerts": true,
-        "options": {},
-        "headerParametersUi": {
-          "parameter": [
-            {
-              "name": "Authorization",
-              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
-            }
-          ]
-        }
-      },
-      "name": "GetUserMe",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        460,
-        60
-      ],
-      "id": "da789e3d-ee00-49c1-9898-9cd2bc18ffc8"
-    },
-    {
-      "parameters": {
-        "url": "https://typebot.jorgeliglabs.com/api/typebots",
-        "allowUnauthorizedCerts": true,
-        "options": {},
-        "headerParametersUi": {
-          "parameter": [
-            {
-              "name": "Authorization",
-              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
-            }
-          ]
-        }
-      },
-      "name": "GetTypebots",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        460,
-        220
-      ],
-      "id": "3f1f6707-6bba-455b-b528-0b3c01abde65"
-    },
-    {
-      "parameters": {
-        "url": "https://typebot.jorgeliglabs.com/api/typebots/cl660p6bt39899xnutqyvw7a9/webhookBlocks",
-        "allowUnauthorizedCerts": true,
-        "options": {},
-        "headerParametersUi": {
-          "parameter": [
-            {
-              "name": "Authorization",
-              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
-            }
-          ]
-        }
-      },
-      "name": "GetWebhookBlocks",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        460,
-        380
-      ],
-      "id": "4a34e7a3-2fe9-4819-a9fe-17e4113a983f"
-    },
-    {
-      "parameters": {
-        "url": "https://typebot.jorgeliglabs.com/api/typebots/cl660p6bt39899xnutqyvw7a9/blocks/cl6613d7k003e3b6ip3h7mlq6/sampleResult",
-        "allowUnauthorizedCerts": true,
-        "options": {},
-        "headerParametersUi": {
-          "parameter": [
-            {
-              "name": "Authorization",
-              "value": "Bearer UrF0pcys1goHU92OmucJEaph"
-            }
-          ]
-        }
-      },
-      "name": "GetBlocksSampleResult",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 2,
-      "position": [
-        460,
+        260,
         520
       ],
-      "id": "082a0625-68c0-4e4d-a242-a624cdfa2c94"
+      "id": "c39356ca-4a70-41ae-ba68-4e3c59ed668e"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "4499a3e7-675b-4ff8-b734-67756afb8400",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        460,
+        300
+      ],
+      "webhookId": "4499a3e7-675b-4ff8-b734-67756afb8400",
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "6b88eacc-ee03-450c-94c1-a10216af883a",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "email": "={{$json[\"body\"][\"email\"]}}",
+        "additionalFields": {
+          "firstName": "={{$json[\"body\"][\"name\"]}}"
+        }
+      },
+      "name": "Create contact",
+      "type": "n8n-nodes-base.sendGrid",
+      "typeVersion": 1,
+      "position": [
+        680,
+        300
+      ],
+      "alwaysOutputData": true,
+      "notesInFlow": true,
+      "id": "c6dfb584-6993-4c10-93a9-5af050dc4658",
+      "credentials": {
+        "sendGridApi": {
+          "id": "6",
+          "name": "SendGrid account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "mail",
+        "fromEmail": "hola@jorgeliglabs.com",
+        "fromName": "Jorgelig Labs",
+        "toEmail": "={{$node[\"Webhook\"].json[\"body\"][\"email\"]}}",
+        "dynamicTemplate": true,
+        "templateId": "d-9a86208e4218481cbe8781069bffa799",
+        "dynamicTemplateFields": {
+          "fields": [
+            {
+              "key": "email",
+              "value": "={{$node[\"Webhook\"].json[\"body\"][\"email\"]}}"
+            },
+            {
+              "key": "name",
+              "value": "={{$node[\"Webhook\"].json[\"body\"][\"name\"]}}"
+            }
+          ]
+        },
+        "additionalFields": {}
+      },
+      "name": "Send welcome",
+      "type": "n8n-nodes-base.sendGrid",
+      "typeVersion": 1,
+      "position": [
+        900,
+        300
+      ],
+      "id": "bf2c56e5-7145-487f-b1c5-035214c39f4b",
+      "credentials": {
+        "sendGridApi": {
+          "id": "6",
+          "name": "SendGrid account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "typebot\n\nGXm1mXohmoyMoK2Z06bjZigI",
+        "width": 342
+      },
+      "id": "9bf4c0ff-48ed-4cbc-a08a-7d6d5d2df24b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://app.typebot.io/api/typebots/:typebotId/results",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $node[\"Set\"].parameter[\"values\"][\"string\"][0][\"value\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {
+              "followRedirects": true
+            }
+          }
+        }
+      },
+      "id": "73446969-335f-4b48-a975-1474cb629f0b",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        820,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "typebot_token",
+              "value": "GXm1mXohmoyMoK2Z06bjZigI"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3c0aff5c-e818-424a-be87-9dd9864662d9",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        480,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://typebot.jorgeliglabs.com/api/v1/sendMessage",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "{   \"startParams\": {     \"typebot\": \"lead-scoring-copy-tvcbots\"   } }",
+        "options": {}
+      },
+      "id": "0d12508f-92a2-493e-9a2e-c06279e4dceb",
+      "name": "Start chatflow",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        280,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://typebot.jorgeliglabs.com/api/v1/sendMessage",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\n  \"message\": \"Yes\",\n  \"sessionId\": \"{{ $json[\"sessionId\"] }}\"\n}",
+        "options": {}
+      },
+      "id": "7607f945-4b32-4104-b806-b686987f8ea8",
+      "name": "Start chatflow1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        500,
+        160
+      ]
     }
   ],
   "pinData": {},
   "settings": {},
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2022-07-29T18:06:27.593Z",
-  "versionId": "3f4757c6-5709-44db-b36f-aea605398658"
+  "triggerCount": 1,
+  "updatedAt": "2023-03-26T06:48:14.000Z",
+  "versionId": "dd913785-4bcb-4716-9627-3b3c362d2e70"
 }
