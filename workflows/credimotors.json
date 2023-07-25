@@ -1,0 +1,336 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "LoadHomePage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LoadHomePage": {
+      "main": [
+        [
+          {
+            "node": "ExtractPosts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "LoadNextPage",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "End",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LoadNextPage": {
+      "main": [
+        [
+          {
+            "node": "ExtractPosts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SaveCars": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ExtractCard": {
+      "main": [
+        [
+          {
+            "node": "CleanAndTransform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ExtractPosts": {
+      "main": [
+        [
+          {
+            "node": "ExtractCard",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "SaveNextUrl",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CleanAndTransform": {
+      "main": [
+        [
+          {
+            "node": "SaveCars",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-04-24T07:42:26.982Z",
+  "id": "7",
+  "name": "credimotors",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        320
+      ],
+      "id": "4cc5bf6f-f41d-4c73-9456-cfc23bdf6ac4"
+    },
+    {
+      "parameters": {
+        "url": "https://www.credimotors.com.mx/",
+        "allowUnauthorizedCerts": true,
+        "responseFormat": "string",
+        "options": {}
+      },
+      "name": "LoadHomePage",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        320
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "c9ef6e3e-659f-468e-a2e8-eac53e5beba7"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$node[\"SaveNextUrl\"].json[\"next_url\"]}}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        320
+      ],
+      "id": "100d2ba4-0409-478f-ae20-f7d3f8b8170c"
+    },
+    {
+      "parameters": {
+        "url": "={{$node[\"SaveNextUrl\"].json[\"next_url\"]}}",
+        "allowUnauthorizedCerts": true,
+        "responseFormat": "string",
+        "options": {}
+      },
+      "name": "LoadNextPage",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ],
+      "id": "a9568013-aefc-4ed2-8d26-0aaae1c308a2"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "autos",
+        "fields": "name, price, year, km, transmission,code, url",
+        "options": {
+          "dateFields": "created_date"
+        }
+      },
+      "name": "SaveCars",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        820,
+        320
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "9",
+          "name": "MongoDB_Credimotors"
+        }
+      },
+      "id": "74b0f2c1-39e0-4ec8-a663-c762e531548b"
+    },
+    {
+      "parameters": {},
+      "name": "End",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        180
+      ],
+      "id": "6da3546d-9f6f-4812-8bb8-dfb01f4e229f"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "next_url",
+              "value": "={{$node[\"ExtractPosts\"].json[\"next_url\"]}}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": false
+        }
+      },
+      "name": "SaveNextUrl",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        420,
+        160
+      ],
+      "id": "77612c86-5e16-45fb-b83c-cfc334c58c9a"
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "name",
+              "cssSelector": "h2 a",
+              "returnValue": "html"
+            },
+            {
+              "key": "url",
+              "cssSelector": ".elementor-heading-title a",
+              "returnValue": "attribute",
+              "attribute": "href"
+            },
+            {
+              "key": "price",
+              "cssSelector": "div > div > section > div > div > div > div > div > section.elementor-section.elementor-inner-section.elementor-element.elementor-element-3deab54.elementor-section-content-middle.elementor-section-full_width.elementor-section-height-default.elementor-section-height-default > div > div > div > div > div > div.elementor-element.elementor-element-912e5cb.elementor-widget.elementor-widget-heading > div > h2",
+              "returnValue": "html"
+            },
+            {
+              "key": "year",
+              "cssSelector": "div > div > section > div > div > div > div > div > section.elementor-section.elementor-inner-section.elementor-element.elementor-element-98f2cc1.elementor-section-full_width.elementor-section-content-middle.elementor-section-height-default.elementor-section-height-default > div > div > div.elementor-column.elementor-col-33.elementor-inner-column.elementor-element.elementor-element-255302e > div > div > div > div > h2"
+            },
+            {
+              "key": "km",
+              "cssSelector": "div > div > section > div > div > div > div > div > section.elementor-section.elementor-inner-section.elementor-element.elementor-element-98f2cc1.elementor-section-full_width.elementor-section-content-middle.elementor-section-height-default.elementor-section-height-default > div > div > div.elementor-column.elementor-col-33.elementor-inner-column.elementor-element.elementor-element-54ce91d > div > div > div > div > h2"
+            },
+            {
+              "key": "transmission",
+              "cssSelector": "div > div > section > div > div > div > div > div > section.elementor-section.elementor-inner-section.elementor-element.elementor-element-98f2cc1.elementor-section-full_width.elementor-section-content-middle.elementor-section-height-default.elementor-section-height-default > div > div > div.elementor-column.elementor-col-33.elementor-inner-column.elementor-element.elementor-element-e486085 > div > div > div > div > h2"
+            },
+            {
+              "key": "code",
+              "cssSelector": "div > div > section > div > div > div > div > div > section.elementor-section.elementor-inner-section.elementor-element.elementor-element-82a6fc2.elementor-section-content-middle.elementor-section-boxed.elementor-section-height-default.elementor-section-height-default > div > div > div.elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-89b3c0d > div > div > div > div > h2"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "ExtractCard",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        200,
+        320
+      ],
+      "id": "b77ba9f3-77fb-4c0e-8fa4-f3f04961461c"
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "data",
+              "cssSelector": ".elementor-post",
+              "returnValue": "html",
+              "returnArray": true
+            },
+            {
+              "key": "next_url",
+              "cssSelector": ".page-numbers.next",
+              "returnValue": "attribute",
+              "attribute": "href"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "ExtractPosts",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        320
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "dcef7c68-1354-4f16-9e15-95c49c1b10be"
+    },
+    {
+      "parameters": {
+        "functionCode": "console.log(item);\nitem.price = parseFloat(parseFloat((item?.price??'').replace('$','').replace(',','').trim()).toFixed(0));\nitem.year = parseInt(item.year.replace('Año ','').trim());\nitem.km = parseInt(item.km.replace('Km ','').trim());\nitem.transmission = item.transmission.replace('Transmisión ','').trim(); \n\n\nreturn item;"
+      },
+      "name": "CleanAndTransform",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        420,
+        320
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "e893b4b5-bed3-4750-9c51-e38492523e4f"
+    }
+  ],
+  "pinData": null,
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-05-02T02:47:49.300Z",
+  "versionId": "c8141914-7120-4908-bd8f-530db54b5a10"
+}
