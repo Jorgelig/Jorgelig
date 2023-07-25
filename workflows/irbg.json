@@ -1,0 +1,367 @@
+{
+  "active": false,
+  "connections": {
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Extract Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Posts": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website": {
+      "main": [
+        [
+          {
+            "node": "Extract Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set URL": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Complete Link": {
+      "main": [
+        [
+          {
+            "node": "Create RSS Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create RSS Items": {
+      "main": [
+        [
+          {
+            "node": "Prepare Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set URL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Fields": {
+      "main": [
+        [
+          {
+            "node": "Complete Link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-05-23T00:33:52.870Z",
+  "id": "13",
+  "name": "irbg",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        120
+      ],
+      "id": "94e24a09-24d1-4bf7-a548-509d50bc9245"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "post",
+        "options": {}
+      },
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "position": [
+        1040,
+        380
+      ],
+      "typeVersion": 1,
+      "id": "e8500e3e-7a4e-4f74-9697-ae449fcded85"
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "post",
+              "cssSelector": ".p-1 > table > tbody > tr",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Extract Posts",
+      "type": "n8n-nodes-base.htmlExtract",
+      "position": [
+        820,
+        380
+      ],
+      "typeVersion": 1,
+      "id": "3d1189ea-a510-480d-aa11-bd53844be73f"
+    },
+    {
+      "parameters": {
+        "url": "={{$node[\"Set URL\"].parameter[\"values\"][\"string\"][0][\"value\"]}}",
+        "responseFormat": "string",
+        "jsonParameters": true,
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "name": "Fetch Website",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        600,
+        380
+      ],
+      "typeVersion": 1,
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "id": "ea9dc6f0-370a-4995-bb97-3c9bc920e67d"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "base_domain",
+              "value": "https://iracing-week-planner.tmo.lol/"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set URL",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        380,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "f2dd800b-c6f6-4fc3-ac45-ebec34ebb670"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "link",
+              "value": "={{$item(0).$node[\"Set URL\"].json[\"base_domain\"]}}{{$json[\"link\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Complete Link",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        380,
+        580
+      ],
+      "typeVersion": 1,
+      "id": "925b73ff-0e52-4a17-a3aa-41967d73005f"
+    },
+    {
+      "parameters": {
+        "functionCode": "//07 DE MAYO DEL 2022\nconst getMonthNumber = (monthText) =>{\nif(monthText === 'enero') return '01';\nif(monthText === 'febrero') return '02';\nif(monthText === 'marzo') return '03';\nif(monthText === 'abril') return '04';\nif(monthText === 'mayo') return '05';\nif(monthText === 'junio') return '06';\nif(monthText === 'julio') return '07';\nif(monthText === 'agosto') return '08';\nif(monthText === 'septiembre') return '09';\nif(monthText === 'octubre') return '10';\nif(monthText === 'noviembre') return '11';\nif(monthText === 'diciembre') monthNumber = '12';\n};\n\nconst [dayText,,monthTextString,,yearText] = item.date.split(' ');\nconst monthText = monthTextString.replace(/\\s+/g, '').trim().toLowerCase();\nlet monthNumber = getMonthNumber(monthText);\n\nvar newDate = '';\nlet pubDate = newDate.concat(yearText.trim(),'-',monthNumber,'-',dayText.trim());\n//const newDate = ${dayText.trim()}-${monthNumber}-${yearText.trim()};\n\nreturn {\n  rss_item: \n`<item>\n  <title>${item.title}</title>\n  <link>${item.link}</link>\n  <description>${item.description}</description>\n  <pubDate>${pubDate}</pubDate>\n</item>`\n}"
+      },
+      "name": "Create RSS Items",
+      "type": "n8n-nodes-base.functionItem",
+      "position": [
+        600,
+        580
+      ],
+      "typeVersion": 1,
+      "id": "5805cc9b-5864-4e98-9ef5-f1d1a195b008"
+    },
+    {
+      "parameters": {
+        "path": "sultanes-news",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        160,
+        380
+      ],
+      "webhookId": "e533b8be-5afd-433f-8119-1670a62cc17a",
+      "typeVersion": 1,
+      "id": "70e5acda-a46d-41c9-9060-f7132058647a"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{$json[\"feed\"]}}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "content-type",
+                "value": "application/xml"
+              }
+            ]
+          }
+        }
+      },
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1040,
+        580
+      ],
+      "typeVersion": 1,
+      "id": "f7069ab3-5eaf-44da-90ca-5de73f1d4451"
+    },
+    {
+      "parameters": {
+        "functionCode": "let feed =\n`<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<rss version=\"2.0\">\n\n<channel>\n  <title>Sultanes Noticias</title>\n  <link>https://www.sultanes.com.mx/noticias/rss</link>\n  <description>Stay up to date with the latest news and updates of Sultanes LMB</description>\n  ${items.map(e => e.json.rss_item).join('\\n')}\n</channel>\n\n</rss>`;\n\nreturn [{\n  json: {\n    feed: feed\n  }\n}];"
+      },
+      "name": "Prepare Response",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        820,
+        580
+      ],
+      "typeVersion": 1,
+      "id": "428d653a-e9d2-49af-bfa6-b6552d996279"
+    },
+    {
+      "parameters": {
+        "dataPropertyName": "post",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "series",
+              "cssSelector": "a"
+            },
+            {
+              "key": "track",
+              "cssSelector": ".card__content > h6"
+            },
+            {
+              "key": "lenght",
+              "cssSelector": ".card__content > h6 > a"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Extract Fields",
+      "type": "n8n-nodes-base.htmlExtract",
+      "position": [
+        160,
+        580
+      ],
+      "typeVersion": 1,
+      "id": "398677fd-413c-4f67-a180-0f8a8591d8fc"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "base_domain",
+              "value": "https://www.irbg.net/Home/NextWeek"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set URL1",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        380,
+        380
+      ],
+      "typeVersion": 1,
+      "id": "25917de2-0fc5-4751-bbaf-6a01d6fcf2db"
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "post",
+              "cssSelector": ".post-list__item",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Extract Posts1",
+      "type": "n8n-nodes-base.htmlExtract",
+      "position": [
+        820,
+        220
+      ],
+      "typeVersion": 1,
+      "id": "103dfdf5-6d13-40df-9e18-c7192bc62303"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-09-14T05:51:08.908Z",
+  "versionId": "1b25f039-07ad-408b-bf05-d63260c6230f"
+}
