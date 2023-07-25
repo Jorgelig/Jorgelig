@@ -1,0 +1,32 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2023-02-18T12:37:14.405Z",
+  "id": "58",
+  "name": "Jorgeliglabs - wapi webhooks",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "8d08fce8-2ff3-4040-9f1f-272a681175e9",
+        "options": {}
+      },
+      "id": "019e3762-b256-4bd1-9cf2-2b4a95d57168",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        700,
+        360
+      ],
+      "webhookId": "8d08fce8-2ff3-4040-9f1f-272a681175e9"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-02-18T20:48:41.000Z",
+  "versionId": "2e344fb5-aafe-4121-95c9-5b78477c2cdb"
+}
