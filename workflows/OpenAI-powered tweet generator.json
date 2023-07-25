@@ -1,0 +1,172 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "FunctionItem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FunctionItem": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-12-18T01:41:30.245Z",
+  "id": "40",
+  "name": "OpenAI-powered tweet generator",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "position": [
+        380,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "6649a784-e197-447f-b4e8-ec008b6e4e85"
+    },
+    {
+      "parameters": {
+        "functionCode": "// hashtag list\nconst Hashtags = [\n  \"#techtwitter\",\n  \"#n8n\"\n];\n\n// random output function\nconst randomHashtag = Hashtags[Math.floor(Math.random() * Hashtags.length)];\nitem.hashtag = randomHashtag;\nreturn item;"
+      },
+      "name": "FunctionItem",
+      "type": "n8n-nodes-base.functionItem",
+      "position": [
+        580,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "61c604ac-7478-4735-8132-6a5a67fcac5d"
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "requestMethod": "POST",
+        "url": "https://api.openai.com/v1/engines/text-davinci-001/completions",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"prompt\": \"Generate a tweet, with under 100 characters, about and including the hashtag {{$node[\"FunctionItem\"].json[\"hashtag\"]}}:\",\n  \"temperature\": 0.7,\n  \"max_tokens\": 64,\n  \"top_p\": 1,\n  \"frequency_penalty\": 0,\n  \"presence_penalty\": 0\n}"
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        780,
+        200
+      ],
+      "typeVersion": 1,
+      "id": "ba66c0a7-4679-480a-a3f7-f8df57a9ee55",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "20",
+          "name": "openai"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "application": "appOaG8kEA8FAABOr",
+        "table": "main",
+        "options": {}
+      },
+      "name": "Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "position": [
+        1180,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "0ff0b2bc-c54d-467b-b0a1-ba7beb330134",
+      "credentials": {
+        "airtableApi": {
+          "id": null,
+          "name": ""
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "Hashtag",
+              "value": "={{$node[\"FunctionItem\"].json[\"hashtag\"]}}"
+            },
+            {
+              "name": "Content",
+              "value": "={{$node[\"HTTP Request\"].json[\"choices\"][0][\"text\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        980,
+        240
+      ],
+      "typeVersion": 1,
+      "id": "37e68357-3b2c-47d4-bf2d-d1c104235cdc"
+    },
+    {
+      "parameters": {
+        "prompt": "Imagen de una agencia de viajes",
+        "options": {}
+      },
+      "id": "dddb83b5-5074-4f76-a6a7-56a243e7b6b5",
+      "name": "OpenAI",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        800,
+        380
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "21",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-12-18T01:52:12.000Z",
+  "versionId": "95a5c132-9c86-4959-8714-943fd7015092"
+}
