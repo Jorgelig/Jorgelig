@@ -146,8 +146,8 @@
       ]
     }
   },
-  "createdAt": "2022-08-08T04:23:24.724Z",
-  "id": "29",
+  "createdAt": "2022-06-06T03:37:20.151Z",
+  "id": "16",
   "name": "oma",
   "nodes": [
     {
@@ -245,13 +245,13 @@
         1440,
         280
       ],
-      "id": "47298de2-4c7c-4cf5-ba83-0558adc4282d",
       "credentials": {
         "mongoDb": {
           "id": "13",
           "name": "MongoDB_flight-tracking"
         }
-      }
+      },
+      "id": "47298de2-4c7c-4cf5-ba83-0558adc4282d"
     },
     {
       "parameters": {
@@ -268,13 +268,13 @@
       ],
       "notesInFlow": true,
       "alwaysOutputData": true,
-      "id": "c3f3561d-a5d5-42f9-8bc6-1cfd7786a436",
       "credentials": {
         "mongoDb": {
           "id": "13",
           "name": "MongoDB_flight-tracking"
         }
-      }
+      },
+      "id": "c3f3561d-a5d5-42f9-8bc6-1cfd7786a436"
     },
     {
       "parameters": {},
@@ -349,8 +349,7 @@
         240,
         140
       ],
-      "id": "e5b4abae-79dc-468e-973e-2ef6b5b66259",
-      "disabled": true
+      "id": "e5b4abae-79dc-468e-973e-2ef6b5b66259"
     },
     {
       "parameters": {
@@ -411,11 +410,11 @@
       "id": "4f167a10-d283-4960-a31e-609b3ba8c173"
     }
   ],
-  "pinData": {},
+  "pinData": null,
   "settings": {},
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2022-08-08T04:23:44.790Z",
-  "versionId": "af53d67a-c785-4752-b956-b7fc96e916c9"
+  "triggerCount": 1,
+  "updatedAt": "2023-07-09T03:16:26.000Z",
+  "versionId": "4ab4ccc8-3318-4e57-b66d-6f23c950404a"
 }
