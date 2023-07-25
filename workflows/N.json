@@ -1,0 +1,366 @@
+{
+  "active": false,
+  "connections": {
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "GetRealties",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetRealties": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "NexPage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "GetRealties",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NexPage": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-07-16T03:39:18.595Z",
+  "id": "23",
+  "name": "N",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        200
+      ],
+      "id": "83af5a5c-622a-4e2a-b7fd-159d17cbf5a9"
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://app.nocnok.com/api/realties/search",
+        "allowUnauthorizedCerts": true,
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "{\"pageNumber\":1,\"pageSize\":10,\"sortColumn\":\"statusdate\",\"sortAscending\":\"false\",\"code\":\"\",\"countryId\":\"1\",\"operation\":\"Sale\",\"status\":\"active\",\"categoryId\":0,\"street\":\"\",\"typeId\":0,\"currencyId\":\"1\",\"isFurnished\":null,\"hasAirConditioner\":null,\"hasHeater\":null,\"fromLevelId\":\"\",\"excludeForeclosures\":false,\"onlyExclusives\":false,\"scope\":\"Mine\"}",
+        "queryParametersJson": "{\"pageNumber\":1,\"pageSize\":10,\"sortColumn\":\"statusdate\",\"sortAscending\":\"false\",\"code\":\"\",\"countryId\":\"1\",\"operation\":\"Sale\",\"status\":\"active\",\"categoryId\":0,\"street\":\"\",\"typeId\":0,\"currencyId\":\"1\",\"isFurnished\":null,\"hasAirConditioner\":null,\"hasHeater\":null,\"fromLevelId\":\"\",\"excludeForeclosures\":false,\"onlyExclusives\":false,\"scope\":\"Mine\"}"
+      },
+      "name": "GetRealties",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        320,
+        -160
+      ],
+      "id": "54fa6590-06e0-43cb-8d4f-d06d07609847"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "COOKIE",
+              "value": "={{ $json[\"headers\"][\"set-cookie\"][0] }} {{ $json[\"headers\"][\"set-cookie\"][1] }} {{ $json[\"headers\"][\"set-cookie\"][2] }} {{ $json[\"headers\"][\"set-cookie\"][3] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -160
+      ],
+      "id": "720bc6ff-f3fe-41b0-a41e-7f3a404d4455"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "items",
+        "include": "selectedOtherFields",
+        "fieldsToInclude": {
+          "fields": [
+            {
+              "fieldName": "totalPages"
+            },
+            {
+              "fieldName": "pageNumber"
+            },
+            {
+              "fieldName": "pageCount"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [
+        500,
+        -160
+      ],
+      "id": "9fa67560-a0b3-40a8-b74b-c8f299e96bb6"
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        940,
+        -160
+      ],
+      "webhookId": "e10268de-6222-40dd-b8a9-60121257dcce",
+      "id": "28fdefa1-62f6-4ef2-96b4-b23843743b25"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "totalPages",
+              "value2": "pageNumber"
+            }
+          ]
+        }
+      },
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        -160
+      ],
+      "id": "531491fe-3e17-4e58-b881-ea293a2a7bc3"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run once per input item.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.functionItem\n// Tip: You can use luxon for dates and $jmespath for querying JSON structures\n\n// Add a new field called 'myNewField' to the JSON of the item\nitem.pageNumber = parseInt(item.pageNumber) + 1;\n\n// You can write logs to the browser console\nconsole.log('Done!');\n\nreturn item;"
+      },
+      "name": "NexPage",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        720,
+        -160
+      ],
+      "id": "ef8e9771-33ec-4ce5-aab8-87f223419441"
+    },
+    {
+      "parameters": {
+        "content": "## Get Realties",
+        "height": 360,
+        "width": 1360
+      },
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -260
+      ],
+      "id": "8bf919c8-da88-4eaf-bbe7-8c4e9e95dca1"
+    },
+    {
+      "parameters": {
+        "url": "http://www.gz-asesores.com/api/realties/search?locationLevel=auto&pageNumber=1&pageSize=20&sortColumn=demand&sortDirection=Descending&_=1661981368197",
+        "options": {}
+      },
+      "id": "c2e1cff0-5350-4935-aabc-d4255066f589",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        60,
+        -420
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://app.nocnok.com/api/accounts/login",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authority",
+              "value": "app.nocnok.com"
+            },
+            {
+              "name": "cookie",
+              "value": "lv=NN_HOME_Light_261022; _fbp=fb.1.1674994853080.1313919914; messagesUtk=ac4f0acacec343c48e26119f6f7718b4; hubspotutk=d77111b1029adc6cb55f8d70381c1a10; BID=69d26b374d8145529cfe555d1bc9e1db; NID=c9M12086Y13ya6Dd8Z45P10o8fbfbKd9R40Uc8W9bBb6T33K; _hjSessionUser_608209=eyJpZCI6Ijc3OGU1OWE0LTBmNDUtNWY4My05ODU4LWM3ZDhkMGZjOWQxMCIsImNyZWF0ZWQiOjE2NzQ5OTQ4NTMzODgsImV4aXN0aW5nIjp0cnVlfQ==; __hssrc=1; trackLandingMixPanel=flag; _gid=GA1.2.203385031.1676189248; _dc_gtm_UA-16639372-1=1; _gat_UA-232430376-1=1; _hjSession_608209=eyJpZCI6Ijk1YTUxNTJhLTg4NmMtNDVlYy1iZmNkLWQ5MmQzYjU5NmE4ZCIsImNyZWF0ZWQiOjE2NzYxODkyNDgzNTgsImluU2FtcGxlIjpmYWxzZX0=; _hjAbsoluteSessionInProgress=0; __hstc=205406479.d77111b1029adc6cb55f8d70381c1a10.1674994853960.1675851650919.1676189249093.5; SID=zltg4saswljzlx33on1wdbs4; locale=es; _hjIncludedInPageviewSample=1; _hjIncludedInSessionSample=0; origin=; medium=; campaign=; ad_content=; term=; mktId=18644aa3b67a84-0c63c8d89f8b6f-26021051-1fa400-18644aa3b68b1a; mp_edbdd85558b9f2648e2393ad58df14bc_mixpanel=%7B%22distinct_id%22%3A%20%2218644aa3b67a84-0c63c8d89f8b6f-26021051-1fa400-18644aa3b68b1a%22%2C%22%24device_id%22%3A%20%2218644aa3b67a84-0c63c8d89f8b6f-26021051-1fa400-18644aa3b68b1a%22%2C%22%24initial_referrer%22%3A%20%22https%3A%2F%2Fapp.nocnok.com%2F%22%2C%22%24initial_referring_domain%22%3A%20%22app.nocnok.com%22%7D; __hssc=205406479.2.1676189249093; _ga=GA1.1.1257292813.1674994853; _ga_VXVY2Y97XJ=GS1.1.1676189248.7.1.1676189254.54.0.0; _ga_CQ4YHLH05Z=GS1.1.1676189248.7.1.1676189255.0.0.0; _ga_50962YCF93=GS1.1.1676189248.7.1.1676189255.0.0.0; _gcl_au=1.1.1550914011.1674994853.1610964091.1676189255.1676189255"
+            },
+            {
+              "name": "origin",
+              "value": "https://app.nocnok.com"
+            },
+            {
+              "name": "referer",
+              "value": "https://app.nocnok.com/ingresar"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "userName",
+              "value": "cerhadm@gmail.com"
+            },
+            {
+              "name": "password",
+              "value": "noc2021"
+            },
+            {
+              "name": "rememberMe",
+              "value": true
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "b8730090-02dd-444f-b039-23db46f04eb8",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -180,
+        -160
+      ],
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {
+    "HTTP Request1": [
+      {
+        "json": {
+          "body": {
+            "firstName": "GABRIELA  ",
+            "lastName": "ATENCION COMERCIAL ",
+            "email": "cerhadm@gmail.com",
+            "phone": "52 5532496102",
+            "url": "/community/realties"
+          },
+          "headers": {
+            "date": "Sun, 12 Feb 2023 08:12:38 GMT",
+            "content-type": "application/json; charset=utf-8",
+            "content-length": "139",
+            "connection": "close",
+            "cache-control": "private",
+            "set-cookie": [
+              "mktId=18644aa3b67a84-0c63c8d89f8b6f-26021051-1fa400-18644aa3b68b1a; domain=nocnok.com; expires=Mon, 13-Feb-2023 06:00:00 GMT; path=/; secure; HttpOnly; SameSite=Lax",
+              "UAT=Uwvq7ZHGzXLGMDPlKhVNHQfh4tmizAYlUVIePJ4mnkut+pOJ53K5hEBlTeISZIeUj6w9AFwntD0ifV4ZiEtFGRD9bVP+both5LxNfOWyWqrF9H4ZJo62YcIfqtRVmiPH; domain=nocnok.com; expires=Tue, 14-Mar-2023 06:00:00 GMT; path=/; secure; HttpOnly; SameSite=Lax",
+              "NID=c9M12086Y13ya6Dd8Z45P10o8fbfbKd9R40Uc8W9bBb6T33K; domain=nocnok.com; expires=Tue, 14-Mar-2023 06:00:00 GMT; path=/; secure; HttpOnly; SameSite=Lax",
+              "locale=es; domain=nocnok.com; path=/; secure; HttpOnly; SameSite=Lax"
+            ],
+            "request-context": "appId=cid-v1:9aeb2652-ef93-4f31-b828-9d0b193d5b75",
+            "access-control-expose-headers": "Request-Context",
+            "cf-cache-status": "DYNAMIC",
+            "server-timing": "cf-q-config;dur=6.0000020312145e-06",
+            "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=H4IwcFz2pGaZ6%2BXaXlUu%2BpzBiDs%2FjnlQho5WoMeYwUtRfD0wJcakYlr%2BWNfhGG7jKDdE45z7%2BH6TjgLHBzsOzSFRxrkNE2nXdDaBhVRNcF%2ByUZ%2B%2FgiOsxdbrgYE96FFL\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+            "nel": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+            "server": "cloudflare",
+            "cf-ray": "7983dc42a8371931-EWR"
+          },
+          "statusCode": 200,
+          "statusMessage": "OK"
+        }
+      }
+    ],
+    "Set": [
+      {
+        "json": {
+          "COOKIE": "mktId=18644aa3b67a84-0c63c8d89f8b6f-26021051-1fa400-18644aa3b68b1a; domain=nocnok.com; expires=Mon, 13-Feb-2023 06:00:00 GMT; path=/; secure; HttpOnly; SameSite=Lax UAT=Uwvq7ZHGzXLGMDPlKhVNHQfh4tmizAYlUVIePJ4mnkut+pOJ53K5hEBlTeISZIeUj6w9AFwntD0ifV4ZiEtFGRD9bVP+both5LxNfOWyWqrF9H4ZJo62YcIfqtRVmiPH; domain=nocnok.com; expires=Tue, 14-Mar-2023 06:00:00 GMT; path=/; secure; HttpOnly; SameSite=Lax NID=c9M12086Y13ya6Dd8Z45P10o8fbfbKd9R40Uc8W9bBb6T33K; domain=nocnok.com; expires=Tue, 14-Mar-2023 06:00:00 GMT; path=/; secure; HttpOnly; SameSite=Lax locale=es; domain=nocnok.com; path=/; secure; HttpOnly; SameSite=Lax"
+        }
+      }
+    ]
+  },
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-04-12T17:48:42.000Z",
+  "versionId": "91d70916-c6fd-4631-974e-d60c000ae570"
+}
