@@ -1,0 +1,166 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "formattedDate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "formattedDate": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-01-14T09:22:42.870Z",
+  "id": "46",
+  "name": "JorgeligLabs - Marketing auto",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "b80f1b77-26c8-4b50-874c-597942d5a443",
+        "options": {}
+      },
+      "id": "827e26e3-ecf7-499e-a523-e7609e60f97d",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        680,
+        360
+      ],
+      "webhookId": "b80f1b77-26c8-4b50-874c-597942d5a443"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "101353552699300",
+        "recipientPhoneNumber": "={{ $json[\"body\"][\"phone\"] }}",
+        "template": "jorgeliglabs_primercontacto_v1|es_MX",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json[\"body\"][\"name\"] }}"
+                  },
+                  {
+                    "text": "={{ $json[\"formattedDate\"] }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "9ccd0f72-9524-485a-903e-6728ce363665",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        360
+      ],
+      "alwaysOutputData": true,
+      "notesInFlow": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "22",
+          "name": "WhatsApp account"
+        }
+      },
+      "notes": "Enviar mensaje de confirmacion"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "options": {
+          "responseCode": "={{ 200 }}"
+        }
+      },
+      "id": "dadcca42-2db0-4b10-9401-56172ed50c7a",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  let date = new Date(item.json.body.fecha_hora);\n  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };\n  item.json.formattedDate  = date.toLocaleDateString(\"es-MX\", options);\n}\n\nreturn $input.all();"
+      },
+      "id": "437a6344-be8d-42b3-8624-e7d3b6206f7f",
+      "name": "formattedDate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        900,
+        360
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.jorgeliglabs.com",
+            "user-agent": "got (https://github.com/sindresorhus/got)",
+            "content-length": "215",
+            "accept-encoding": "gzip, deflate, br",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "n8n.jorgeliglabs.com",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "c64d13edc8e4",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "submittedAt": "2023-01-14T09:27:43.947Z",
+            "Saludo": "Quiero saber mas...",
+            "name": "Jorge",
+            "phone": "+528114117118",
+            "email": "jorgeligg@gmail.com",
+            "detail": "Pues la verdad aqui andamos\n",
+            "fecha_hora": "2023-01-16T11:00"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-01-14T09:48:36.000Z",
+  "versionId": "bef50cd4-da47-48d4-9063-590f707d39af"
+}
