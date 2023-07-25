@@ -1,0 +1,1204 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trash - IMAP attachment": {
+      "main": [
+        [
+          {
+            "node": "Function",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "NocoDB1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "SetHTMLItem",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SetHTMLItem": {
+      "main": [
+        [
+          {
+            "node": "HTML Extract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB2": {
+      "main": [
+        [
+          {
+            "node": "HTML Extract1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_InsertIMAPMongoDB": {
+      "main": [
+        [
+          {
+            "node": "T_Clean_Subject",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_IMAP_Email": {
+      "main": [
+        [
+          {
+            "node": "T_InsertIMAPMongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_Switch_Host": {
+      "main": [
+        [
+          {
+            "node": "T_HTMLExtract_i24",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "T_HTMLExtract_lamudi",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "T_HTMLExtract_icasas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "T_Switch_Host_2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_HTMLExtract_i24": {
+      "main": [
+        [
+          {
+            "node": "T_i24_contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_HTMLExtract_lamudi": {
+      "main": [
+        [
+          {
+            "node": "T_lamudi_contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_HTMLExtract_icasas": {
+      "main": [
+        [
+          {
+            "node": "T_icasas_contact",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_HTMLExtract_meli": {
+      "main": [
+        [
+          {
+            "node": "NoOp_Meli",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_HTMLExtract_viva": {
+      "main": [
+        [
+          {
+            "node": "NoOp_viva",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_Switch_Host_2": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "T_HTMLExtract_viva",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp_viva1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_i24_contact": {
+      "main": [
+        [
+          {
+            "node": "T_insert_contact_mongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_icasas_contact": {
+      "main": [
+        [
+          {
+            "node": "T_insert_contact_mongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTML Extract2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_lamudi_contact": {
+      "main": [
+        [
+          {
+            "node": "T_insert_contact_mongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Interval": {
+      "main": [
+        [
+          {
+            "node": "Delete_inbox_MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "T_HTMLExtract_meli",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "T_Clean_Subject": {
+      "main": [
+        [
+          {
+            "node": "T_Switch_Host",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-04-17T06:11:00.194Z",
+  "id": "1",
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "id": "ae65bfbb-58c5-4a4d-86d6-0c7f4eb5db29"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"status\": \"ok\"}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        280,
+        1880
+      ],
+      "id": "42d075e4-5a3d-48bd-985a-7f17b024b56e"
+    },
+    {
+      "parameters": {
+        "path": "7e47983d-bcba-45ee-a1b8-7e238029d7ef",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        20,
+        1880
+      ],
+      "webhookId": "7e47983d-bcba-45ee-a1b8-7e238029d7ef",
+      "id": "ea129116-ddb1-41ad-9751-4dde473696cc"
+    },
+    {
+      "parameters": {
+        "mailbox": "Trash",
+        "postProcessAction": "nothing",
+        "format": "resolved",
+        "options": {
+          "customEmailConfig": "[\"UNSEEN\"]"
+        }
+      },
+      "name": "Trash - IMAP attachment",
+      "type": "n8n-nodes-base.emailReadImap",
+      "position": [
+        1460,
+        1340
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "imap": {
+          "id": "3",
+          "name": "IMAP account"
+        }
+      },
+      "id": "a827bb6a-d5e4-4e4f-a765-31e5f282bf48"
+    },
+    {
+      "parameters": {
+        "functionCode": "const _ = require('lodash')\n\nconst sanitize = str => _.chain(str)\n  .replace(/[^A-Za-z0-9&.-]/g, '-') // sanitise via whitelist of characters\n  .replace(/-(?=-)/g, '') // remove repeated dashes - https://regexr.com/6ag8h\n  .trim('-') // trim any leading/trailing dashes\n  .truncate({\n    length: 60,\n    omission: '-' // when the string ends with '-', you'll know it was truncated\n  })\n  .value()\n\nconst result = _.flatMap(items.map(item => {\n  console.log({item})\n\n  // Maps each attachment to a separate item\n  return _.values(item.binary).map(file => {\n    console.log(\"Saving attachement:\", file.fileName, 'from:', ...item.json.from.value)\n    \n    // sanitize filename but exclude extension\n    const filename_parts = file.fileName.split('.')\n    const ext = _.slice(filename_parts, filename_parts.length-1)\n    const filename_main = _.join(_.dropRight(filename_parts), '.')\n    file.fileName = sanitize(filename_main) + '.' + ext\n    \n    return {\n      json: {\n        from: sanitize(item.json.from.value[0].name),\n        date: sanitize(new Date(item.json.date).toISOString().split(\"T\")[0]) // get date part \"2020-01-01\"\n      }, \n      binary: { file }\n    }\n  })\n}))\n\nconsole.log(result)\nreturn result"
+      },
+      "name": "Function",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        1360
+      ],
+      "id": "f1fc1404-e426-4e94-8d87-d0895d4317d3"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "projectId": "tset_uysV",
+        "table": "email_n8n",
+        "returnAll": true,
+        "options": {}
+      },
+      "name": "NocoDB",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        1720
+      ],
+      "credentials": {
+        "nocoDb": {
+          "id": "3",
+          "name": "NocoDB account"
+        }
+      },
+      "id": "32009cf0-c551-47e1-9d41-544296f45a33"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "projectId": "tset_uysV",
+        "table": "email_n8n",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "headers"
+            }
+          ]
+        }
+      },
+      "name": "NocoDB1",
+      "type": "n8n-nodes-base.nocoDb",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        1560
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "credentials": {
+        "nocoDb": {
+          "id": "3",
+          "name": "NocoDB account"
+        }
+      },
+      "id": "9b0385a5-2f43-429e-ad57-ee3343d694ca"
+    },
+    {
+      "parameters": {
+        "dataPropertyName": "={{$node[\"SetHTMLItem\"].parameter[\"values\"][\"string\"][0]]}}",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "price",
+              "cssSelector": "a",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true
+        }
+      },
+      "name": "HTML Extract",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        1400
+      ],
+      "id": "8e324cb3-2b68-49be-8651-8bd3a7b5d9e5"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        580,
+        1420
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "5a2a5f6b-8dd1-4f86-bbf4-b2a2fa0fc5be"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": true,
+              "value2": "={{$node[\"SplitInBatches\"].context[\"noItemsLeft\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        760,
+        1420
+      ],
+      "id": "149e2794-a0ef-4020-b484-2e1db77d1c71"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "=item",
+              "value": "={{$node[\"SplitInBatches\"].json[\"textHtml\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "SetHTMLItem",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        960,
+        1400
+      ],
+      "id": "878fbc36-9e5d-4434-bd59-c89f35c27a7f"
+    },
+    {
+      "parameters": {
+        "collection": "inbox",
+        "options": {
+          "limit": 10
+        }
+      },
+      "name": "MongoDB2",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        360,
+        1700
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "4",
+          "name": "MongoDB account"
+        }
+      },
+      "id": "523dcb7a-13c9-4250-b003-004cb7bafbe6"
+    },
+    {
+      "parameters": {
+        "dataPropertyName": "={{$node[\"MongoDB2\"].json[\"textHtml\"]}}",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "price",
+              "cssSelector": "a",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true
+        }
+      },
+      "name": "HTML Extract1",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        760,
+        1700
+      ],
+      "id": "cab4120c-6ab4-48b4-943e-8ca1ba491397"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "inbox",
+        "fields": "x-originating-ip,from,subject,to,textHtml,metadata",
+        "options": {
+          "dateFields": "date"
+        }
+      },
+      "name": "T_InsertIMAPMongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        520,
+        800
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000,
+      "credentials": {
+        "mongoDb": {
+          "id": "4",
+          "name": "MongoDB account"
+        }
+      },
+      "id": "73862faa-cf50-46f5-b7c8-d0e0f946bcfa"
+    },
+    {
+      "parameters": {
+        "postProcessAction": "nothing",
+        "options": {
+          "allowUnauthorizedCerts": true,
+          "forceReconnect": 60
+        }
+      },
+      "name": "T_IMAP_Email",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 1,
+      "position": [
+        300,
+        800
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "credentials": {
+        "imap": {
+          "id": "3",
+          "name": "IMAP account"
+        }
+      },
+      "id": "016c2728-1400-4986-89ed-67b6f2d9bdcf"
+    },
+    {
+      "parameters": {},
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        940
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "f60e4312-dbfc-40cd-8c06-5ca4b6c80973"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"from\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "inmuebles24"
+            },
+            {
+              "operation": "contains",
+              "value2": "lamudi.com.mx",
+              "output": 1
+            },
+            {
+              "operation": "contains",
+              "value2": "solicitudes.icasas.mx",
+              "output": 2
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "name": "T_Switch_Host",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        880,
+        800
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "2c09fd47-7bbd-484a-8592-58290a010d8b"
+    },
+    {
+      "parameters": {
+        "dataPropertyName": "textHtml",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "name",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(4) > td > div:nth-child(2) > span:nth-child(2)"
+            },
+            {
+              "key": "phone",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(4) > td > div:nth-child(3) > span:nth-child(2)"
+            },
+            {
+              "key": "email",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(4) > td > div:nth-child(4) > a"
+            },
+            {
+              "key": "external_code",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1) > td > span:nth-child(1) > span:nth-child(2)"
+            },
+            {
+              "key": "reference_code",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(2) > td > table > tbody > tr:nth-child(1) > td > span.stack-column.codigo-anunciante-mobile > span.codigo-anunciante-mobile-value"
+            },
+            {
+              "key": "price",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(1) > td > table > tbody > tr > td > div.stack-column.right-card-div-mobile > table > tbody > tr:nth-child(2) > td:nth-child(1) > a > span:nth-child(1)"
+            },
+            {
+              "key": "settlement",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(1) > td > table > tbody > tr > td > div.stack-column.right-card-div-mobile > table > tbody > tr:nth-child(2) > td:nth-child(3) > a > span:nth-child(1)"
+            },
+            {
+              "key": "county_state",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(1) > td > table > tbody > tr > td > div.stack-column.right-card-div-mobile > table > tbody > tr:nth-child(2) > td:nth-child(3) > a > span:nth-child(2)"
+            },
+            {
+              "key": "operation",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(1) > td > table > tbody > tr > td > div.stack-column.right-card-div-mobile > table > tbody > tr:nth-child(5) > td.element-tipoProp > a > span > span:nth-child(1)"
+            },
+            {
+              "key": "type",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(1) > td > table > tbody > tr > td > div.stack-column.right-card-div-mobile > table > tbody > tr:nth-child(5) > td.element-tipoProp > a > span > span:nth-child(3)"
+            },
+            {
+              "key": "message",
+              "cssSelector": "<div style=\"display:inline-block;width:100%;padding-top:8px;font-family:Arial;font-style:normal;font-weight:normal;font-size:12px;line-height:18px;color:#000000;\">Hola, me interesa este inmueble que vi en Inmuebles24 y quiero que me contacten. Gracias.</div>"
+            },
+            {
+              "key": "link",
+              "cssSelector": "body > div > table:nth-child(2) > tbody > tr:nth-child(1) > td > table > tbody > tr > td > div.stack-column.right-card-div-mobile > table > tbody > tr:nth-child(5) > td.center-on-narrow.block-verAviso > a",
+              "returnValue": "attribute",
+              "attribute": "href"
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true
+        }
+      },
+      "name": "T_HTMLExtract_i24",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        -240
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "04e74d6e-fde1-46fe-bf4f-d57cb3ff3403"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "contacts",
+        "fields": "origin,name,phone,email,type,operation,external_code,reference_code,price,settlement,county,state,message,link,date",
+        "options": {
+          "dateFields": "date"
+        }
+      },
+      "name": "T_insert_contact_mongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        2280,
+        100
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "credentials": {
+        "mongoDb": {
+          "id": "4",
+          "name": "MongoDB account"
+        }
+      },
+      "id": "7ddd30a7-4b61-40cf-9423-853d730d0578"
+    },
+    {
+      "parameters": {
+        "dataPropertyName": "textHtml",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "phone",
+              "cssSelector": "#contact_lead_phone",
+              "returnValue": "html"
+            },
+            {
+              "key": "reference_code",
+              "cssSelector": "#contact_lead_object_id",
+              "returnValue": "html"
+            },
+            {
+              "key": "settlement_county_state",
+              "cssSelector": "body > table:nth-child(4) > tbody > tr > td > table.tron > tbody > tr > td > table:nth-child(1) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table:nth-child(3) > tbody > tr:nth-child(2) > td > span > span:nth-child(2)"
+            },
+            {
+              "key": "link",
+              "cssSelector": "body > table:nth-child(4) > tbody > tr > td > table.tron > tbody > tr > td > table:nth-child(1) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table:nth-child(3) > tbody > tr:nth-child(1) > td > a",
+              "returnValue": "attribute",
+              "attribute": "href"
+            },
+            {
+              "key": "type_operation_settlement",
+              "cssSelector": "body > table:nth-child(4) > tbody > tr > td > table.tron > tbody > tr > td > table:nth-child(1) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table:nth-child(3) > tbody > tr:nth-child(1) > td > a"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "T_HTMLExtract_lamudi",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        -60
+      ],
+      "alwaysOutputData": true,
+      "id": "658fb626-6b00-4842-b57a-bb90b05b7ddf"
+    },
+    {
+      "parameters": {
+        "collection": "inbox",
+        "options": {},
+        "query": "{ \"from\": {\"$not\": \"nmuebles24\"}}"
+      },
+      "name": "Search_lamudi_MongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        360,
+        1280
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "4",
+          "name": "MongoDB account"
+        }
+      },
+      "id": "4dee5908-6173-4c40-bf75-08a197210ec1"
+    },
+    {
+      "parameters": {
+        "dataPropertyName": "textHtml",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "name",
+              "cssSelector": "input[name=\"contactName\"]",
+              "returnValue": "value"
+            },
+            {
+              "key": "phone",
+              "cssSelector": "input[name=\"contactPhone\"]",
+              "returnValue": "value"
+            },
+            {
+              "key": "email",
+              "cssSelector": "input[name=\"contactEmail\"]",
+              "returnValue": "value"
+            },
+            {
+              "key": "type_operation_settlement",
+              "cssSelector": "#templateBody > table.mcnTextBlock > tbody > tr > td > table > tbody > tr > td > div > table:nth-child(2) > tbody > tr > td > table > tbody > tr:nth-child(1) > td > div > div > b:nth-child(1) > a"
+            },
+            {
+              "key": "external_code",
+              "cssSelector": "input[name=\"contactClassifiedId\"]"
+            },
+            {
+              "key": "reference_code",
+              "cssSelector": "input[name=\"contactCode\"]",
+              "returnValue": "value"
+            },
+            {
+              "key": "county_state",
+              "cssSelector": "#templateBody > table.mcnTextBlock > tbody > tr > td > table > tbody > tr > td > div > table:nth-child(2) > tbody > tr > td > table > tbody > tr:nth-child(1) > td > div > div > b:nth-child(2)"
+            },
+            {
+              "key": "message",
+              "cssSelector": "input[name=\"contactMessage\"]",
+              "returnValue": "value"
+            },
+            {
+              "key": "link",
+              "cssSelector": "input[name=\"contactClassifiedUrl\"]",
+              "returnValue": "value"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "T_HTMLExtract_icasas",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        100
+      ],
+      "alwaysOutputData": true,
+      "id": "109789cc-ae09-41b9-ae6d-44161c0c2a70"
+    },
+    {
+      "parameters": {
+        "dataPropertyName": "textHtml",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "title",
+              "cssSelector": "#templateContent > table:nth-child(2) > tbody > tr > td > table > tbody > tr:nth-child(1) > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > table > tbody > tr > td > span > b"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "T_HTMLExtract_meli",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        280
+      ],
+      "alwaysOutputData": true,
+      "id": "4e1e5d49-8afc-47a6-99a0-ab43dbc21551"
+    },
+    {
+      "parameters": {
+        "dataPropertyName": "textHtml",
+        "options": {}
+      },
+      "name": "T_HTMLExtract_viva",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        640
+      ],
+      "alwaysOutputData": true,
+      "id": "df6c215f-3a9f-4b53-b56a-17d0f723fc13"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "quoted-printable",
+              "value2": "={{$json[\"metadata\"][\"content-transfer-encoding\"]}}"
+            }
+          ]
+        }
+      },
+      "name": "T_IF_quoted-printable",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        560,
+        1260
+      ],
+      "id": "fbd8042e-d71c-491c-91cb-63cabcec2298"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json[\"from\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "contains",
+              "value2": "mercadolibre.com"
+            },
+            {
+              "operation": "contains",
+              "value2": "vivanuncios.com.mx",
+              "output": 1
+            }
+          ]
+        },
+        "fallbackOutput": 3
+      },
+      "name": "T_Switch_Host_2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        820
+      ],
+      "id": "9805180b-10b5-4d90-bb5d-5e2b12ee0595"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run once per input item.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.functionItem\n\n// Add a new field called 'myNewField' to the JSON of the item\nconst price = Number((item?.price ?? '').replace(/[^0-9\\.-]+/g,\"\")); //(item?.price ?? '').replace('$','').replace(',','').replace(',','').replace(',','').trim();\nconst county_state_items = item?.county_state.split(',');\nitem.settlement = (item?.settlement ?? '').trim();\nitem.county = (county_state_items[0] ?? '').trim();\nitem.state = (county_state_items.length > 1 ? county_state_items[1] : '').trim();\nitem.date = new Date();\n\nconst newItem = {\n  date: new Date(),\n  origin: 'i24',\n  name: item?.name ?? '',\n  phone: item?.phone ?? '',\n  email: item?.email ?? '',\n  type: item?.type ?? '',\n  operation: item?.operation ?? '',\n  external_code: item?.external_code ?? '',\n  reference_code: item?.reference_code ?? '',\n  price: price,\n  settlement: item?.settlement ?? '',\n  county: item?.county ?? '',\n  state: item?.state ?? '',\n  message: item?.message ?? '',\n  link: item?.link ?? ''\n}\n\nreturn newItem;"
+      },
+      "name": "T_i24_contact",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        -240
+      ],
+      "alwaysOutputData": true,
+      "id": "53034e3b-3dea-4681-9725-69d8556fb7e2"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run once per input item.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.functionItem\n\n// Add a new field called 'myNewField' to the JSON of the item\n//const price = Number((item?.price ?? '').replace(/[^0-9\\.-]+/g,\"\")); //(item?.price ?? '').replace('$','').replace(',','').replace(',','').replace(',','').trim();\nconst county_state_items = (item?.county_state ?? '').split(',');\nconst type_operation_settlement_items = (item?.type_operation_settlement ?? '').split(' en ');\nitem.type = (type_operation_settlement_items[0] ?? '').trim();\nitem.operation = (type_operation_settlement_items[1] ?? '').trim();\n\nitem.settlement = (type_operation_settlement_items[2] ?? '').trim();\nitem.county = (county_state_items[0] ?? '').trim();\nitem.state = (county_state_items.length > 1 ? county_state_items[1] : '').trim();\nitem.date = new Date();\n\nconst newItem = {\n  date: new Date(),\n  origin: 'icasas',\n  name: item?.name ?? '',\n  phone: item?.phone ?? '',\n  email: item?.email ?? '',\n  type: item?.type ?? '',\n  operation: item?.operation ?? '',\n  external_code: item?.external_code ?? '',\n  reference_code: item?.reference_code ?? '',\n  price: 0,\n  settlement: item?.settlement ?? '',\n  county: item?.county ?? '',\n  state: item?.state ?? '',\n  message: item?.message ?? '',\n  link: item?.link ?? ''\n}\n\nreturn newItem;"
+      },
+      "name": "T_icasas_contact",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        100
+      ],
+      "alwaysOutputData": true,
+      "id": "2969638d-eca7-4cfc-9306-55b804dc3dd2"
+    },
+    {
+      "parameters": {
+        "url": "={{$json[\"link\"]}}",
+        "allowUnauthorizedCerts": true,
+        "responseFormat": "string",
+        "options": {}
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        840,
+        100
+      ],
+      "id": "c3602a3e-4d5b-4a9b-b6ee-952ffdaaa094"
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "price",
+              "cssSelector": "#body > div.container-body.detail.payment > div.priceChars > div > h2"
+            }
+          ]
+        },
+        "options": {
+          "trimValues": true
+        }
+      },
+      "name": "HTML Extract2",
+      "type": "n8n-nodes-base.htmlExtract",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        100
+      ],
+      "id": "50c4f352-dc6b-4f6b-9efe-9dcf88382f1e"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run once per input item.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.functionItem\n\n// Add a new field called 'myNewField' to the JSON of the item\n//const price = Number((item?.price ?? '').replace(/[^0-9\\.-]+/g,\"\")); //(item?.price ?? '').replace('$','').replace(',','').replace(',','').replace(',','').trim();\nconst phone_items = (item?.phone ?? '').replace('+','').split('<br>');\nconst state_county_settlement_items = (item?.settlement_county_state ?? '').split(',');\nconst type_operation_items = (item?.type_operation ?? '').split(' en ');\n\nitem.phone = (phone_items[0] ?? '').trim();\nitem.type = (type_operation_items[0] ?? '').trim();\nitem.operation = (type_operation_items[1] ?? '').trim();\n\nitem.settlement = (state_county_settlement_items[2] ?? '').trim();\nitem.county = (state_county_settlement_items[1] ?? '').trim();\nitem.state = (state_county_settlement_items[0] ?? '').trim();\nitem.date = new Date();\n\nconst newItem = {\n  date: new Date(),\n  origin: 'lamudi',\n  name: item?.name ?? '',\n  phone: item?.phone ?? '',\n  email: item?.email ?? '',\n  type: item?.type ?? '',\n  operation: item?.operation ?? '',\n  external_code: item?.external_code ?? '',\n  reference_code: item?.reference_code ?? '',\n  price: 0,\n  settlement: item?.settlement ?? '',\n  county: item?.county ?? '',\n  state: item?.state ?? '',\n  message: item?.message ?? '',\n  link: item?.link ?? ''\n}\n\nreturn newItem;"
+      },
+      "name": "T_lamudi_contact",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        -60
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "963ba429-d986-4f8f-83a6-68bbe3c4a364"
+    },
+    {
+      "parameters": {
+        "interval": 12,
+        "unit": "hours"
+      },
+      "name": "Interval",
+      "type": "n8n-nodes-base.interval",
+      "typeVersion": 1,
+      "position": [
+        60,
+        360
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "id": "8318f448-fe32-4342-93cc-a606fa2ecbee"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "collection": "inbox"
+      },
+      "name": "Delete_inbox_MongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        280,
+        440
+      ],
+      "credentials": {
+        "mongoDb": {
+          "id": "4",
+          "name": "MongoDB account"
+        }
+      },
+      "id": "e2911f3d-3ad9-4f80-9282-ade12841d8f0"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"subject\"]}}",
+              "operation": "notContains",
+              "value2": "Elimina los datos personales de tus publicaciones"
+            }
+          ]
+        }
+      },
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        460
+      ],
+      "id": "64f43cfe-4c1e-4eef-805a-9fd2e0f80053"
+    },
+    {
+      "parameters": {},
+      "name": "NoOp3",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        480
+      ],
+      "id": "baa40cd4-34dc-418b-898e-65a64ebce88a"
+    },
+    {
+      "parameters": {},
+      "name": "NoOp_viva",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        640
+      ],
+      "notesInFlow": false,
+      "alwaysOutputData": true,
+      "id": "96f27b90-ee58-440b-9551-f305e65e71d1"
+    },
+    {
+      "parameters": {},
+      "name": "NoOp_Meli",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        280
+      ],
+      "alwaysOutputData": true,
+      "id": "1801c7a8-ad1d-4c87-9642-20a926289468"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Code here will run once per input item.\n// More info and help: https://docs.n8n.io/nodes/n8n-nodes-base.functionItem\n\n// Add a new field called 'myNewField' to the JSON of the item\nitem.from = (item?.from??'').replace(/\"/g, '');\n\n// You can write logs to the browser console\nconsole.log('Done!');\n\nreturn item;"
+      },
+      "name": "T_Clean_Subject",
+      "type": "n8n-nodes-base.functionItem",
+      "typeVersion": 1,
+      "position": [
+        700,
+        800
+      ],
+      "alwaysOutputData": true,
+      "continueOnFail": true,
+      "id": "3f262bb5-7c2c-4249-9be6-426c946b78b6"
+    },
+    {
+      "parameters": {},
+      "name": "NoOp_viva1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        800
+      ],
+      "notesInFlow": true,
+      "alwaysOutputData": true,
+      "id": "cc725a72-1c5a-4d50-aaa8-f82bc06b2f8b"
+    }
+  ],
+  "pinData": null,
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-04-17T06:11:00.194Z",
+  "versionId": "fee04941-5dc7-42c4-a635-a82e46dbe006"
+}
