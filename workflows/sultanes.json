@@ -1,0 +1,366 @@
+{
+  "active": false,
+  "connections": {
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Extract Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Posts": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Website": {
+      "main": [
+        [
+          {
+            "node": "Extract Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set URL": {
+      "main": [
+        [
+          {
+            "node": "Fetch Website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Complete Link": {
+      "main": [
+        [
+          {
+            "node": "Format Date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Date": {
+      "main": [
+        [
+          {
+            "node": "Create RSS Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create RSS Items": {
+      "main": [
+        [
+          {
+            "node": "Prepare Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Fields": {
+      "main": [
+        [
+          {
+            "node": "Complete Link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Set URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-05-08T10:06:15.974Z",
+  "id": "12",
+  "name": "sultanes",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        240,
+        380
+      ],
+      "id": "fb123efd-294d-4400-82b0-998aec75059f"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "post",
+        "options": {}
+      },
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "position": [
+        1540,
+        640
+      ],
+      "typeVersion": 1,
+      "id": "49af18f8-be2b-4b47-affb-fac1d79e1182"
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "post",
+              "cssSelector": ".post-list__item",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Extract Posts",
+      "type": "n8n-nodes-base.htmlExtract",
+      "position": [
+        1320,
+        640
+      ],
+      "typeVersion": 1,
+      "id": "98d21663-e385-46d4-af74-ec1ba8f48748"
+    },
+    {
+      "parameters": {
+        "url": "={{$json[\"base_domain\"]}}noticias/feed",
+        "responseFormat": "string",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "name": "Fetch Website",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1100,
+        640
+      ],
+      "typeVersion": 1,
+      "id": "f0bc4145-d282-43a5-bbaf-a8e279e29e7d"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "base_domain",
+              "value": "https://www.sultanes.com.mx/"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set URL",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        880,
+        640
+      ],
+      "typeVersion": 1,
+      "id": "eec78531-1834-4bb3-a008-5033b8f84376"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "link",
+              "value": "={{$item(0).$node[\"Set URL\"].json[\"base_domain\"]}}{{$json[\"link\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Complete Link",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        660,
+        840
+      ],
+      "typeVersion": 1,
+      "id": "da95158a-f758-44c8-ae57-1e1366937d89"
+    },
+    {
+      "parameters": {
+        "value": "={{$json[\"date\"]}}",
+        "dataPropertyName": "date",
+        "toFormat": "YYYY-MM-DD",
+        "options": {
+          "fromFormat": "dd MMMM YYYY"
+        }
+      },
+      "name": "Format Date",
+      "type": "n8n-nodes-base.dateTime",
+      "position": [
+        880,
+        840
+      ],
+      "typeVersion": 1,
+      "id": "b4345d01-11ff-424b-90ec-09dabb8f8608",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "functionCode": "\n//07 DE MAYO DEL 2022\nconst getMonthNumber = (monthText) =>{\nif(monthText === 'enero') return '01';\nif(monthText === 'febrero') return '02';\nif(monthText === 'marzo') return '03';\nif(monthText === 'abril') return '04';\nif(monthText === 'mayo') return '05';\nif(monthText === 'junio') return '06';\nif(monthText === 'julio') return '07';\nif(monthText === 'agosto') return '08';\nif(monthText === 'septiembre') return '09';\nif(monthText === 'octubre') return '10';\nif(monthText === 'noviembre') return '11';\nif(monthText === 'diciembre') monthNumber = '12';\n};\nconst [dayText,,monthTextString,,yearText] = item.date.split(' ');\nconst monthText = monthTextString.replace(/\\s+/g, '').trim().toLowerCase();\nlet monthNumber = getMonthNumber(monthText);\n\nconst newDate = `${dayText.trim()}-${monthNumber}-${yearText.trim()}`;\nreturn {\n  rss_item: \n`<item>\n  <title>${item.title}</title>\n  <link>${item.link}</link>\n  <description>${item.description}</description>\n  <pubDate>${newDate}</pubDate>\n</item>`\n}"
+      },
+      "name": "Create RSS Items",
+      "type": "n8n-nodes-base.functionItem",
+      "position": [
+        1100,
+        840
+      ],
+      "typeVersion": 1,
+      "id": "e05a81d6-72e2-4842-9a39-1f07ca34bd63"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{$json[\"feed\"]}}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "content-type",
+                "value": "application/xml"
+              }
+            ]
+          }
+        }
+      },
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1540,
+        840
+      ],
+      "typeVersion": 1,
+      "id": "031899d0-90e5-413a-a4b6-28b7ff586daf"
+    },
+    {
+      "parameters": {
+        "functionCode": "let feed =\n`<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<rss version=\"2.0\">\n\n<channel>\n  <title>Sultanes Noticias</title>\n  <link>https://www.sultanes.com.mx/noticias/rss</link>\n  <description>Stay up to date with the latest news and updates of Sultanes LMB</description>\n  ${items.map(e => e.json.rss_item).join('\\n')}\n</channel>\n\n</rss>`;\n\nreturn [{\n  json: {\n    feed: feed\n  }\n}];"
+      },
+      "name": "Prepare Response",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        1320,
+        840
+      ],
+      "typeVersion": 1,
+      "id": "e5a0a2ee-ad65-4be7-b7f9-81c45c5bdc59"
+    },
+    {
+      "parameters": {
+        "dataPropertyName": "post",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "date",
+              "cssSelector": ".card__content > time"
+            },
+            {
+              "key": "title",
+              "cssSelector": ".card__content > h6"
+            },
+            {
+              "key": "link",
+              "cssSelector": ".card__content > h6 > a",
+              "returnValue": "attribute",
+              "attribute": "href"
+            },
+            {
+              "key": "description",
+              "cssSelector": ".posts__excerpt"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Extract Fields",
+      "type": "n8n-nodes-base.htmlExtract",
+      "position": [
+        1760,
+        640
+      ],
+      "typeVersion": 1,
+      "id": "d4ba621f-db22-469a-b4ba-ef69bc8fa901"
+    },
+    {
+      "parameters": {
+        "path": "a00a1d7d-645e-4faa-9496-f0da5231c011",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        680,
+        320
+      ],
+      "webhookId": "a00a1d7d-645e-4faa-9496-f0da5231c011",
+      "id": "fe2eba94-cfe8-40b6-88d8-0ef96a37d699"
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2022-10-18T21:59:26.948Z",
+  "versionId": "e6db6bac-c097-419a-80ca-21f55ab8cc73"
+}
