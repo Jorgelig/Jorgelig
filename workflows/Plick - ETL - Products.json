@@ -1,0 +1,425 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "DynamoDB_Producto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "DynamoDB_Producto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DynamoDB_Producto": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Code_Parse_Product",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No_Operation_END",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres_PDWH_Product": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code_Parse_Product": {
+      "main": [
+        [
+          {
+            "node": "Postgres_PDWH_Product",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-07-19T17:28:55.307Z",
+  "id": "0AFpnWzl47nkwAPv",
+  "name": "Plick - ETL - Products",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "06469a6d-05f9-487b-a9cd-c07dc1776a2a",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 4
+            }
+          ]
+        }
+      },
+      "id": "6d10c5fc-b2be-4f07-969b-d33e42440d12",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -20,
+        380
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableName": "Producto",
+        "scan": true,
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "44da0363-55ac-4321-8d6c-d3393c0c12fe",
+      "name": "DynamoDB_Producto",
+      "type": "n8n-nodes-base.awsDynamoDb",
+      "typeVersion": 1,
+      "position": [
+        260,
+        520
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "aws": {
+          "id": "rzkj94E4pM845Mtn",
+          "name": "AWS account - US-EAST-1-PROD"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "product_raw",
+          "mode": "list",
+          "cachedResultName": "product_raw"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "disponibilidad_por_dias": "={{ $json.disponibilidad_por_dias }}",
+            "id": "={{ $json.id }}",
+            "id_comercio": "={{ $json.id_comercio }}",
+            "nombre": "={{ $json.nombre }}",
+            "fecha_registro": "={{ $json.fecha_registro }}",
+            "accion_dias_no_disponibles": "={{ $json.accion_dias_no_disponibles }}",
+            "fecha_modificacion_timestamp": "={{ $json.fecha_modificacion_timestamp }}",
+            "fecha_registro_timestamp": "={{ $json.fecha_registro_timestamp }}",
+            "orden": "={{ $json.orden }}",
+            "estatus": "={{ $json.estatus }}",
+            "descripcion": "={{ $json.descripcion }}",
+            "dias_disponibles": "={{ $json.dias_disponibles }}",
+            "imagen": "={{ $json.imagen }}",
+            "opciones": "={{ $json.opciones }}",
+            "id_categoria": "={{ $json.id_categoria }}",
+            "fecha_modificacion": "={{ $json.fecha_modificacion }}",
+            "id_secciones_string": "={{ $json.id_secciones_string }}",
+            "id_secciones": "={{ $json.id_secciones }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": true,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id_comercio",
+              "displayName": "id_comercio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "nombre",
+              "displayName": "nombre",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_registro",
+              "displayName": "fecha_registro",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "accion_dias_no_disponibles",
+              "displayName": "accion_dias_no_disponibles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "disponibilidad_por_dias",
+              "displayName": "disponibilidad_por_dias",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_modificacion_timestamp",
+              "displayName": "fecha_modificacion_timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_registro_timestamp",
+              "displayName": "fecha_registro_timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "orden",
+              "displayName": "orden",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "estatus",
+              "displayName": "estatus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "descripcion",
+              "displayName": "descripcion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "dias_disponibles",
+              "displayName": "dias_disponibles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "imagen",
+              "displayName": "imagen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "opciones",
+              "displayName": "opciones",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "id_categoria",
+              "displayName": "id_categoria",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "fecha_modificacion",
+              "displayName": "fecha_modificacion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "id_secciones_string",
+              "displayName": "id_secciones_string",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "id_secciones",
+              "displayName": "id_secciones",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "object",
+              "canBeUsedToMatch": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4b4dfcf2-e266-4842-b339-9fbb7e0adf42",
+      "name": "Postgres_PDWH_Product",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        900,
+        500
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "L7nzd88uj5JVSuIu",
+          "name": "Postgres Plick - DWH"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1000,
+        "options": {}
+      },
+      "id": "ad4a346b-3a75-4fdf-8345-1e78285f15eb",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        480,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\nitem.json['fecha_registro'] = item.json['fecha_registro'] ? DateTime.fromFormat(item.json['fecha_registro'], 'd/M/yyyy HH:mm:ss').toSQL() : null;\nitem.json['fecha_modificacion'] = item.json['fecha_modificacion'] ? DateTime.fromFormat(item.json['fecha_modificacion'], 'd/M/yyyy HH:mm:ss').toSQL() : null;  \n}\n\nreturn $input.all();"
+      },
+      "id": "8c64a3df-105d-4ffe-8259-d90bd851f856",
+      "name": "Code_Parse_Product",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        700,
+        500
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "607020a3-4b33-49ce-a62e-249848175973",
+      "name": "No_Operation_END",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        700,
+        700
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 3600,
+    "timezone": "America/Mexico_City",
+    "saveManualExecutions": true
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        21
+      ]
+    }
+  },
+  "tags": [
+    {
+      "id": "gE7NMe34C54qpshR",
+      "createdAt": "2023-07-18T12:43:44.018Z",
+      "updatedAt": "2023-07-18T12:43:44.018Z",
+      "name": "Plick"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2023-07-25T07:37:05.000Z",
+  "versionId": "27d917e3-8bae-4339-9423-def2adab893b"
+}
