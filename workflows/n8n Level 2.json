@@ -1,0 +1,168 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Airtable1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-05-31T20:18:07.323Z",
+  "id": "14",
+  "name": "n8n Level 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        120,
+        420
+      ],
+      "id": "d1813f66-75bb-432f-affb-1401d74e308e"
+    },
+    {
+      "parameters": {
+        "content": "## n8n course level 2 \nYour unique ID: recAcNWq3lrvGYoz4\nDataset URL: https://internal.users.n8n.cloud/webhook/level2-erp\nDiscord URL: https://internal.users.n8n.cloud/webhook/discord-level2\nHeader Auth name: api_key\nHeader Auth value: j[vKYdY68H(:WFb\n\nhttps://internal.users.n8n.cloud/webhook/course-level-2/verify",
+        "height": 220,
+        "width": 520
+      },
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        140,
+        60
+      ],
+      "id": "39a67b89-ebba-4b6b-a74a-affc4647ffad"
+    },
+    {
+      "parameters": {
+        "url": "https://restcountries.com/v3.1/all",
+        "options": {}
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        340,
+        520
+      ],
+      "id": "3b166aa8-3c80-4a78-8a74-cb1e62c90861"
+    },
+    {
+      "parameters": {},
+      "name": "Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        340,
+        360
+      ],
+      "credentials": {
+        "airtableApi": {
+          "id": "1",
+          "name": "Airtable account"
+        }
+      },
+      "id": "31e2f831-54ac-425d-baa4-d3b4ce04493d"
+    },
+    {
+      "parameters": {},
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 1,
+      "position": [
+        560,
+        440
+      ],
+      "id": "bbff6fff-7f0c-46f4-b4b4-9b7374904079"
+    },
+    {
+      "parameters": {},
+      "name": "Airtable1",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        440
+      ],
+      "id": "21e21d66-0945-400d-956b-efe3c203750b"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$node[\"HTTP Request\"].json[\"0\"][\"name\"][\"common\"]}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "Cuba"
+            }
+          ]
+        }
+      },
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        780,
+        440
+      ],
+      "id": "249ef0d9-11f5-407b-9933-31c464cba3c5"
+    }
+  ],
+  "pinData": null,
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "id": "1",
+      "createdAt": "2022-05-31T20:18:14.672Z",
+      "updatedAt": "2022-05-31T20:18:14.672Z",
+      "name": "courses"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2022-05-31T20:51:22.762Z",
+  "versionId": "9771459d-c23c-47bf-a3e4-224d623d8d87"
+}
