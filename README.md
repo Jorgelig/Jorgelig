@@ -25,7 +25,7 @@
 
 ### 📡 Now — Focus & Execution
 
-- **AI Orchestration:** Diseñando flujos de trabajo autónomos con n8n y LLMs para transformar datos crudos (PDFs, CRMs) en insights de negocio valiosos.
+- **AI Orchestration** [![n8n](https://img.shields.io/badge/n8n-specialist-EF5350?style=flat-square&logo=n8n&logoColor=white)](https://n8n.io)**:** Diseñando flujos de trabajo autónomos con n8n y LLMs para transformar datos crudos (PDFs, CRMs) en insights de negocio valiosos.
 - **Product Engineering:** Liderando la evolución técnica en Plick, balanceando velocidad de startup con arquitecturas sólidas en AWS & TypeScript.
 - **Growth Systems:** Integrando tecnología y marketing (API de conversiones, automatización de funnels) para escalar el crecimiento de partners tecnológicos.
 - **Modern Infrastructure:** Evangelizando el uso de Self-hosting (Coolify/Docker) y arquitecturas Edge para reducir latencia y costos operativos.
@@ -54,7 +54,7 @@
 ### 📈 GitHub
 
 <p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=jorgelig&show_icons=true&theme=vision-friendly-dark" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=jorgelig&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
 </p>
 
 ---
